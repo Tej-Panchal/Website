@@ -1,490 +1,1269 @@
-<!DOCTYPE HTML>
-<html>
-    <head>
-        <title>Tej Panchal - Portfolio</title>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-        <link rel="stylesheet" href="assets/css/main.css" />
-        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-        <style>
-            body {
-                font-family: 'Roboto', sans-serif;
-            }
-            /* Sticky Navigation */
-            #header nav {
-                position: sticky;
-                top: 0;
-                background: rgba(0, 0, 0, 0.8);
-                z-index: 1000;
-            }
-            #header nav ul li a:hover {
-                color: #f39c12;
-            }
-            /* Responsive Images */
-            img {
-                max-width: 100%;
-                height: auto;
-            }
-            /* Footer Styling */
-            #footer {
-                background: #333;
-                color: #fff;
-                text-align: center;
-                padding: 20px 0;
-            }
-            #footer ul {
-                list-style: none;
-                padding: 0;
-            }
-            #footer ul li {
-                display: inline;
-                margin: 0 10px;
-            }
-            #footer ul li a {
-                color: #fff;
-                text-decoration: none;
-            }
-            #footer ul li a:hover {
-                color: #f39c12;
-            }
-            /* Smooth Scrolling */
-            html {
-                scroll-behavior: smooth;
-            }
-            /* Media Queries */
-            @media (max-width: 768px) {
-                #header .content h1 {
-                    font-size: 1.8rem;
-                }
-                #header .content p {
-                    font-size: 1rem;
-                }
-            }
-        </style>
-    </head>
-    <body class="is-preload">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tej Panchal - Professional Portfolio</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #2d3e50;
+      --secondary: #3498db;
+      --accent: #e67e22;
+      --light: #ecf0f1;
+      --dark: #2c3e50;
+      --success: #2ecc71;
+      --text: #333;
+      --light-bg: #f8f9fa;
+      --border: #e1e4e8;
+      --shadow: 0 4px 6px rgba(0,0,0,0.1);
+      --transition: all 0.3s ease;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Poppins', sans-serif;
+      color: var(--text);
+      background-color: var(--light-bg);
+      line-height: 1.6;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    
+    /* Header & Navigation */
+    header {
+      background-color: var(--primary);
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+      box-shadow: var(--shadow);
+    }
+    
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 0;
+    }
+    
+    .logo {
+      color: var(--light);
+      font-size: 24px;
+      font-weight: 700;
+      text-decoration: none;
+    }
+    
+    nav ul {
+      display: flex;
+      list-style: none;
+    }
+    
+    nav ul li {
+      margin-left: 30px;
+    }
+    
+    nav ul li a {
+      color: var(--light);
+      text-decoration: none;
+      position: relative;
+      transition: var(--transition);
+    }
+    
+    nav ul li a:hover {
+      color: var(--accent);
+    }
+    
+    nav ul li a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: -5px;
+      left: 0;
+      background-color: var(--accent);
+      transition: var(--transition);
+    }
+    
+    nav ul li a:hover::after {
+      width: 100%;
+    }
+    
+    .mobile-nav-toggle {
+      display: none;
+      background: transparent;
+      border: none;
+      color: var(--light);
+      font-size: 24px;
+      cursor: pointer;
+    }
+    
+    /* Hero Section */
+    #hero {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--dark) 100%);
+      color: var(--light);
+      padding: 160px 0 100px;
+      text-align: center;
+    }
+    
+    .hero-content h1 {
+      font-size: 48px;
+      margin-bottom: 20px;
+    }
+    
+    .hero-content p {
+      font-size: 20px;
+      max-width: 800px;
+      margin: 0 auto 30px;
+    }
+    
+    .social-icons {
+      display: flex;
+      justify-content: center;
+      margin-top: 30px;
+    }
+    
+    .social-icons a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      margin: 0 10px;
+      border-radius: 50%;
+      background-color: rgba(255,255,255,0.1);
+      color: var(--light);
+      font-size: 18px;
+      transition: var(--transition);
+    }
+    
+    .social-icons a:hover {
+      background-color: var(--accent);
+      transform: translateY(-3px);
+    }
+    
+    /* Sections */
+    section {
+      padding: 80px 0;
+    }
+    
+    .section-title {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+    
+    .section-title h2 {
+      font-size: 36px;
+      color: var(--primary);
+      position: relative;
+      display: inline-block;
+      padding-bottom: 15px;
+    }
+    
+    .section-title h2::after {
+      content: '';
+      position: absolute;
+      width: 60px;
+      height: 3px;
+      background-color: var(--accent);
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    
+    /* About Section */
+    .about-content {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 40px;
+    }
+    
+    .about-text {
+      flex: 1;
+      min-width: 300px;
+    }
+    
+    .about-text p {
+      margin-bottom: 20px;
+    }
+    
+    .key-points {
+      margin-top: 30px;
+    }
+    
+    .key-points h3 {
+      font-size: 20px;
+      margin-bottom: 15px;
+      color: var(--primary);
+    }
+    
+    .key-points ul {
+      list-style: none;
+    }
+    
+    .key-points ul li {
+      position: relative;
+      padding-left: 30px;
+      margin-bottom: 10px;
+    }
+    
+    .key-points ul li::before {
+      content: '\f058';
+      font-family: 'Font Awesome 5 Free';
+      font-weight: 900;
+      position: absolute;
+      left: 0;
+      color: var(--success);
+    }
+    
+    /* Work Experience */
+    .timeline {
+      position: relative;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    .timeline::after {
+      content: '';
+      position: absolute;
+      width: 3px;
+      background-color: var(--border);
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      margin-left: -1.5px;
+    }
+    
+    .timeline-item {
+      position: relative;
+      width: 50%;
+      padding: 15px 30px;
+      margin-bottom: 30px;
+    }
+    
+    .timeline-item:nth-child(odd) {
+      left: 0;
+    }
+    
+    .timeline-item:nth-child(even) {
+      left: 50%;
+    }
+    
+    .timeline-item::after {
+      content: '';
+      position: absolute;
+      width: 16px;
+      height: 16px;
+      right: -8px;
+      background-color: var(--light);
+      border: 3px solid var(--secondary);
+      border-radius: 50%;
+      top: 20px;
+      z-index: 1;
+    }
+    
+    .timeline-item:nth-child(even)::after {
+      left: -8px;
+    }
+    
+    .timeline-content {
+      padding: 20px;
+      background-color: white;
+      position: relative;
+      border-radius: 6px;
+      box-shadow: var(--shadow);
+    }
+    
+    .timeline-date {
+      display: inline-block;
+      padding: 5px 15px;
+      background-color: var(--secondary);
+      color: white;
+      border-radius: 20px;
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+    
+    .timeline-title {
+      margin-bottom: 5px;
+      color: var(--primary);
+    }
+    
+    .timeline-subtitle {
+      color: var(--secondary);
+      font-size: 16px;
+      font-weight: normal;
+      margin-bottom: 10px;
+    }
+    
+    .timeline-details {
+      list-style: none;
+    }
+    
+    .timeline-details li {
+      position: relative;
+      padding-left: 25px;
+      margin-bottom: 8px;
+      font-size: 15px;
+    }
+    
+    .timeline-details li::before {
+      content: '\f105';
+      font-family: 'Font Awesome 5 Free';
+      font-weight: 900;
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+    }
+    
+    /* Skills */
+    .skills-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+    }
+    
+    .skill-category {
+      background-color: white;
+      padding: 25px;
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+    }
+    
+    .skill-category h3 {
+      color: var(--primary);
+      margin-bottom: 20px;
+      position: relative;
+      padding-bottom: 10px;
+    }
+    
+    .skill-category h3::after {
+      content: '';
+      position: absolute;
+      width: 40px;
+      height: 2px;
+      background-color: var(--accent);
+      bottom: 0;
+      left: 0;
+    }
+    
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    
+    .skill-tags span {
+      display: inline-block;
+      padding: 6px 12px;
+      background-color: var(--light-bg);
+      border-radius: 20px;
+      font-size: 14px;
+      transition: var(--transition);
+    }
+    
+    .skill-tags span:hover {
+      background-color: var(--accent);
+      color: white;
+      transform: translateY(-2px);
+    }
+    
+    /* Projects */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 30px;
+    }
+    
+    .project-card {
+      background-color: white;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+    }
+    
+    .project-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 15px rgba(0,0,0,0.15);
+    }
+    
+    .project-content {
+      padding: 25px;
+    }
+    
+    .project-title {
+      color: var(--primary);
+      margin-bottom: 10px;
+    }
+    
+    .project-description {
+      margin-bottom: 15px;
+      font-size: 15px;
+    }
+    
+    .project-tech {
+      font-size: 14px;
+      color: var(--secondary);
+      margin-bottom: 20px;
+      font-weight: 500;
+    }
+    
+    .project-links {
+      display: flex;
+      gap: 15px;
+    }
+    
+    .project-links a {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      text-decoration: none;
+      color: var(--accent);
+      font-size: 14px;
+      font-weight: 500;
+      transition: var(--transition);
+    }
+    
+    .project-links a:hover {
+      color: var(--primary);
+    }
+    
+    /* Certificates */
+    .certificates-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 30px;
+    }
+    
+    .certificate-card {
+      background-color: white;
+      border-radius: 8px;
+      padding: 25px;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+    }
+    
+    .certificate-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 15px rgba(0,0,0,0.15);
+    }
+    
+    .certificate-title {
+      color: var(--primary);
+      margin-bottom: 5px;
+      font-size: 18px;
+    }
+    
+    .certificate-title a {
+      color: inherit;
+      text-decoration: none;
+      transition: var(--transition);
+    }
+    
+    .certificate-title a:hover {
+      color: var(--accent);
+    }
+    
+    .certificate-issuer {
+      color: var(--secondary);
+      font-size: 15px;
+      margin-bottom: 10px;
+    }
+    
+    .certificate-date {
+      font-size: 14px;
+      margin-bottom: 15px;
+      color: #777;
+    }
+    
+    .certificate-skills {
+      font-size: 14px;
+    }
+    
+    /* Achievements & Volunteering */
+    .achievements-volunteering {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 40px;
+    }
+    
+    .achievements-list, .volunteering-list {
+      list-style: none;
+    }
+    
+    .achievement-item, .volunteer-item {
+      background-color: white;
+      border-radius: 8px;
+      padding: 25px;
+      box-shadow: var(--shadow);
+      margin-bottom: 20px;
+    }
+    
+    .achievement-item h4, .volunteer-item h4 {
+      color: var(--primary);
+      margin-bottom: 10px;
+    }
+    
+    .item-details {
+      font-size: 14px;
+      color: #777;
+      margin-bottom: 10px;
+    }
+    
+    .item-details strong {
+      color: var(--secondary);
+    }
+    
+    /* Contact Section */
+    #contact {
+      background-color: var(--primary);
+      color: var(--light);
+    }
+    
+    .contact-content {
+      text-align: center;
+    }
+    
+    .contact-content h2 {
+      color: var(--light);
+    }
+    
+    .contact-content h2::after {
+      background-color: var(--accent);
+    }
+    
+    .contact-text {
+      max-width: 700px;
+      margin: 0 auto 40px;
+    }
+    
+    /* Footer */
+    footer {
+      background-color: var(--dark);
+      color: var(--light);
+      padding: 30px 0;
+      text-align: center;
+    }
+    
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+    
+    .footer-links a {
+      color: var(--light);
+      margin: 0 15px;
+      text-decoration: none;
+      transition: var(--transition);
+    }
+    
+    .footer-links a:hover {
+      color: var(--accent);
+    }
+    
+    .footer-social {
+      margin-bottom: 20px;
+    }
+    
+    .footer-social a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      margin: 0 10px;
+      border-radius: 50%;
+      background-color: rgba(255,255,255,0.1);
+      color: var(--light);
+      font-size: 16px;
+      transition: var(--transition);
+    }
+    
+    .footer-social a:hover {
+      background-color: var(--accent);
+    }
+    
+    .copyright {
+      font-size: 14px;
+      color: #999;
+    }
+    
+    /* Modal Popup for Projects */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1050;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0,0,0,0.7);
+    }
+    
+    .modal-content {
+      background-color: white;
+      margin: 5% auto;
+      padding: 30px;
+      border-radius: 8px;
+      width: 80%;
+      max-width: 800px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+      position: relative;
+      animation: modalFade 0.3s ease;
+    }
+    
+    @keyframes modalFade {
+      from {opacity: 0; transform: translateY(-30px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+    
+    .modal-close {
+      position: absolute;
+      top: 15px;
+      right: 20px;
+      font-size: 24px;
+      color: #777;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    
+    .modal-close:hover {
+      color: var(--primary);
+    }
+    
+    /* Responsive */
+    @media (max-width: 992px) {
+      .timeline::after {
+        left: 31px;
+      }
+      
+      .timeline-item {
+        width: 100%;
+        padding-left: 70px;
+        padding-right: 25px;
+      }
+      
+      .timeline-item:nth-child(even) {
+        left: 0;
+      }
+      
+      .timeline-item::after {
+        left: 17px;
+        right: auto;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      nav ul {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: var(--primary);
+        box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+        padding: 20px 0;
+      }
+      
+      nav ul.active {
+        display: flex;
+      }
+      
+      nav ul li {
+        margin: 10px 30px;
+      }
+      
+      .mobile-nav-toggle {
+        display: block;
+      }
+      
+      .hero-content h1 {
+        font-size: 36px;
+      }
+      
+      .hero-content p {
+        font-size: 18px;
+      }
+      
+      .section-title h2 {
+        font-size: 28px;
+      }
+      
+      .achievements-volunteering {
+        grid-template-columns: 1fr;
+      }
+    }
+    
+    @media (max-width: 576px) {
+      .hero-content h1 {
+        font-size: 28px;
+      }
+      
+      .timeline-item {
+        padding-left: 50px;
+      }
+      
+      .modal-content {
+        width: 95%;
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header & Navigation -->
+  <header>
+    <div class="container nav-container">
+      <a href="#" class="logo">Tej Panchal</a>
+      <button class="mobile-nav-toggle">
+        <i class="fas fa-bars"></i>
+      </button>
+      <nav>
+        <ul id="navbar">
+          <li><a href="#hero">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#experience">Experience</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#certificates">Certificates</a></li>
+          <li><a href="#achievements">Achievements</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
 
-        <!-- Wrapper -->
-        <div id="wrapper">
-
-            <!-- Header -->
-            <header id="header">
-                <div class="logo">
-                    <span class="icon fa-gem"></span>
-                </div>
-                <div class="content">
-                    <div class="inner">
-                        <h1>Tej Panchal</h1>
-                        <p>Hi, I'm Tejkumar Panchal, a Software Engineer with two years of professional experience in the tech industry. I specialize in applying my expertise in computer science to develop innovative software solutions. My journey in technology has equipped me with solid skills in project management, leadership, and a deep understanding of artificial intelligence. I have successfully led projects focusing on areas such as cloud integration, automated systems, and data-driven decision-making tools. Committed to excellence, I excel at overseeing projects from conception through to deployment, ensuring they deliver substantial value. Welcome to my professional portfolio, where I showcase my passion for driving technological advancements and impactful outcomes.</p>
-                    </div>
-                </div>
-                <nav>
-                    <ul>
-                        <li><a href="#intro">Intro</a></li>
-                        <li><a href="#work">Work</a></li>
-                        <li><a href="#Projects">Projects</a></li>
-                        <li><a href="#Certificates">Certificates</a></li>
-                        <li><a href="#Achievements">Achievements & Volunteering</a></li>
-                    </ul>
-                </nav>
-            </header>
-
-            <!-- Main -->
-            <div id="main">
-
-                <!-- Intro -->
-                <article id="intro">
-                    <h2 class="major">Intro</h2>
-                    <span class="image main"><img src="images/1.1.jpg" alt="Intro Image" /></span>
-                    <p>
-                        Hi, Welcome to my Website! I'm <strong>Tejkumar Panchal</strong>, a dedicated Software Engineer with a strong background in computer science. My passion lies in leveraging Software Engineering and development, artificial intelligence and machine learning to develop innovative solutions that solve real-world problems. With hands-on experience in various AI and data-driven projects, I excel at transforming complex data into actionable insights.
-                    </p>
-                    <p>
-                        I hold a degree in Computer Science with Minor in Mathematics from California State University, Sacramento and have worked on diverse projects such as College Event Management System, Canvas LMS Student Application, AI-Powered Event Recommendation Systems, Sentiment Analysis Tools for Education Feedback, Predictive Ticketing Systems and more. My expertise spans across prompt engineering, data analysis, and software development.
-                    </p>
-                    <ul>
-                        <li><strong>Software Development:</strong> Strong foundation in software engineering and application development.</li>
-                        <li><strong>AI and Machine Learning:</strong> Expertise in developing intelligent systems and predictive models.</li>
-                        <li><strong>Data Analysis:</strong> Proficient in analyzing and visualizing data to drive decision-making.</li>
-                        <li><strong>Prompt Engineering:</strong> Skilled in crafting precise and effective prompts for AI models.</li>
-                    </ul>
-                    <p>
-                        In my free time, I enjoy exploring new technologies, contributing to open-source projects, and sharing my knowledge through blogging and speaking engagements. Also i love to cook and exploring nature. I'm always eager to connect with like-minded professionals and explore new opportunities.
-                    </p>
-                    <ul class="icons">
-                        <li><a href="https://www.linkedin.com/in/tej-panchal-241618196/" class="icon brands fa-linkedin"><span class="label">LinkedIN</span></a></li>
-                        <li><a href="https://www.instagram.com/tej._panchal/" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
-                        <li><a href="https://github.com/Tej-Panchal" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
-                    </ul>
-                </article>
-
-                <!-- Work -->
-                <article id="work">
-                    <h2 class="major">Work</h2>
-                    <span class="image main"><img src="images/pic02.jpg" alt="Work Image" /></span>
-                    
-                    <!-- Job 1 -->
-                    <div class="job">
-                        <h3>Software Engineer</h3>
-                        <h4>Drevol LLC, Redmond, WA</h4>
-                        <p><em>March 2024 - Present</em></p>
-                        <ul>
-                            <li>Spearheaded multiple software development projects, leading teams to deliver tailored solutions that enhance client operations and meet strategic goals.</li>
-                            <li>Worked closely with clients to gather requirements, provide regular updates, and incorporate feedback, ensuring projects align with their vision and business needs.</li>
-                            <li>Played a key role in the software testing phase, conducting detailed reviews and iterations to guarantee high-quality outcomes.</li>
-                            <li>Facilitated the integration of new features, focusing on improving system efficiency and user satisfaction.</li>
-                            <li>Reviewed and optimized project workflows, significantly reducing delivery times and increasing client satisfaction through more efficient practices.</li>
-                        </ul>
-                    </div>
-
-                    <!-- Job 2 -->
-                    <div class="job">
-                        <h3>Software Engineer Intern</h3>
-                        <h4>Niks Real Estate INC., Kirkland, WA</h4>
-                        <p><em>September 2023 - March 2024</em></p>
-                        <ul>
-                            <li>Conducted comprehensive data analyses to identify trends and support strategic decision-making for real estate investments.</li>
-                            <li>Developed and deployed a high-accuracy property valuation model, directly interfacing with clients to understand their needs and refine the tool's accuracy.</li>
-                            <li>Collaborated with senior developers to refine project scopes and deliverables, ensuring technical specifications and timelines were met.</li>
-                            <li>Provided technical support during the rollout of new software features, ensuring smooth integration and minimal disruption to client operations.</li>
-                        </ul>
-                    </div>
-                    
-                    <!-- Job 3 -->
-                    <div class="job">
-                        <h3>CS Tutor</h3>
-                        <h4>PARC, Sacramento, CA</h4>
-                        <p><em>August 2021 - May 2023</em></p>
-                        <ul>
-                            <li>Delivered personalized tutoring sessions in programming, data analysis, and software design, improving students' academic performance and practical skills.</li>
-                            <li>Designed and implemented tutorial programs that enhanced students' ability to apply theoretical concepts in real-world applications.</li>
-                            <li>Assisted students in troubleshooting and debugging their projects, providing critical support and guidance that fostered deeper understanding.</li>
-                            <li>Developed supplemental course materials, including practice problems and project examples, that complemented the curriculum and enriched learning experiences.</li>
-                        </ul>
-                    </div>
-                    
-                    <!-- Job 4 -->
-                    <div class="job">
-                        <h3>Student Assistant</h3>
-                        <h4>Dean's Office CSUS, Sacramento, CA</h4>
-                        <p><em>Nov 2022 - May 2023</em></p>
-                        <ul>
-                            <li>Supported faculty and staff with the implementation and maintenance of computer systems and software applications, enhancing departmental operations.</li>
-                            <li>Played a pivotal role in the development and enhancement of the department’s website, incorporating features that improved user engagement and accessibility.</li>
-                            <li>Assisted in the analysis and visualization of departmental data, providing insights that informed decision-making and policy development.</li>
-                            <li>Managed technical resources, ensuring that software and hardware were maintained effectively to support ongoing academic and administrative activities.</li>
-                        </ul>
-                    </div>
-
-                    <ul class="icons">
-                        <li><a href="https://www.linkedin.com/in/tej-panchal-241618196/" class="icon brands fa-linkedin"><span class="label">LinkedIN</span></a></li>
-                        <li><a href="https://www.instagram.com/tej._panchal/" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
-                        <li><a href="https://github.com/Tej-Panchal" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
-                    </ul>
-                </article>
-
-                <!-- Projects -->
-                <article id="Projects">
-                    <h2 class="major">Projects</h2>
-                    <div class="project-list">
-
-                        <div class="project">
-                            <h3>Predictive Ticketing System</h3>
-                            <p>This project involved developing a predictive model for ticket resolution times using machine learning techniques like linear regression and decision trees. It also implemented an automated ticket assignment system and created a performance tracking dashboard with key metrics. The system aimed to optimize support workflows and provide data-driven insights for process improvement.</p>
-                            <p><strong>Technologies:</strong> Python, TensorFlow, Flask, RESTful APIs, Data Analysis, Cloud Services</p>
-                            <a href="https://github.com/Tej-Panchal/Ticketing-System" target="_blank">View on GitHub</a>
-                            <p></p>
-                        </div>
-
-                        <div class="project">
-                            <h3>Class Management System</h3>
-                            <p>A Java-based application designed to streamline classroom activities and student information management. The system featured modules for student/teacher profile management, assignment tracking, class scheduling, and communication tools. It included a user-friendly interface, reporting capabilities, and analytics to support data-driven decision-making in an educational setting. The modular design ensured scalability and easy maintenance.</p>
-                            <p><strong>Technologies:</strong> Java, Swing, MySQL</p>
-                            <a href="https://github.com/Tej-Panchal/Classy" target="_blank">View on GitHub</a>
-                            <p></p>
-                        </div>
-
-                        <div class="project">
-                            <h3>Walking-Person</h3>
-                            <p>Engage in an immersive game experience with character movement and interactions within a graphical environment. Player Movement: Move the character in four directions (up, down, left, right) with smooth and responsive controls. Collision Detection: Accurate detection of collisions with game objects and boundaries to ensure realistic movement. Character Interactions: Interact with different game elements like a rose and a chicken, with specific messages displayed for each interaction.</p>
-                            <p><strong>Technologies:</strong> Python, Pygame, Animation Techniques, Object-Oriented Programming, Real-Time Rendering</p>
-                            <a href="https://github.com/Tej-Panchal/Walking-Person" target="_blank">View on GitHub</a>
-                            <p></p>
-                        </div>
-
-                        <div class="project">
-                            <h3>AI-Powered Event Recommendation System</h3>
-                            <p>Developed an intelligent recommendation system that suggests events to users based on their preferences and past behavior. Utilized machine learning algorithms to enhance recommendation accuracy.</p>
-                            <p><strong>Technologies:</strong> Python, scikit-learn, Pandas, Flask</p>
-                            <p></p>
-                        </div>
-
-                        <div class="project">
-                            <h3>Sentiment Analysis Tool for Education Feedback</h3>
-                            <p>Created a tool to analyze and visualize feedback from students, helping educators understand sentiment trends and improve teaching methods. Implemented NLP techniques for accurate sentiment classification.</p>
-                            <p><strong>Technologies:</strong> Python, NLTK, Matplotlib</p>
-                            <p></p>
-                        </div>
-                        
-                        <p>For more of my projects, please visit my <a href="https://github.com/Tej-Panchal" target="_blank">GitHub profile</a>.</p>
-
-                    </div>
-
-                    <ul class="icons">
-                        <li><a href="https://www.linkedin.com/in/tej-panchal-241618196/" class="icon brands fa-linkedin"><span class="label">LinkedIN</span></a></li>
-                        <li><a href="https://www.instagram.com/tej._panchal/" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
-                        <li><a href="https://github.com/Tej-Panchal" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
-                    </ul>
-                </article>
-
-                <!-- Certificates -->
-                <article id="Certificates">
-                    <h2 class="major">Certificates</h2>
-                    <div class="Certificates-list">
-                        <div class="Certificates">
-                            <h3><a href="https://github.com/tej-panchal/Website/raw/main/JavaScript.pdf">JavaScript (Intermediate)</a></h3>
-                            <p><strong>Issuer:</strong> HackerRank</p>
-                            <p><strong>Date Issued:</strong> Mar 2023</p>
-                            <p><strong>Skills Acquired:</strong> Advanced JavaScript concepts, coding best practices, and problem-solving techniques. This Certificates helped deepen my understanding of JavaScript and its application in real-world scenarios.</p>
-                        </div>
-                        <div class="Certificates">
-                            <h3><a href="https://github.com/tej-panchal/Website/raw/main/Foundations of Project Management.pdf">Foundations of Project Management</a></h3>
-                            <p><strong>Issuer:</strong> Google</p>
-                            <p><strong>Date Issued:</strong> Feb 2023</p>
-                            <p><strong>Skills Acquired:</strong> Key principles of project management, including planning, execution, and monitoring. This Certificates enhanced my ability to manage projects efficiently and effectively.</p>
-                        </div>
-                        <div class="Certificates">
-                            <h3><a href="https://github.com/tej-panchal/Website/raw/main/Inroduction to software product management.pdf">Introduction to Software Product Management</a></h3>
-                            <p><strong>Issuer:</strong> University of Alberta</p>
-                            <p><strong>Date Issued:</strong> Feb 2023</p>
-                            <p><strong>Skills Acquired:</strong> Fundamentals of software product management, including lifecycle management and product strategy. This Certificates provided insights into managing software products from conception to launch.</p>
-                        </div>
-                        <div class="Certificates">
-                            <h3><a href="https://github.com/tej-panchal/Website/raw/main/Machine learning with Python.pdf">Machine Learning with Python</a></h3>
-                            <p><strong>Issuer:</strong> IBM</p>
-                            <p><strong>Date Issued:</strong> Feb 2023</p>
-                            <p><strong>Skills Acquired:</strong> Machine learning algorithms, data analysis, and model evaluation using Python. This Certificates strengthened my machine learning skills and ability to apply them to real-world data problems.</p>
-                        </div>
-                        <div class="Certificates">
-                            <h3><a href="https://github.com/tej-panchal/Website/raw/main/Cloud Computing security.pdf">Cloud Computing Security</a></h3>
-                            <p><strong>Issuer:</strong> University of Colorado System</p>
-                            <p><strong>Date Issued:</strong> Jan 2023</p>
-                            <p><strong>Skills Acquired:</strong> Cloud security principles, risk management, and security best practices. This Certificates deepened my understanding of securing cloud-based environments.</p>
-                        </div>
-                        <div class="Certificates">
-                            <h3><a href="https://github.com/tej-panchal/Website/raw/main/Python.pdf">Crash Course on Python</a></h3>
-                            <p><strong>Issuer:</strong> Google</p>
-                            <p><strong>Date Issued:</strong> Jan 2023</p>
-                            <p><strong>Skills Acquired:</strong> Python programming basics, including syntax, data structures, and fundamental coding concepts. This Certificates provided a solid foundation in Python programming.</p>
-                        </div>
-                        <div class="Certificates">
-                            <h3><a href="https://github.com/tej-panchal/Website/raw/main/MS for data.pdf">Microsoft Azure for Data Engineering</a></h3>
-                            <p><strong>Issuer:</strong> Coursera</p>
-                            <p><strong>Date Issued:</strong> Jan 2023</p>
-                            <p><strong>Skills Acquired:</strong> Data engineering principles using Microsoft Azure, including data storage, processing, and integration. This Certificates enhanced my skills in managing data on Azure.</p>
-                        </div>
-                        <div class="Certificates">
-                            <h3>Prompt Engineering (In Progress)</h3>
-                            <p><strong>Issuer:</strong> Coursera</p>
-                            <p><strong>Status:</strong> Currently Pursuing</p>
-                            <p><strong>Skills Acquired:</strong> Understanding of natural language processing (NLP) techniques and their application in creating effective prompts for AI models. Ability to design, test, and optimize prompts to achieve desired outcomes from language models. Proficiency in using prompt engineering tools and frameworks to fine-tune AI model responses. Knowledge of ethical considerations and best practices in prompt engineering to ensure responsible AI use.</p>
-                        </div>
-                        <div class="Certificates">
-                            <h3>C# Certificates (In Progress)</h3>
-                            <p><strong>Issuer:</strong> FreeCodeCamp</p>
-                            <p><strong>Status:</strong> Currently Pursuing</p>
-                            <p><strong>Skills Acquired:</strong> Proficiency in C# programming language, including syntax, data types, and control structures. Experience with object-oriented programming (OOP) concepts such as inheritance, polymorphism, and encapsulation. Ability to develop applications using C# and .NET framework, including web, desktop, and mobile applications. Understanding of debugging, error handling, and unit testing in C# to create robust and maintainable code.</p>
-                        </div>
-                        <div class="Certificates">
-                            <h3>Microsoft Certified: Azure AI Engineer Associate (In Progress)</h3>
-                            <p><strong>Issuer:</strong> Microsoft</p>
-                            <p><strong>Status:</strong> Currently Pursuing</p>
-                            <p><strong>Skills Acquired:</strong> Expertise in designing and implementing AI solutions on Microsoft Azure, including cognitive services, machine learning, and AI tools. Proficiency in using Azure Machine Learning to build, train, and deploy machine learning models. Knowledge of integrating AI solutions into existing applications and services using Azure AI services. Understanding of security, compliance, and best practices for deploying AI solutions on Azure to ensure data protection and governance.</p>
-                        </div>
-                    </div>
-
-                    <ul class="icons">
-                        <li><a href="https://www.linkedin.com/in/tej-panchal-241618196/" class="icon brands fa-linkedin"><span class="label">LinkedIN</span></a></li>
-                        <li><a href="https://www.instagram.com/tej._panchal/" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
-                        <li><a href="https://github.com/Tej-Panchal" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
-                    </ul>
-                </article>
-
-                <!-- Achievements & Volunteering -->    
-                <article id="Achievements">
-                    <div class="volunteer-work">
-                        <h3>Volunteer Work</h3>
-                        <ul>
-                            <li>
-                                <h4>ASI Director of Engineering and Computer Science</h4>
-                                <p><strong>Organization:</strong> Associated Students, Inc. | Sacramento State</p>
-                                <p><strong>Duration:</strong> Jun 2022 - Jun 2023</p>
-                                <p><strong>Location:</strong> Sacramento, California, United States</p>
-                                <p>As the ASI Director, I represented the College of Engineering and Computer Science, advocating for student needs and organizing events to enhance student engagement.</p>
-                            </li>
-                            <li>
-                                <h4>Event Coordinator</h4>
-                                <p><strong>Organization:</strong> ACM, Association for Computing Machinery</p>
-                                <p><strong>Duration:</strong> Sep 2020 - Jul 2021</p>
-                                <p><strong>Field:</strong> Science and Technology</p>
-                                <p>Coordinated events and workshops for the ACM chapter, fostering a community of computing enthusiasts and facilitating professional development opportunities.</p>
-                            </li>
-                            <li>
-                                <h4>ASI Representative of CIVITAS Project</h4>
-                                <p><strong>Organization:</strong> Associated Students, Inc. | Sacramento State</p>
-                                <p><strong>Duration:</strong> Oct 2021 - Feb 2022</p>
-                                <p><strong>Field:</strong> Science and Technology</p>
-                                <p>Participated in the CIVITAS Project, contributing to initiatives aimed at improving campus sustainability and student involvement in environmental efforts.</p>
-                            </li>
-                            <li>
-                                <h4>President of Engineering and Computer Science Joint Council</h4>
-                                <p><strong>Organization:</strong> Sacramento State College of Engineering and Computer Science</p>
-                                <p><strong>Duration:</strong> Jun 2022 - Jun 2023</p>
-                                <p><strong>Field:</strong> Science and Technology</p>
-                                <p>Led the joint council, facilitating collaboration between different engineering and computer science student organizations, and spearheading initiatives to enhance academic and extracurricular experiences.</p>
-                            </li>
-                            <li>
-                                <h4>Student Representative for Search Committee of Vice President of IRT</h4>
-                                <p><strong>Organization:</strong> California State University-Sacramento</p>
-                                <p><strong>Duration:</strong> Oct 2022 - Dec 2022</p>
-                                <p><strong>Field:</strong> Education</p>
-                                <p>Represented the student body on the search committee for the Vice President of Information Resources and Technology, providing input to ensure student interests were considered in the hiring process.</p>
-                            </li>
-                            <li>
-                                <h4>Student Representative for Search Committee of Facility Management Associated Vice President</h4>
-                                <p><strong>Organization:</strong> California State University-Sacramento</p>
-                                <p><strong>Duration:</strong> Jan 2023 - May 2023</p>
-                                <p><strong>Field:</strong> Education</p>
-                                <p>Served on the search committee for the Facility Management Associated Vice President, contributing to the selection process with a focus on student perspectives and campus improvement.</p>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="achievements">
-                        <h3>Achievements</h3>
-                        <ul>
-                            <li>
-                                <h4>Dean’s Honor List</h4>
-                                <p><strong>Date Issued:</strong> May 2023, Dec 2022, Jun 2022, Dec 2021, Dec 2020, May 2020, Dec 2019</p>
-                                <p>Recognized for academic excellence and maintaining a high GPA throughout my academic journey at Sacramento State.</p>
-                            </li>
-                            <li>
-                                <h4>International Student Fee Waiver</h4>
-                                <p><strong>Issuer:</strong> International Programs & Global Engagement</p>
-                                <p><strong>Date Issued:</strong> Jul 2022, Jul 2021</p>
-                                <p>Awarded the fee waiver for outstanding academic performance and contributions to the international student community at Sacramento State.</p>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <h3>Skills</h3>
-                    <div class="skills-list">
-                        <div class="skills-category">
-                            <h3>Programming Languages</h3>
-                            <ul>
-                                <li>Java</li>
-                                <li>Python</li>
-                                <li>JavaScript</li>
-                                <li>C#</li>
-                                <li>SQL</li>
-                                <li>HTML/CSS</li>
-                            </ul>
-                        </div>
-                        <div class="skills-category">
-                            <h3>Frameworks & Libraries</h3>
-                            <ul>
-                                <li>React.js</li>
-                                <li>Flutter</li>
-                                <li>Bootstrap</li>
-                                <li>.NET Framework</li>
-                            </ul>
-                        </div>
-                        
-                        <div class="skills-category">
-                            <h3>Cloud Technologies</h3>
-                            <ul>
-                                <li>AWS</li>
-                                <li>Azure</li>
-                                <li>MongoDB</li>
-                            </ul>
-                        </div>
-                        <div class="skills-category">
-                            <h3>Development Tools</h3>
-                            <ul>
-                                <li>Git</li>
-                                <li>Jenkins</li>
-                                <li>Docker</li>
-                                <li>PyCharm</li>
-                                <li>Eclipse</li>
-                                <li>Jupyter</li>
-                                <li>Visual Studio</li>
-                                <li>Visual Studio Code</li>
-                            </ul>
-                        </div>
-                        <div class="skills-category">
-                            <h3>Soft Skills</h3>
-                            <ul>
-                                <li>Instructional Design</li>
-                                <li>Peer Mentoring</li>
-                                <li>Community Outreach</li>
-                                <li>Grant Writing</li>
-                                <li>Multi-cultural Team Management</li>
-                                <li>Policy Development</li>
-                                <li>Product Development</li>
-                                <li>Team Management</li>
-                                <li>Time Management</li>
-                                <li>Project Management</li>
-                                <li>Team Leadership</li>
-                                <li>Professional Communication</li>
-                                <li>Problem Solving</li>
-                                <li>Organizational Development</li>
-                                <li>Technology Adoption</li>
-                                <li>Student Leadership</li>
-                                <li>University Teaching</li>
-                            </ul>
-                        </div>
-                        <div class="skills-category">
-                            <h3>Other Skills</h3>
-                            <ul>
-                                <li>RESTful APIs</li>
-                                <li>GraphQL</li>
-                                <li>Powershell</li>
-                                <li>Data Manipulation</li>
-                                <li>Data Flow</li>
-                                <li>Unix</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <ul class="icons">
-                        <li><a href="https://www.linkedin.com/in/tej-panchal-241618196/" class="icon brands fa-linkedin"><span class="label">LinkedIN</span></a></li>
-                        <li><a href="https://www.instagram.com/tej._panchal/" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
-                        <li><a href="https://github.com/Tej-Panchal" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
-                    </ul>
-                </article>
-            </div>
-
-            <!-- Footer -->
-            <footer id="footer">
-                <p>&copy; 2025 Tej Panchal. All rights reserved.</p>
-                <ul>
-                    <li><a href="https://www.linkedin.com/in/tej-panchal-241618196/">LinkedIn</a></li>
-                    <li><a href="https://github.com/Tej-Panchal">GitHub</a></li>
-                    <li><a href="https://www.instagram.com/tej._panchal/">Instagram</a></li>
-                </ul>
-            </footer>
-
+  <!-- Hero Section -->
+  <section id="hero">
+    <div class="container">
+      <div class="hero-content">
+        <h1>Tej Panchal</h1>
+        <p>Software Engineer specializing in AI, Machine Learning, and Full-Stack Development</p>
+        <div class="social-icons">
+          <a href="https://www.linkedin.com/in/tej-panchal-241618196/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+          <a href="https://www.instagram.com/tej._panchal/" target="_blank"><i class="fab fa-instagram"></i></a>
+          <a href="https://github.com/Tej-Panchal" target="_blank"><i class="fab fa-github"></i></a>
         </div>
+      </div>
+    </div>
+  </section>
 
-        <!-- BG -->
-        <div id="bg"></div>
+  <!-- About Section -->
+  <section id="about">
+    <div class="container">
+      <div class="section-title">
+        <h2>About Me</h2>
+      </div>
+      <div class="about-content">
+        <div class="about-text">
+          <p>I'm a dedicated Software Engineer from California State University, Sacramento with a Minor in Mathematics. With two years of professional experience in the tech industry, I specialize in building intelligent systems using AI, machine learning, and full-stack development.</p>
+          <p>My passion lies in translating complex ideas into impactful solutions that drive technological advancements. I approach each project with a focus on scalability, efficiency, and user experience.</p>
+          <div class="key-points">
+            <h3>Core Competencies</h3>
+            <ul>
+              <li><strong>Software Development:</strong> Designing and building scalable web and desktop applications</li>
+              <li><strong>AI & Machine Learning:</strong> Creating predictive models and intelligent systems</li>
+              <li><strong>Prompt Engineering:</strong> Designing efficient NLP prompts for advanced language models</li>
+              <li><strong>Data Analysis:</strong> Extracting meaningful insights from complex datasets</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-        <!-- Scripts -->
-        <script src="assets/js/jquery.min.js"></script>
-        <script src="assets/js/browser.min.js"></script>
-        <script src="assets/js/breakpoints.min.js"></script>
-        <script src="assets/js/util.js"></script>
-        <script src="assets/js/main.js"></script>
+  <!-- Work Experience -->
+  <section id="experience">
+    <div class="container">
+      <div class="section-title">
+        <h2>Work Experience</h2>
+      </div>
+      <div class="timeline">
+        <!-- Job 1 -->
+        <div class="timeline-item">
+          <div class="timeline-content">
+            <span class="timeline-date">March 2024 - Present</span>
+            <h3 class="timeline-title">Software Engineer</h3>
+            <h4 class="timeline-subtitle">Drevol LLC, Redmond, WA</h4>
+            <ul class="timeline-details">
+              <li>Spearheaded multiple software development projects, leading teams to deliver tailored solutions that enhance client operations and meet strategic goals.</li>
+              <li>Worked closely with clients to gather requirements, provide regular updates, and incorporate feedback, ensuring projects align with their vision and business needs.</li>
+              <li>Played a key role in the software testing phase, conducting detailed reviews and iterations to guarantee high-quality outcomes.</li>
+              <li>Facilitated the integration of new features, focusing on improving system efficiency and user satisfaction.</li>
+              <li>Reviewed and optimized project workflows, significantly reducing delivery times and increasing client satisfaction through more efficient practices.</li>
+            </ul>
+          </div>
+        </div>
+        
+        <!-- Job 2 -->
+        <div class="timeline-item">
+          <div class="timeline-content">
+            <span class="timeline-date">September 2023 - March 2024</span>
+            <h3 class="timeline-title">Software Engineer Intern</h3>
+            <h4 class="timeline-subtitle">Niks Real Estate INC., Kirkland, WA</h4>
+            <ul class="timeline-details">
+              <li>Conducted comprehensive data analyses to identify trends and support strategic decision-making for real estate investments.</li>
+              <li>Developed and deployed a high-accuracy property valuation model, directly interfacing with clients to understand their needs and refine the tool's accuracy.</li>
+              <li>Collaborated with senior developers to refine project scopes and deliverables, ensuring technical specifications and timelines were met.</li>
+              <li>Provided technical support during the rollout of new software features, ensuring smooth integration and minimal disruption to client operations.</li>
+            </ul>
+          </div>
+        </div>
+        
+        <!-- Job 3 -->
+        <div class="timeline-item">
+          <div class="timeline-content">
+            <span class="timeline-date">August 2021 - May 2023</span>
+            <h3 class="timeline-title">CS Tutor</h3>
+            <h4 class="timeline-subtitle">PARC, Sacramento, CA</h4>
+            <ul class="timeline-details">
+              <li>Delivered personalized tutoring sessions in programming, data analysis, and software design, improving students' academic performance and practical skills.</li>
+              <li>Designed and implemented tutorial programs that enhanced students' ability to apply theoretical concepts in real-world applications.</li>
+              <li>Assisted students in troubleshooting and debugging their projects, providing critical support and guidance that fostered deeper understanding.</li>
+              <li>Developed supplemental course materials, including practice problems and project examples, that complemented the curriculum and enriched learning experiences.</li>
+            </ul>
+          </div>
+        </div>
+        
+        <!-- Job 4 -->
+        <div class="timeline-item">
+          <div class="timeline-content">
+            <span class="timeline-date">November 2022 - May 2023</span>
+            <h3 class="timeline-title">Student Assistant</h3>
+            <h4 class="timeline-subtitle">Dean's Office CSUS, Sacramento, CA</h4>
+            <ul class="timeline-details">
+              <li>Supported faculty and staff with the implementation and maintenance of computer systems and software applications, enhancing departmental operations.</li>
+              <li>Played a pivotal role in the development and enhancement of the department's website, incorporating features that improved user engagement and accessibility.</li>
+              <li>Assisted in the analysis and visualization of departmental data, providing insights that informed decision-making and policy development.</li>
+              <li>Managed technical resources, ensuring that software and hardware were maintained effectively to support ongoing academic and administrative activities.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    </body>
+  <!-- Skills Section -->
+  <section id="skills">
+    <div class="container">
+      <div class="section-title">
+        <h2>Skills</h2>
+      </div>
+      <div class="skills-container">
+        <div class="skill-category">
+          <h3>Programming Languages</h3>
+          <div class="skill-tags">
+            <span>Java</span>
+            <span>Python</span>
+            <span>JavaScript</span>
+            <span>C#</span>
+            <span>SQL</span>
+            <span>HTML/CSS</span>
+          </div>
+        </div>
+        
+        <div class="skill-category">
+          <h3>Frameworks & Libraries</h3>
+          <div class="skill-tags">
+            <span>React.js</span>
+            <span>Flutter</span>
+            <span>Bootstrap</span>
+            <span>.NET Framework</span>
+          </div>
+        </div>
+        
+        <div class="skill-category">
+          <h3>Cloud Technologies</h3>
+          <div class="skill-tags">
+            <span>AWS</span>
+            <span>Azure</span>
+            <span>MongoDB</span>
+          </div>
+        </div>
+        
+        <div class="skill-category">
+          <h3>Development Tools</h3>
+          <div class="skill-tags">
+            <span>Git</span>
+            <span>Jenkins</span>
+            <span>Docker</span>
+            <span>PyCharm</span>
+            <span>Eclipse</span>
+            <span>Jupyter</span>
+            <span>Visual Studio</span>
+            <span>VS Code</span>
+          </div>
+        </div>
+        
+        <div class="skill-category">
+          <h3>APIs & Data</h3>
+          <div class="skill-tags">
+            <span>RESTful APIs</span>
+            <span>GraphQL</span>
+            <span>Data Manipulation</span>
+            <span>Data Flow</span>
+            <span>Powershell</span>
+            <span>Unix</span>
+          </div>
+        </div>
+        
+        <div class="skill-category">
+          <h3>Soft Skills</h3>
+          <div class="skill-tags">
+            <span>Team Management</span>
+            <span>Project Management</span>
+            <span>Problem Solving</span>
+            <span>Time Management</span>
+            <span>Professional Communication</span>
+            <span>Team Leadership</span>
+            <span>Student Leadership</span>
+            <span>Mentoring</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section id="projects">
+    <div class="container">
+      <div class="section-title">
+        <h2>Projects</h2>
+      </div>
+      <div class="projects-grid">
+        <!-- Project 1 -->
+        <div class="project-card">
+          <div class="project-content">
+            <h3 class="project-title">Predictive Ticketing System</h3>
+            <p class="project-description">Developed a predictive model for ticket resolution times using machine learning techniques like linear regression and decision trees. Automated ticket assignment system and created a performance tracking dashboard.</p>
+            <p class="project-tech"><strong>Technologies:</strong> Python, TensorFlow, Flask, RESTful APIs, Data Analysis, Cloud Services</p>
+            <div class="project-links">
+              <a href="https://github.com/Tej-Panchal/Ticketing-System" target="_blank"><i class="fab fa-github"></i> View on GitHub</a>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Project 2 -->
+        <div class="project-card">
+          <div class="project-content">
+            <h3 class="project-title">Class Management System</h3>
+            <p class="project-description">A Java-based application designed to streamline classroom activities and student information management. Features modules for student/teacher profile management, assignment tracking, and communication tools.</p>
+            <p class="project-tech"><strong>Technologies:</strong> Java, Swing, MySQL</p>
+            <div class="project-links">
+              <a href="https://github.com/Tej-Panchal/Classy" target="_blank"><i class="fab fa-github"></i> View on GitHub</a>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Project 3 -->
+      <div class="project-card">
+        <div class="project-content">
+          <h3 class="project-title">Walking-Person</h3>
+          <p class="project-description">An immersive game experience with character movement and interactions within a graphical environment. Features smooth movement controls, collision detection, and character interactions with game elements.</p>
+          <p class="project-tech"><strong>Technologies:</strong> Python, Pygame, Animation Techniques, Object-Oriented Programming</p>
+          <div class="project-links">
+            <a href="https://github.com/Tej-Panchal/Walking-Person" target="_blank"><i class="fab fa-github"></i> View on GitHub</a>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Project 4 -->
+      <div class="project-card">
+        <div class="project-content">
+          <h3 class="project-title">AI-Powered Event Recommendation System</h3>
+          <p class="project-description">Developed an intelligent recommendation system that suggests events to users based on their preferences and past behavior. Utilized machine learning algorithms to enhance recommendation accuracy.</p>
+          <p class="project-tech"><strong>Technologies:</strong> Python, scikit-learn, Pandas, Flask</p>
+          <div class="project-links">
+            <a href="#" onclick="return false;"><i class="fas fa-info-circle"></i> Project Details</a>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Project 5 -->
+      <div class="project-card">
+        <div class="project-content">
+          <h3 class="project-title">Sentiment Analysis Tool for Education Feedback</h3>
+          <p class="project-description">Created a tool to analyze and visualize feedback from students, helping educators understand sentiment trends and improve teaching methods. Implemented NLP techniques for accurate sentiment classification.</p>
+          <p class="project-tech"><strong>Technologies:</strong> Python, NLTK, Matplotlib</p>
+          <div class="project-links">
+            <a href="#" onclick="return false;"><i class="fas fa-info-circle"></i> Project Details</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="text-center" style="text-align: center; margin-top: 30px;">
+      <p>For more of my projects, please visit my <a href="https://github.com/Tej-Panchal" target="_blank" style="color: var(--accent); text-decoration: none; font-weight: 500;">GitHub profile</a>.</p>
+    </div>
+  </section>
+
+  <!-- Certificates Section -->
+  <section id="certificates">
+    <div class="container">
+      <div class="section-title">
+        <h2>Certificates</h2>
+      </div>
+      <div class="certificates-grid">
+        <!-- Certificate 1 -->
+        <div class="certificate-card">
+          <h3 class="certificate-title">
+            <a href="https://github.com/tej-panchal/Website/raw/main/JavaScript.pdf" target="_blank">JavaScript (Intermediate)</a>
+          </h3>
+          <p class="certificate-issuer"><strong>Issuer:</strong> HackerRank</p>
+          <p class="certificate-date"><strong>Date:</strong> March 2023</p>
+          <p class="certificate-skills">Advanced JavaScript concepts, coding best practices, and problem-solving techniques. This certificate helped deepen my understanding of JavaScript and its application in real-world scenarios.</p>
+        </div>
+        
+        <!-- Certificate 2 -->
+        <div class="certificate-card">
+          <h3 class="certificate-title">
+            <a href="https://github.com/tej-panchal/Website/raw/main/Foundations of Project Management.pdf" target="_blank">Foundations of Project Management</a>
+          </h3>
+          <p class="certificate-issuer"><strong>Issuer:</strong> Google</p>
+          <p class="certificate-date"><strong>Date:</strong> February 2023</p>
+          <p class="certificate-skills">Key principles of project management, including planning, execution, and monitoring. This certificate enhanced my ability to manage projects efficiently and effectively.</p>
+        </div>
+        
+        <!-- Certificate 3 -->
+        <div class="certificate-card">
+          <h3 class="certificate-title">
+            <a href="https://github.com/tej-panchal/Website/raw/main/Inroduction to software product management.pdf" target="_blank">Introduction to Software Product Management</a>
+          </h3>
+          <p class="certificate-issuer"><strong>Issuer:</strong> University of Alberta</p>
+          <p class="certificate-date"><strong>Date:</strong> February 2023</p>
+          <p class="certificate-skills">Fundamentals of software product management, including lifecycle management and product strategy. This certificate provided insights into managing software products from conception to launch.</p>
+        </div>
+        
+        <!-- Certificate 4 -->
+        <div class="certificate-card">
+          <h3 class="certificate-title">
+            <a href="https://github.com/tej-panchal/Website/raw/main/Machine learning with Python.pdf" target="_blank">Machine Learning with Python</a>
+          </h3>
+          <p class="certificate-issuer"><strong>Issuer:</strong> IBM</p>
+          <p class="certificate-date"><strong>Date:</strong> February 2023</p>
+          <p class="certificate-skills">Machine learning algorithms, data analysis, and model evaluation using Python. This certificate strengthened my machine learning skills and ability to apply them to real-world data problems.</p>
+        </div>
+        
+        <!-- Certificate 5 -->
+        <div class="certificate-card">
+          <h3 class="certificate-title">
+            <a href="https://github.com/tej-panchal/Website/raw/main/Cloud Computing security.pdf" target="_blank">Cloud Computing Security</a>
+          </h3>
+          <p class="certificate-issuer"><strong>Issuer:</strong> University of Colorado System</p>
+          <p class="certificate-date"><strong>Date:</strong> January 2023</p>
+          <p class="certificate-skills">Cloud security principles, risk management, and security best practices. This certificate deepened my understanding of securing cloud-based environments.</p>
+        </div>
+        
+        <!-- Certificate 6 -->
+        <div class="certificate-card">
+          <h3 class="certificate-title">
+            <a href="https://github.com/tej-panchal/Website/raw/main/Python.pdf" target="_blank">Crash Course on Python</a>
+          </h3>
+          <p class="certificate-issuer"><strong>Issuer:</strong> Google</p>
+          <p class="certificate-date"><strong>Date:</strong> January 2023</p>
+          <p class="certificate-skills">Python programming basics, including syntax, data structures, and fundamental coding concepts. This certificate provided a solid foundation in Python programming.</p>
+        </div>
+        
+        <!-- Certificate 7 -->
+        <div class="certificate-card">
+          <h3 class="certificate-title">
+            <a href="https://github.com/tej-panchal/Website/raw/main/MS for data.pdf" target="_blank">Microsoft Azure for Data Engineering</a>
+          </h3>
+          <p class="certificate-issuer"><strong>Issuer:</strong> Coursera</p>
+          <p class="certificate-date"><strong>Date:</strong> January 2023</p>
+          <p class="certificate-skills">Data engineering principles using Microsoft Azure, including data storage, processing, and integration. This certificate enhanced my skills in managing data on Azure.</p>
+        </div>
+        
+        <!-- In Progress Certificates -->
+        <div class="certificate-card">
+          <h3 class="certificate-title">Prompt Engineering (In Progress)</h3>
+          <p class="certificate-issuer"><strong>Issuer:</strong> Coursera</p>
+          <p class="certificate-date"><strong>Status:</strong> Currently Pursuing</p>
+          <p class="certificate-skills">Understanding of NLP techniques and their application in creating effective prompts for AI models. Learning to design, test, and optimize prompts to achieve desired outcomes from language models.</p>
+        </div>
+        
+        <div class="certificate-card">
+          <h3 class="certificate-title">C# Certificate (In Progress)</h3>
+          <p class="certificate-issuer"><strong>Issuer:</strong> FreeCodeCamp</p>
+          <p class="certificate-date"><strong>Status:</strong> Currently Pursuing</p>
+          <p class="certificate-skills">Proficiency in C# programming language, including syntax, data types, and control structures. Experience with object-oriented programming concepts and .NET framework development.</p>
+        </div>
+        
+        <div class="certificate-card">
+          <h3 class="certificate-title">Microsoft Certified: Azure AI Engineer Associate (In Progress)</h3>
+          <p class="certificate-issuer"><strong>Issuer:</strong> Microsoft</p>
+          <p class="certificate-date"><strong>Status:</strong> Currently Pursuing</p>
+          <p class="certificate-skills">Expertise in designing and implementing AI solutions on Microsoft Azure, including cognitive services, machine learning, and AI tools. Proficiency in using Azure Machine Learning.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Achievements & Volunteering Section -->
+  <section id="achievements">
+    <div class="container">
+      <div class="section-title">
+        <h2>Achievements & Volunteering</h2>
+      </div>
+      <div class="achievements-volunteering">
+        <!-- Achievements -->
+        <div>
+          <h3 style="color: var(--primary); margin-bottom: 20px;">Achievements</h3>
+          <ul class="achievements-list">
+            <li class="achievement-item">
+              <h4>Dean's Honor List</h4>
+              <p class="item-details"><strong>Date Issued:</strong> May 2023, Dec 2022, Jun 2022, Dec 2021, Dec 2020, May 2020, Dec 2019</p>
+              <p>Recognized for academic excellence and maintaining a high GPA throughout my academic journey at Sacramento State.</p>
+            </li>
+            <li class="achievement-item">
+              <h4>International Student Fee Waiver</h4>
+              <p class="item-details"><strong>Issuer:</strong> International Programs & Global Engagement</p>
+              <p class="item-details"><strong>Date Issued:</strong> Jul 2022, Jul 2021</p>
+              <p>Awarded the fee waiver for outstanding academic performance and contributions to the international student community at Sacramento State.</p>
+            </li>
+          </ul>
+        </div>
+        
+        <!-- Volunteering -->
+        <div>
+          <h3 style="color: var(--primary); margin-bottom: 20px;">Volunteer Work</h3>
+          <ul class="volunteering-list">
+            <li class="volunteer-item">
+              <h4>ASI Director of Engineering and Computer Science</h4>
+              <p class="item-details"><strong>Organization:</strong> Associated Students, Inc. | Sacramento State</p>
+              <p class="item-details"><strong>Duration:</strong> Jun 2022 - Jun 2023</p>
+              <p>As the ASI Director, I represented the College of Engineering and Computer Science, advocating for student needs and organizing events to enhance student engagement.</p>
+            </li>
+            <li class="volunteer-item">
+              <h4>President of Engineering and Computer Science Joint Council</h4>
+              <p class="item-details"><strong>Organization:</strong> Sacramento State College of Engineering and Computer Science</p>
+              <p class="item-details"><strong>Duration:</strong> Jun 2022 - Jun 2023</p>
+              <p>Led the joint council, facilitating collaboration between different engineering and computer science student organizations, and spearheading initiatives to enhance academic and extracurricular experiences.</p>
+            </li>
+            <li class="volunteer-item">
+              <h4>Event Coordinator</h4>
+              <p class="item-details"><strong>Organization:</strong> ACM, Association for Computing Machinery</p>
+              <p class="item-details"><strong>Duration:</strong> Sep 2020 - Jul 2021</p>
+              <p>Coordinated events and workshops for the ACM chapter, fostering a community of computing enthusiasts and facilitating professional development opportunities.</p>
+            </li>
+            <li class="volunteer-item">
+              <h4>Student Representative for Search Committees</h4>
+              <p class="item-details"><strong>Organization:</strong> California State University-Sacramento</p>
+              <p class="item-details"><strong>Positions:</strong> VP of IRT (Oct-Dec 2022), Facility Management AVP (Jan-May 2023)</p>
+              <p>Represented the student body on search committees, providing input to ensure student interests were considered in the hiring process for key university positions.</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact">
+    <div class="container">
+      <div class="section-title contact-content">
+        <h2>Get In Touch</h2>
+        <div class="contact-text">
+          <p>Thank you for visiting my portfolio! I'm always open to discussing new projects, opportunities, or partnerships. Feel free to connect with me through any of the platforms below.</p>
+        </div>
+        <div class="social-icons">
+          <a href="https://www.linkedin.com/in/tej-panchal-241618196/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+          <a href="https://www.instagram.com/tej._panchal/" target="_blank"><i class="fab fa-instagram"></i></a>
+          <a href="https://github.com/Tej-Panchal" target="_blank"><i class="fab fa-github"></i></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-links">
+        <a href="#hero">Home</a>
+        <a href="#about">About</a>
+        <a href="#experience">Experience</a>
+        <a href="#projects">Projects</a>
+        <a href="#certificates">Certificates</a>
+      </div>
+      <div class="footer-social">
+        <a href="https://www.linkedin.com/in/tej-panchal-241618196/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://www.instagram.com/tej._panchal/" target="_blank"><i class="fab fa-instagram"></i></a>
+        <a href="https://github.com/Tej-Panchal" target="_blank"><i class="fab fa-github"></i></a>
+      </div>
+      <p class="copyright">&copy; <span id="current-year">2025</span> Tej Panchal. All Rights Reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script>
+    // Mobile Navigation Toggle
+    document.querySelector('.mobile-nav-toggle').addEventListener('click', function() {
+      document.getElementById('navbar').classList.toggle('active');
+    });
+    
+    // Close navbar when clicking a link on mobile
+    document.querySelectorAll('#navbar a').forEach(link => {
+      link.addEventListener('click', function() {
+        document.getElementById('navbar').classList.remove('active');
+      });
+    });
+    
+    // Smooth scrolling for navigation links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        
+        const target = document.querySelector(this.getAttribute('href'));
+        if (!target) return;
+        
+        window.scrollTo({
+          top: target.offsetTop - 80,
+          behavior: 'smooth'
+        });
+      });
+    });
+    
+    // Add active class to navigation items on scroll
+    window.addEventListener('scroll', function() {
+      const sections = document.querySelectorAll('section');
+      const navLinks = document.querySelectorAll('nav ul li a');
+      
+      let current = '';
+      
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop - 100;
+        const sectionHeight = section.clientHeight;
+        
+        if (pageYOffset >= sectionTop && pageYOffset < sectionTop + sectionHeight) {
+          current = section.getAttribute('id');
+        }
+      });
+      
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === `#${current}`) {
+          link.classList.add('active');
+        }
+      });
+    });
+    
+    // Update current year in footer
+    document.getElementById('current-year').innerText = new Date().getFullYear();
+  </script>
+</body>
 </html>
-
