@@ -34,9 +34,9 @@ nav a:hover,nav a.active{color:var(--white);background:rgba(255,255,255,.09)}
 #hero-canvas{position:absolute;inset:0;width:100%;height:100%;z-index:0;opacity:.85}
 .hero-grid{position:relative;z-index:2;display:grid;grid-template-columns:1fr auto;gap:60px;align-items:center}
 .hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(200,151,43,.15);border:1px solid rgba(200,151,43,.3);color:var(--gold-lt);padding:6px 16px;border-radius:99px;font-size:12.5px;font-weight:600;margin-bottom:20px}
-.hero-name{font-family:'DM Serif Display',serif;font-size:clamp(42px,6vw,72px);color:var(--white);line-height:1.05;margin-bottom:18px}
-.hero-title{font-size:clamp(16px,2vw,19px);color:rgba(255,255,255,.68);margin-bottom:20px;max-width:580px;font-weight:400}
-.hero-summary{font-size:14.5px;color:rgba(255,255,255,.55);max-width:580px;margin-bottom:28px;line-height:1.75}
+.hero-kicker{font-family:'DM Serif Display',serif;font-style:italic;font-size:clamp(17px,2vw,20px);color:var(--gold-lt);margin-bottom:14px;max-width:620px;line-height:1.55}
+.hero-name{font-family:'DM Serif Display',serif;font-size:clamp(42px,6vw,68px);color:var(--white);line-height:1.05;margin-bottom:18px}
+.hero-title{font-size:clamp(15.5px,2vw,17.5px);color:rgba(255,255,255,.68);margin-bottom:28px;max-width:600px;font-weight:400;line-height:1.85}
 .hero-pills{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:32px}
 .hero-pill{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);color:rgba(255,255,255,.8);padding:8px 15px;border-radius:8px;font-size:13px;font-weight:500}
 .hero-pill i{color:var(--teal-lt);font-size:13px}
@@ -57,12 +57,14 @@ section{padding:90px 0}
 .sec-line{width:48px;height:3px;background:var(--gold);border-radius:2px;margin-bottom:48px}
 section:nth-child(even){background:var(--light)}
 
-.summary-card{background:linear-gradient(135deg,rgba(26,107,114,.06),rgba(200,151,43,.05));border:1px solid rgba(26,107,114,.15);border-radius:14px;padding:32px;margin-bottom:56px}
-.summary-card p{font-size:16px;color:#374151;line-height:1.85}
-.summary-card p strong{color:var(--teal)}
+.story-card{background:linear-gradient(135deg,rgba(26,107,114,.06),rgba(200,151,43,.05));border:1px solid rgba(26,107,114,.15);border-left:4px solid var(--teal);border-radius:0 14px 14px 0;padding:32px 36px;margin-bottom:56px}
+.story-card p{font-size:16.5px;color:#374151;line-height:1.9;margin-bottom:14px}
+.story-card p:last-child{margin-bottom:0}
+.story-card p strong{color:var(--teal)}
+.story-card .story-lede{font-family:'DM Serif Display',serif;font-style:italic;font-size:20px;color:var(--navy);margin-bottom:16px;line-height:1.5}
 
 .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start}
-.about-intro{font-size:17px;line-height:1.8;color:#374151;margin-bottom:24px}
+.about-intro{font-size:17px;line-height:1.85;color:#374151;margin-bottom:22px}
 .about-intro strong{color:var(--teal)}
 .uw-badge{display:inline-flex;align-items:center;gap:10px;background:linear-gradient(135deg,rgba(75,46,131,.08),rgba(26,107,114,.08));border:1.5px solid rgba(75,46,131,.2);border-radius:10px;padding:14px 20px;margin-bottom:28px}
 .uw-badge i{color:#4b2e83;font-size:20px}
@@ -136,7 +138,41 @@ section:nth-child(even) .cert-card{background:var(--cream)}
 .cert-date{font-size:12px;color:var(--gray)}
 .cert-desc{font-size:13px;color:var(--gray);line-height:1.6}
 .cert-status{display:inline-block;padding:3px 10px;border-radius:99px;font-size:11px;font-weight:700;background:rgba(200,151,43,.12);color:var(--gold)}
-
+/* ── CERTIFICATE PDF MODAL ── */
+.cert-modal-overlay{
+  display:none;
+  position:fixed; inset:0; z-index:2000;
+  background:rgba(13,27,42,.75);
+  backdrop-filter:blur(4px);
+  align-items:center; justify-content:center;
+  padding:40px 20px;
+}
+.cert-modal-overlay.open{ display:flex; }
+.cert-modal-box{
+  background:var(--white);
+  width:100%; max-width:900px; height:85vh;
+  border-radius:14px;
+  position:relative;
+  box-shadow:0 20px 60px rgba(0,0,0,.4);
+  overflow:hidden;
+  animation:certModalIn .25s ease;
+}
+@keyframes certModalIn{
+  from{opacity:0; transform:translateY(20px) scale(.98);}
+  to{opacity:1; transform:translateY(0) scale(1);}
+}
+.cert-modal-close{
+  position:absolute; top:12px; right:12px; z-index:10;
+  width:36px; height:36px; border-radius:50%;
+  background:var(--navy); color:var(--white);
+  border:none; cursor:pointer;
+  display:flex; align-items:center; justify-content:center;
+  font-size:16px; transition:var(--tr);
+}
+.cert-modal-close:hover{ background:var(--gold); transform:rotate(90deg); }
+.cert-modal-box iframe{
+  width:100%; height:100%; border:none;
+}
 .ach-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px}
 .ach-card{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:24px;box-shadow:var(--shadow)}
 section:nth-child(even) .ach-card{background:var(--cream)}
@@ -192,9 +228,9 @@ footer{background:var(--navy);border-top:1px solid rgba(255,255,255,.07);padding
     <div class="hero-grid">
       <div>
         <div class="hero-badge"><i class="fas fa-graduation-cap"></i> MS Supply Chain Management · University of Washington</div>
+        <p class="hero-kicker">A trail rarely fails where you're standing when it goes wrong — it failed at the fork you didn't notice, three switchbacks back. Three years of debugging production systems taught me the same lesson.</p>
         <h1 class="hero-name">Tej Panchal</h1>
-        <p class="hero-title">Supply Chain Management graduate student bringing 3 years of software engineering and QA experience to operations, logistics, and analytics.</p>
-        <p class="hero-summary">Reduced manual testing effort by 40% and system downtime by 20% by automating workflows and building monitoring dashboards. Combines engineering rigor with supply chain analytics skills in SQL, Python, and Power BI to drive operational and process improvements.</p>
+        <p class="hero-title">I trace things back to where they actually broke, not just where they became visible. That habit is what pulled me from software engineering into supply chain management — and it's what I bring to logistics, program management, and operations work now.</p>
         <div class="hero-pills">
           <span class="hero-pill"><i class="fas fa-boxes"></i> Supply Chain Analytics</span>
           <span class="hero-pill"><i class="fas fa-vial"></i> QA & Automation</span>
@@ -203,7 +239,7 @@ footer{background:var(--navy);border-top:1px solid rgba(255,255,255,.07);padding
         </div>
         <div>
           <a href="#contact" class="hero-cta"><i class="fas fa-paper-plane"></i> Get In Touch</a>
-          <a href="#experience" class="hero-cta-ghost">View Experience</a>
+          <a href="#about" class="hero-cta-ghost">Read My Story</a>
         </div>
       </div>
       <div class="hero-stats">
@@ -218,21 +254,23 @@ footer{background:var(--navy);border-top:1px solid rgba(255,255,255,.07);padding
 
 <section id="about">
   <div class="container">
-    <p class="sec-label">Executive Summary</p>
-    <h2 class="sec-title">About Me</h2>
+    <p class="sec-label">The Story</p>
+    <h2 class="sec-title">Switchbacks and Stack Traces</h2>
     <div class="sec-line"></div>
 
-    <div class="summary-card">
-      <p><strong>Supply Chain Management graduate student</strong> at the University of Washington Foster School of Business with 3 years of software engineering and quality assurance experience. Reduced manual testing effort by <strong>40%</strong> and system downtime by <strong>20%</strong> by automating workflows and building monitoring dashboards. Combines engineering rigor with supply chain analytics skills in SQL, Python, and Power BI to drive operational and process improvements.</p>
+    <div class="story-card">
+      <p class="story-lede">I spend my weekends reading trails. I spent three years reading systems. Supply chains, it turns out, ask the same question as both.</p>
+      <p>On a hike, a wrong turn doesn't announce itself right away — you feel it a mile later, when the trail stops matching the map, and by then you're already off course. Debugging production software taught me the exact same lesson from the other direction: the crash a customer reports is almost never where the problem started. It's the visible symptom of a decision made several steps earlier that nobody flagged as risky at the time — a delayed API response, a sync job that ran late, a queue nobody was watching until it backed up.</p>
+      <p>Three years as a software engineer trained me to stop reacting to the symptom and start tracing backward to the actual fork in the road. <strong>Supply chains have the same shape.</strong> A stockout on a shelf is rarely a shelf problem — it's a forecast, a lead time, or a handoff that broke several steps upstream. That's the instinct I'm bringing from engineering into supply chain: read the whole path, not just the point where it finally became visible.</p>
     </div>
 
     <div class="about-grid">
       <div>
         <p class="about-intro">
-          I am a results-driven <strong>Software Engineer</strong> with a B.S. in Computer Science (Minor: Mathematics) from Sacramento State, GPA 3.6/4.0, Dean's List for 7 semesters. I have 3 years of hands-on experience working with cross-functional teams, automating QA pipelines, and translating business requirements into actionable technical and operational improvements.
+          I'm currently pursuing a <strong>Master of Science in Supply Chain Management</strong> at the University of Washington's Foster School of Business, building on almost three years as a software engineer automating QA pipelines, building the monitoring dashboards that flagged problems before customers did, and working cross-functionally with operations teams whenever something needed fixing at the root.
         </p>
         <p class="about-intro">
-          I am now channeling this technical and process-improvement foundation into <strong>supply chain management</strong> through the MS SCM program at the University of Washington, applying automation, data analytics, and systems thinking to logistics, demand planning, and vendor management.
+          That combination — <strong>engineering rigor plus a habit of tracing failures back to their source</strong> — is what I bring to supply chain, program management, and operations roles. Outside of work, you'll usually find me actually testing that instinct on a trail somewhere in the Pacific Northwest, or on a badminton court.
         </p>
 
         <div class="uw-badge">
@@ -244,7 +282,7 @@ footer{background:var(--navy);border-top:1px solid rgba(255,255,255,.07);padding
           <div class="comp-item"><div class="comp-icon"><i class="fas fa-robot"></i></div><div><div class="comp-title">Automation & QA Engineering</div><div class="comp-desc">Selenium-based regression automation, Azure DevOps pipelines, and defect triage reducing manual QA effort by 40%.</div></div></div>
           <div class="comp-item"><div class="comp-icon"><i class="fas fa-chart-line"></i></div><div><div class="comp-title">Data Analysis & Reporting</div><div class="comp-desc">SQL, Python, Power BI, and Tableau applied to monitoring dashboards, workflow analysis, and operational KPI tracking.</div></div></div>
           <div class="comp-item"><div class="comp-icon"><i class="fas fa-tasks"></i></div><div><div class="comp-title">Cross-Functional Delivery</div><div class="comp-desc">Requirements gathering, stakeholder communication, and release coordination across API partner integrations.</div></div></div>
-          <div class="comp-item"><div class="comp-icon"><i class="fas fa-cubes"></i></div><div><div class="comp-title">Supply Chain Technology Interest</div><div class="comp-desc">Applying automation, ERP integration, and predictive analytics to logistics and operations challenges.</div></div></div>
+          <div class="comp-item"><div class="comp-icon"><i class="fas fa-route"></i></div><div><div class="comp-title">Root-Cause Thinking</div><div class="comp-desc">Tracing a process end-to-end to find where it actually breaks, not just where the break becomes visible.</div></div></div>
         </div>
       </div>
 
@@ -260,18 +298,20 @@ footer{background:var(--navy);border-top:1px solid rgba(255,255,255,.07);padding
           <div class="fact-row"><i class="fas fa-map-marker-alt"></i> Kirkland, Washington</div>
           <div class="fact-row"><i class="fas fa-phone"></i> (916) 890-8647</div>
           <div class="fact-row"><i class="fas fa-envelope"></i> panchaltej23@gmail.com</div>
-          <div class="fact-row"><i class="fas fa-search"></i> Open to: SCM Internships & Analyst Roles</div>
+          <div class="fact-row"><i class="fas fa-mountain"></i> Hiking around the Pacific Northwest</div>
+          <div class="fact-row"><i class="fas fa-table-tennis"></i> Playing badminton</div>
+          <div class="fact-row"><i class="fas fa-search"></i> Open to: Supply Chain, Program Management & Operations roles</div>
         </div>
 
         <div class="info-card">
           <h4>Seeking Roles In</h4>
           <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:4px;">
-            <span class="tag">Supply Chain Analyst</span>
-            <span class="tag">Operations Analyst</span>
-            <span class="tag">Logistics Data Analyst</span>
+            <span class="tag">Supply Chain Manager</span>
+            <span class="tag">Program Manager</span>
+            <span class="tag">Operations Manager</span>
             <span class="tag">SCM Technology</span>
             <span class="tag gold">Demand Planning</span>
-            <span class="tag gold">Project Coordinator</span>
+            <span class="tag gold">Logistics Analyst</span>
           </div>
         </div>
       </div>
@@ -303,13 +343,13 @@ footer{background:var(--navy);border-top:1px solid rgba(255,255,255,.07);padding
         <li><strong>Reliability:</strong> Reduced system downtime by 20% by building observability dashboards in Azure Monitor and Application Insights.</li>
         <li><strong>Operational Efficiency:</strong> Increased point-of-sale and kitchen display system efficiency by 45% by redesigning order workflows, minimizing input errors.</li>
         <li><strong>Cross-functional Delivery:</strong> Reduced issue resolution time by 25% by supporting API partner integrations, release readiness, and defect triage.</li>
-        <li>Owned end-to-end project delivery: gathered business and technical requirements, defined task scopes, assigned work across the team, and tracked progress to ensure on-time, quality releases.</li>
+        <li><strong>Owned end-to-end project delivery:</strong> gathered business and technical requirements, defined task scopes, assigned work across the team, and tracked progress to ensure on-time, quality releases.</li>
         <li>Led the QA lifecycle including test case design, execution, defect triage, and release readiness validation for consistent, high-quality software delivery.</li>
         <li>Applied security testing best practices — authentication, authorization, and cryptography — strengthening system resilience and reducing vulnerabilities by 40%.</li>
         <li>Mentored junior QA team members on testing best practices, tools, and documentation.</li>
       </ul>
       <div class="exp-tags">
-        <span class="tag">Selenium</span><span class="tag">Azure DevOps</span><span class="tag">Azure Monitor</span>
+        <span class="tag">Azure DevOps</span><span class="tag">Azure Monitor</span>
         <span class="tag">Application Insights</span><span class="tag">API Testing</span><span class="tag">Security Testing</span>
         <span class="tag">Postman</span><span class="tag">GitHub Actions</span><span class="tag">Agile / Scrum</span>
       </div>
@@ -327,7 +367,7 @@ footer{background:var(--navy);border-top:1px solid rgba(255,255,255,.07);padding
         <li>Created interactive dashboards in Tableau and D3.js to visualize market trends, improving stakeholder decision-making speed.</li>
         <li>Produced documentation and training materials for new features, reducing onboarding time by 35%.</li>
       </ul>
-      <div class="exp-tags"><span class="tag">Python</span><span class="tag">scikit-learn</span><span class="tag">Tableau</span><span class="tag">Data Analysis</span><span class="tag">SEO</span></div>
+      <div class="exp-tags"><span class="tag">Python</span><span class="tag">Tableau</span><span class="tag">Data Analysis</span><span class="tag">SEO</span></div>
     </div>
 
     <div class="exp-card" id="e3">
@@ -350,8 +390,12 @@ footer{background:var(--navy);border-top:1px solid rgba(255,255,255,.07);padding
         <span class="exp-date">August 2021 – May 2023</span>
       </div>
       <ul class="exp-bullets">
-        <li>Supported 100+ students per semester in mastering programming fundamentals and data structures, driving a 25% average improvement in academic performance.</li>
-        <li>Designed and facilitated supplemental instruction sessions, improving overall class performance by 15%.</li>
+        <li>Supported 100+ students in developing effective study habits and mastering course content, leading to a 25% improvement in
+        average academic performance.</li>
+        <li>Tracked and analyzed student progress data to identify learning gaps and adjust tutoring approaches, resulting in more effective
+        and personalized support strategies.</li>
+        <li>Collaborated with faculty coordinators to tailor tutoring strategies, fostering a supportive environment that increased student
+        retention by an estimated 15%.</li>
         <li>Created study guides and practice materials later adopted by the department.</li>
       </ul>
       <div class="exp-tags"><span class="tag">Mentoring</span><span class="tag">Curriculum Design</span><span class="tag">Communication</span></div>
@@ -363,8 +407,10 @@ footer{background:var(--navy);border-top:1px solid rgba(255,255,255,.07);padding
         <span class="exp-date">November 2022 – May 2023</span>
       </div>
       <ul class="exp-bullets">
-        <li>Provided technical support for software used in academic research environments.</li>
-        <li>Led the redesign of the departmental website, implementing data-driven features to showcase student and faculty projects.</li>
+        <li>Provided administrative support to office leadership, including scheduling, correspondence, and document management.</li>
+        <li>Digitized and securely maintained 100% of personnel records in compliance with privacy regulations. </li> 
+        <li>Drafted and distributed communications to faculty and students, reducing response times by 30%.</li>
+        <li> Managed incoming inquiries and routed them to the appropriate personnel.</li>
       </ul>
       <div class="exp-tags"><span class="tag">Troubleshooting</span><span class="tag">Professional Communication</span></div>
     </div>
@@ -481,7 +527,7 @@ footer{background:var(--navy);border-top:1px solid rgba(255,255,255,.07);padding
         <div class="project-body">
           <h3 class="project-title">Property Valuation Prediction Model</h3>
           <div class="project-role">Internship Project · Niks Real Estate</div>
-          <p class="project-desc">Developed predictive models to forecast property valuations, improving price estimate accuracy by 25%, with interactive Tableau dashboards for trend visualization.</p>
+          <p class="project-desc">Developed predictive models to forecast property valuations, improving prediction performance by 25%, with interactive Tableau dashboards for trend visualization.</p>
           <p class="project-tech">Python · scikit-learn · Tableau · D3.js</p>
         </div>
       </div>
@@ -510,43 +556,43 @@ footer{background:var(--navy);border-top:1px solid rgba(255,255,255,.07);padding
     <div class="certs-grid">
       <div class="cert-card">
         <span class="cert-issuer-badge"><i class="fab fa-google"></i> Google</span>
-        <a href="https://github.com/tej-panchal/Website/raw/main/Foundations of Project Management.pdf" target="_blank" class="cert-name">Foundations of Project Management</a>
+        <a href="https://github.com/tej-panchal/Website/raw/main/Foundations of Project Management.pdf" class="cert-name">Foundations of Project Management</a>
         <span class="cert-date">February 2023</span>
         <p class="cert-desc">Core PM principles including planning, execution, stakeholder management, and monitoring.</p>
       </div>
       <div class="cert-card">
         <span class="cert-issuer-badge"><i class="fas fa-building"></i> IBM</span>
-        <a href="https://github.com/tej-panchal/Website/raw/main/Machine learning with Python.pdf" target="_blank" class="cert-name">Machine Learning with Python</a>
+        <a href="https://github.com/tej-panchal/Website/raw/main/Machine learning with Python.pdf" class="cert-name">Machine Learning with Python</a>
         <span class="cert-date">February 2023</span>
         <p class="cert-desc">ML algorithms, predictive modeling, and data analysis using Python — foundational for demand forecasting.</p>
       </div>
       <div class="cert-card">
         <span class="cert-issuer-badge"><i class="fas fa-shield-alt"></i> University of Colorado System</span>
-        <a href="https://github.com/tej-panchal/Website/raw/main/Cloud Computing security.pdf" target="_blank" class="cert-name">Cloud Computing Security</a>
+        <a href="https://github.com/tej-panchal/Website/raw/main/Cloud Computing security.pdf" class="cert-name">Cloud Computing Security</a>
         <span class="cert-date">January 2023</span>
         <p class="cert-desc">Cloud security principles, risk management, and best practices for securing enterprise systems.</p>
       </div>
       <div class="cert-card">
         <span class="cert-issuer-badge"><i class="fas fa-university"></i> University of Alberta</span>
-        <a href="https://github.com/tej-panchal/Website/raw/main/Inroduction to software product management.pdf" target="_blank" class="cert-name">Introduction to Software Product Management</a>
+        <a href="https://github.com/tej-panchal/Website/raw/main/Inroduction to software product management.pdf" class="cert-name">Introduction to Software Product Management</a>
         <span class="cert-date">February 2023</span>
         <p class="cert-desc">Software product lifecycle, requirements management, and product strategy.</p>
       </div>
       <div class="cert-card">
         <span class="cert-issuer-badge"><i class="fab fa-microsoft"></i> Microsoft / Coursera</span>
-        <a href="https://github.com/tej-panchal/Website/raw/main/MS for data.pdf" target="_blank" class="cert-name">Microsoft Azure for Data Engineering</a>
+        <a href="https://github.com/tej-panchal/Website/raw/main/MS for data.pdf" class="cert-name">Microsoft Azure for Data Engineering</a>
         <span class="cert-date">January 2023</span>
         <p class="cert-desc">Azure data services, ETL processes, and cloud data pipeline development.</p>
       </div>
       <div class="cert-card">
         <span class="cert-issuer-badge"><i class="fab fa-google"></i> Google</span>
-        <a href="https://github.com/tej-panchal/Website/raw/main/Python.pdf" target="_blank" class="cert-name">Crash Course on Python</a>
+        <a href="https://github.com/tej-panchal/Website/raw/main/Python.pdf" class="cert-name">Crash Course on Python</a>
         <span class="cert-date">January 2023</span>
         <p class="cert-desc">Python programming foundations for automation, data analysis, and systems scripting.</p>
       </div>
       <div class="cert-card">
         <span class="cert-issuer-badge"><i class="fas fa-code"></i> HackerRank</span>
-        <a href="https://github.com/tej-panchal/Website/raw/main/JavaScript.pdf" target="_blank" class="cert-name">JavaScript (Intermediate)</a>
+        <a href="https://github.com/tej-panchal/Website/raw/main/JavaScript.pdf" class="cert-name">JavaScript (Intermediate)</a>
         <span class="cert-date">March 2023</span>
         <p class="cert-desc">Advanced JavaScript for web application development and automation scripting.</p>
       </div>
@@ -582,7 +628,7 @@ footer{background:var(--navy);border-top:1px solid rgba(255,255,255,.07);padding
     <div class="contact-inner">
       <p class="sec-label">Let's Connect</p>
       <h2 class="sec-title">Get In Touch</h2>
-      <p>I'm currently pursuing my MS in Supply Chain Management at UW and actively exploring internship and analyst opportunities in supply chain operations, logistics, and SCM technology.</p>
+      <p>I'm currently pursuing my MS in Supply Chain Management at UW and actively exploring supply chain manager, program manager, and operations opportunities where I can put this root-cause instinct to work.</p>
       <div class="contact-links">
         <a href="mailto:panchaltej23@gmail.com" class="contact-link"><i class="fas fa-envelope"></i> panchaltej23@gmail.com</a>
         <a href="tel:+19168908647" class="contact-link"><i class="fas fa-phone"></i> (916) 890-8647</a>
@@ -606,6 +652,36 @@ footer{background:var(--navy);border-top:1px solid rgba(255,255,255,.07);padding
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script>
 document.getElementById('yr').textContent = new Date().getFullYear();
+  // ── Certificate PDF Modal logic ──
+const certOverlay = document.getElementById('certModalOverlay');
+const certFrame = document.getElementById('certModalFrame');
+const certClose = document.getElementById('certModalClose');
+
+function openCertModal(pdfUrl){
+  certFrame.src = pdfUrl;
+  certOverlay.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeCertModal(){
+  certOverlay.classList.remove('open');
+  certFrame.src = '';
+  document.body.style.overflow = '';
+}
+certClose.addEventListener('click', closeCertModal);
+certOverlay.addEventListener('click', (e)=>{
+  if(e.target === certOverlay) closeCertModal();
+});
+document.addEventListener('keydown', (e)=>{
+  if(e.key === 'Escape') closeCertModal();
+});
+
+// Hook up every certificate link with class "cert-name" that points to a PDF
+document.querySelectorAll('a.cert-name[href$=".pdf"]').forEach(link=>{
+  link.addEventListener('click', (e)=>{
+    e.preventDefault();
+    openCertModal(link.getAttribute('href'));
+  });
+});
 document.getElementById('mobileBtn').addEventListener('click',()=>document.getElementById('navbar').classList.toggle('open'));
 document.querySelectorAll('#navbar a').forEach(a=>a.addEventListener('click',()=>document.getElementById('navbar').classList.remove('open')));
 function showExp(id, btn){
@@ -622,7 +698,6 @@ window.addEventListener('scroll',()=>{
   navLinks.forEach(a=> a.classList.toggle('active', a.getAttribute('href')==='#'+cur));
 });
 
-// ── 3D Supply Chain Network Hero (Three.js) ──
 (function(){
   const canvas = document.getElementById('hero-canvas');
   const heroEl = document.getElementById('hero');
@@ -639,13 +714,11 @@ window.addEventListener('scroll',()=>{
   const group = new THREE.Group();
   scene.add(group);
 
-  // Globe wireframe (distribution network)
   const globeGeo = new THREE.IcosahedronGeometry(4.2, 2);
   const globeMat = new THREE.MeshBasicMaterial({color:0x1a6b72, wireframe:true, transparent:true, opacity:0.35});
   const globe = new THREE.Mesh(globeGeo, globeMat);
   group.add(globe);
 
-  // Node points on globe surface
   const posAttr = globeGeo.attributes.position;
   const nodeCount = Math.min(40, posAttr.count);
   const nodeIndices = [];
@@ -661,7 +734,6 @@ window.addEventListener('scroll',()=>{
   const nodePoints = new THREE.Points(nodesGeo, nodesMat);
   group.add(nodePoints);
 
-  // Glowing arc "routes" connecting random node pairs
   function vecAt(idx){ return new THREE.Vector3(posAttr.getX(idx), posAttr.getY(idx), posAttr.getZ(idx)); }
   const routeGroup = new THREE.Group();
   for(let i=0;i<16;i++){
@@ -677,7 +749,6 @@ window.addEventListener('scroll',()=>{
   }
   group.add(routeGroup);
 
-  // Floating shipping containers (cubes) orbiting
   const containers = new THREE.Group();
   const cubeColors = [0x1a6b72, 0xc8972b, 0x22909a];
   for(let i=0;i<10;i++){
@@ -693,7 +764,6 @@ window.addEventListener('scroll',()=>{
   }
   group.add(containers);
 
-  // Background starfield
   const starGeo = new THREE.BufferGeometry();
   const starCount = 250;
   const starPos = [];
@@ -745,5 +815,12 @@ window.addEventListener('scroll',()=>{
   animate();
 })();
 </script>
+  <!-- Certificate PDF Modal -->
+<div class="cert-modal-overlay" id="certModalOverlay">
+  <div class="cert-modal-box">
+    <button class="cert-modal-close" id="certModalClose"><i class="fas fa-times"></i></button>
+    <iframe id="certModalFrame" src=""></iframe>
+  </div>
+</div>
 </body>
 </html>
