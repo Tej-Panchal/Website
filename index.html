@@ -312,8 +312,11 @@ footer{background:var(--navy);border-top:1px solid rgba(255,255,255,.07);padding
           <div class="fact-row"><i class="fas fa-map-marker-alt"></i> Kirkland, Washington</div>
           <div class="fact-row"><i class="fas fa-phone"></i> (916) 890-8647</div>
           <div class="fact-row"><i class="fas fa-envelope"></i> panchaltej23@gmail.com</div>
+         
+           <div class="fact-row"><i class="fas fa-user-graduate"></i> MSCM Student Ambassador, UW Foster School of Business</div>
           <div class="fact-row"><i class="fas fa-mountain"></i> Hiking around the Pacific Northwest</div>
           <div class="fact-row"><i class="fas fa-table-tennis"></i> Playing badminton</div>
+         
           <div class="fact-row"><i class="fas fa-search"></i> Open to: Supply Chain, Program Management & Operations roles</div>
         </div>
 
@@ -341,14 +344,34 @@ footer{background:var(--navy);border-top:1px solid rgba(255,255,255,.07);padding
     <div class="sec-line"></div>
 
     <div class="exp-tabs">
-      <button class="exp-tab active" onclick="showExp('e1',this)">Software Engineer · Drevol LLC</button>
+      <button class="exp-tab active" onclick="showExp('e0',this)">Operations Assistant · UW IMA</button>
+      <button class="exp-tab" onclick="showExp('e1',this)">Software Engineer · Drevol LLC</button>
       <button class="exp-tab" onclick="showExp('e2',this)">Intern · Niks Real Estate</button>
       <button class="exp-tab" onclick="showExp('e3',this)">ASI Director · Sac State</button>
       <button class="exp-tab" onclick="showExp('e4',this)">Tutor · PARC</button>
       <button class="exp-tab" onclick="showExp('e5',this)">Student Assistant · Dean's Office</button>
     </div>
 
-    <div class="exp-card active" id="e1">
+    <div class="exp-card active" id="e0">
+  <div class="exp-header">
+    <div><div class="exp-role">Operations Assistant</div><div class="exp-company">University of Washington Intramural Activities (IMA) · Seattle, WA</div></div>
+    <span class="exp-date">July 2026 – Present</span>
+  </div>
+  <ul class="exp-bullets">
+    <li><strong>Operational Execution:</strong> Direct daily facility operations and manage resource capacity to sustain 100% equipment and space availability during peak traffic hours.</li>
+    <li><strong>Data-Driven Optimization:</strong> Analyze continuous usage data from point-of-sale systems to identify high-friction service times and optimize equipment distribution workflows.</li>
+    <li><strong>Asset & Inventory Management:</strong> Conduct routine asset inspections and maintain strict inventory tracking, achieving and sustaining 99% inventory accuracy.</li>
+    <li><strong>Process Improvement:</strong> Implemented proactive management strategies that have successfully reduced overall equipment downtime by 15% and accelerated the resolution of service bottlenecks by 25%.</li>
+    <li>Manage daily cross-functional operations for a high-traffic university recreation facility, ensuring a seamless experience for students and staff across sales, equipment distribution, and the information desk.</li>
+  </ul>
+  <div class="exp-tags">
+    <span class="tag">Capacity Management</span><span class="tag">Inventory Management</span>
+    <span class="tag">Workflow Optimization</span><span class="tag">Point-of-Sale Data Analysis</span>
+    <span class="tag">Process Improvement</span><span class="tag">Cross-functional Operations</span>
+  </div>
+</div>
+    
+    <div class="exp-card" id="e1">
       <div class="exp-header">
         <div><div class="exp-role">Software Engineer</div><div class="exp-company">Drevol LLC · Redmond, WA</div></div>
         <span class="exp-date">March 2024 – May 2026</span>
@@ -499,6 +522,39 @@ footer{background:var(--navy);border-top:1px solid rgba(255,255,255,.07);padding
     <h2 class="sec-title">Featured Projects</h2>
     <div class="sec-line"></div>
     <div class="projects-grid">
+
+      <div class="project-card">
+          <div class="project-top gold-bar"></div>
+          <div class="project-body">
+            <h3 class="project-title">Amazon Fulfillment Network Simulation</h3>
+            <div class="project-role">Supply Chain Case Study · UW Foster School of Business</div>
+            <p class="project-desc">Participated in a hands-on leadership case study at Amazon's Bellevue facilities, tasked with resolving fulfillment center carrier shortages while maintaining service level agreements. Applied Amazon's Working Backwards methodology to evaluate customer impact and built a mitigation strategy for carrier allocation, load balancing, and route optimization, drawing on the Leadership Principles Dive Deep and Deliver Results. The experience concluded with a supply chain alumni panel featuring Amazon professionals Priyanka Kumari and Abhilash Deori.</p>
+            <p class="project-tech">Working Backwards Methodology · Network Constraint Modeling · Carrier Allocation · Amazon Leadership Principles</p>
+            <span style="font-size:12.5px;color:var(--gray);font-style:italic;">August 2026</span>
+          </div>
+        </div>
+        
+        <div class="project-card">
+          <div class="project-top gold-bar"></div>
+          <div class="project-body">
+            <h3 class="project-title">Hardware Product Strategy Redesign: The Juicero Revival</h3>
+            <div class="project-role">Competitive Strategy Coursework</div>
+            <p class="project-desc">Analyzed the collapse of Juicero's closed-ecosystem hardware model and led a team business-model pivot to an "Open-Hardware / Zero-Consumable" strategy, transforming the product into an open platform compatible with user-supplied ingredients. Authored competitive positioning recommendations and a go-to-market plan built on sustainable hardware sales rather than a fragile subscription model.</p>
+            <p class="project-tech">Competitive Positioning · Business Model Design · Go-to-Market Strategy · Product Failure Analysis</p>
+          </div>
+        </div>
+        
+        <div class="project-card">
+          <div class="project-top"></div>
+          <div class="project-body">
+            <h3 class="project-title">KEY Electronics: Integrated Sourcing & Warehouse Strategy</h3>
+            <div class="project-role">Spreadsheet Modeling Coursework</div>
+            <p class="project-desc">Modeled a Mexico market expansion from 30 to 70 stores ($15M to $35M in revenue) by building a landed-cost engine across 10 SKU categories and a continuous-review (Q, R) inventory policy driven by lead times ranging from 3 to 65 days. Translated inventory outputs into pallet occupancy to evaluate a leased warehouse against a 3PL provider. The integrated pivot — sourcing cables and connectors locally — reduced warehouse utilization from 49.1% to 43.6%, avoided a punitive cost penalty tier, and lowered total system cost to $19,024,807.69, outperforming the sequential sourcing-first baseline by more than $65,000.</p>
+            <p class="project-tech">Economic Order Quantity (EOQ) · Safety Stock Modeling · Landed Cost Analysis · Warehouse vs. 3PL Decisioning</p>
+          </div>
+        </div>
+
+      
       <div class="project-card">
         <div class="project-top"></div>
         <div class="project-body">
@@ -509,6 +565,7 @@ footer{background:var(--navy);border-top:1px solid rgba(255,255,255,.07);padding
           <span style="font-size:12.5px;color:var(--gray);font-style:italic;">Nov 2024 – Jul 2025</span>
         </div>
       </div>
+      
       <div class="project-card">
         <div class="project-top"></div>
         <div class="project-body">
@@ -519,6 +576,7 @@ footer{background:var(--navy);border-top:1px solid rgba(255,255,255,.07);padding
           <span style="font-size:12.5px;color:var(--gray);font-style:italic;">Aug 2025 – May 2026</span>
         </div>
       </div>
+      
       <div class="project-card">
         <div class="project-top gold-bar"></div>
         <div class="project-body">
@@ -529,6 +587,8 @@ footer{background:var(--navy);border-top:1px solid rgba(255,255,255,.07);padding
           <a href="https://github.com/Tej-Panchal/Ticketing-System" target="_blank" class="project-link"><i class="fab fa-github"></i> View on GitHub</a>
         </div>
       </div>
+
+      
       <div class="project-card">
         <div class="project-top gold-bar"></div>
         <div class="project-body">
@@ -539,6 +599,8 @@ footer{background:var(--navy);border-top:1px solid rgba(255,255,255,.07);padding
           <a href="https://github.com/Tej-Panchal/Classy" target="_blank" class="project-link"><i class="fab fa-github"></i> View on GitHub</a>
         </div>
       </div>
+
+      
       <div class="project-card">
         <div class="project-top"></div>
         <div class="project-body">
@@ -633,6 +695,13 @@ footer{background:var(--navy);border-top:1px solid rgba(255,255,255,.07);padding
       </div>
       <div class="ach-card">
         <h3>Leadership & Campus Impact</h3>
+
+        <div class="ach-item">
+          <h4>MSCM Student Ambassador</h4>
+          <div class="ach-meta">UW Foster School of Business · 2026–Present</div>
+          <div class="ach-desc">Serve as an official student ambassador for the Foster Master of Supply Chain Management program, acting as a key point of contact for global applicants. Connect with prospective students to share firsthand insights on admissions, curriculum requirements, and graduate student life, and support recruitment panels, admissions events, and community-building efforts for incoming cohorts. <a href="https://foster.uw.edu/academics/degree-programs/master-of-supply-chain-management/contact-us/" target="_blank" style="color:var(--teal);font-weight:600;text-decoration:none;">View Program Contact Page →</a></div>
+        </div>
+        
         <div class="ach-item"><h4>Director of Engineering and Computer Science College</h4><div class="ach-meta">Associated Students, Inc. · 2022–23</div><div class="ach-desc">Led initiatives increasing student event participation by 20% and student-project funding by 15%.</div></div>
         <div class="ach-item"><h4>Hornet Scholar — Leadership Program</h4><div class="ach-meta">Sacramento State · 2022</div><div class="ach-desc">Selected for a prestigious leadership program; led a health and wellness initiative reaching 1,000+ students across 5 campus locations.</div></div>
         <div class="ach-item"><h4>Student Representative — Executive Search Committees</h4><div class="ach-meta">VP of IRT & Facility Management AVP · 2022–23</div><div class="ach-desc">Represented student interests in high-level administrative hiring processes.</div></div>
