@@ -116,6 +116,25 @@ section:nth-child(even) .exp-card{background:var(--cream)}
 .exp-bullets li::before{content:'\f00c';font-family:'Font Awesome 5 Free';font-weight:900;color:var(--teal);font-size:12px;flex-shrink:0;margin-top:4px}
 .exp-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px;padding-top:22px;border-top:1px solid var(--border)}
 
+.exp-bullet-row{
+  display:flex;
+  flex-wrap:wrap;
+  gap:4px 10px;
+  flex:1;
+}
+.exp-bullet-label{
+  flex:0 0 auto;
+  min-width:185px;
+  font-weight:600;
+  color:var(--navy);
+}
+.exp-bullet-desc{
+  flex:1 1 260px;
+}
+@media(max-width:600px){
+  .exp-bullet-label{ min-width:0; flex-basis:100%; }
+}
+
 .skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:24px}
 .skill-card{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:24px;box-shadow:var(--shadow);transition:var(--tr)}
 section:nth-child(even) .skill-card{background:var(--cream)}
@@ -274,7 +293,7 @@ footer{background:var(--navy);border-top:1px solid rgba(255,255,255,.07);padding
 
     <div class="story-card">
       <p class="story-lede">I spend my weekends reading trails. I spent three years reading systems. Supply chains, it turns out, ask the same question as both.</p>
-      <p>On a hike, a wrong turn doesn't announce itself right away — you feel it a mile later, when the trail stops matching the map, and by then you're already off course. Debugging production software taught me the exact same lesson from the other direction: the crash a customer reports is almost never where the problem started. It's the visible symptom of a decision made several steps earlier that nobody flagged as risky at the time — a delayed API response, a sync job that ran late, a queue nobody was watching until it backed up.</p>
+      <p>On a hike, a wrong turn doesn't announce itself right away, you feel it a mile later, when the trail stops matching the map, and by then you're already off course. Debugging production software taught me the exact same lesson from the other direction: the crash a customer reports is almost never where the problem started. It's the visible symptom of a decision made several steps earlier that nobody flagged as risky at the time such as a delayed API response, a sync job that ran late, a queue nobody was watching until it backed up.</p>
       <p>Three years as a software engineer trained me to stop reacting to the symptom and start tracing backward to the actual fork in the road. <strong>Supply chains have the same shape.</strong> A stockout on a shelf is rarely a shelf problem — it's a forecast, a lead time, or a handoff that broke several steps upstream. That's the instinct I'm bringing from engineering into supply chain: read the whole path, not just the point where it finally became visible.</p>
     </div>
 
@@ -284,7 +303,7 @@ footer{background:var(--navy);border-top:1px solid rgba(255,255,255,.07);padding
           I'm currently pursuing a <strong>Master of Science in Supply Chain Management</strong> at the University of Washington's Foster School of Business, building on almost three years as a software engineer automating QA pipelines, building the monitoring dashboards that flagged problems before customers did, and working cross-functionally with operations teams whenever something needed fixing at the root.
         </p>
         <p class="about-intro">
-          That combination — <strong>engineering rigor plus a habit of tracing failures back to their source</strong> — is what I bring to supply chain, program management, and operations roles. Outside of work, you'll usually find me actually testing that instinct on a trail somewhere in the Pacific Northwest, or on a badminton court.
+          That combination<strong> engineering rigor plus a habit of tracing failures back to their source</strong> is what I bring to supply chain, program management, and operations roles. Outside of work, you'll usually find me actually testing that instinct on a trail somewhere in the Pacific Northwest, or on a badminton court.
         </p>
 
         <div class="uw-badge">
@@ -357,13 +376,13 @@ footer{background:var(--navy);border-top:1px solid rgba(255,255,255,.07);padding
     <div><div class="exp-role">Operations Assistant</div><div class="exp-company">University of Washington Intramural Activities (IMA) · Seattle, WA</div></div>
     <span class="exp-date">July 2026 – Present</span>
   </div>
-  <ul class="exp-bullets">
-    <li><strong>Operational Execution:</strong> Direct daily facility operations and manage resource capacity to sustain 100% equipment and space availability during peak traffic hours.</li>
-    <li><strong>Data-Driven Optimization:</strong> Analyze continuous usage data from point-of-sale systems to identify high-friction service times and optimize equipment distribution workflows.</li>
-    <li><strong>Asset & Inventory Management:</strong> Conduct routine asset inspections and maintain strict inventory tracking, achieving and sustaining 99% inventory accuracy.</li>
-    <li><strong>Process Improvement:</strong> Implemented proactive management strategies that have successfully reduced overall equipment downtime by 15% and accelerated the resolution of service bottlenecks by 25%.</li>
-    <li>Manage daily cross-functional operations for a high-traffic university recreation facility, ensuring a seamless experience for students and staff across sales, equipment distribution, and the information desk.</li>
-  </ul>
+<ul class="exp-bullets">
+  <li><div class="exp-bullet-row"><span class="exp-bullet-label">Operational Execution:</span><span class="exp-bullet-desc">Direct daily facility operations and manage resource capacity to sustain 100% equipment and space availability during peak traffic hours.</span></div></li>
+  <li><div class="exp-bullet-row"><span class="exp-bullet-label">Data-Driven Optimization:</span><span class="exp-bullet-desc">Analyze continuous usage data from point-of-sale systems to identify high-friction service times and optimize equipment distribution workflows.</span></div></li>
+  <li><div class="exp-bullet-row"><span class="exp-bullet-label">Asset & Inventory Management:</span><span class="exp-bullet-desc">Conduct routine asset inspections and maintain strict inventory tracking, achieving and sustaining 99% inventory accuracy.</span></div></li>
+  <li><div class="exp-bullet-row"><span class="exp-bullet-label">Process Improvement:</span><span class="exp-bullet-desc">Implemented proactive management strategies that have successfully reduced overall equipment downtime by 15% and accelerated the resolution of service bottlenecks by 25%.</span></div></li>
+  <li>Manage daily cross-functional operations for a high-traffic university recreation facility, ensuring a seamless experience for students and staff across sales, equipment distribution, and the information desk.</li>
+</ul>
   <div class="exp-tags">
     <span class="tag">Capacity Management</span><span class="tag">Inventory Management</span>
     <span class="tag">Workflow Optimization</span><span class="tag">Point-of-Sale Data Analysis</span>
@@ -376,16 +395,16 @@ footer{background:var(--navy);border-top:1px solid rgba(255,255,255,.07);padding
         <div><div class="exp-role">Software Engineer</div><div class="exp-company">Drevol LLC · Redmond, WA</div></div>
         <span class="exp-date">March 2024 – May 2026</span>
       </div>
-      <ul class="exp-bullets">
-        <li><strong>Automation:</strong> Reduced manual quality assurance effort by 40% and accelerated deployment timelines by automating regression workflows with Selenium and Azure DevOps.</li>
-        <li><strong>Reliability:</strong> Reduced system downtime by 20% by building observability dashboards in Azure Monitor and Application Insights.</li>
-        <li><strong>Operational Efficiency:</strong> Increased point-of-sale and kitchen display system efficiency by 45% by redesigning order workflows, minimizing input errors.</li>
-        <li><strong>Cross-functional Delivery:</strong> Reduced issue resolution time by 25% by supporting API partner integrations, release readiness, and defect triage.</li>
-        <li><strong>Owned end-to-end project delivery:</strong> gathered business and technical requirements, defined task scopes, assigned work across the team, and tracked progress to ensure on-time, quality releases.</li>
+   <ul class="exp-bullets">
+        <li><div class="exp-bullet-row"><span class="exp-bullet-label">Automation:</span><span class="exp-bullet-desc">Reduced manual quality assurance effort by 40% and accelerated deployment timelines by automating regression workflows with Selenium and Azure DevOps.</span></div></li>
+        <li><div class="exp-bullet-row"><span class="exp-bullet-label">Reliability:</span><span class="exp-bullet-desc">Reduced system downtime by 20% by building observability dashboards in Azure Monitor and Application Insights.</span></div></li>
+        <li><div class="exp-bullet-row"><span class="exp-bullet-label">Operational Efficiency:</span><span class="exp-bullet-desc">Increased point-of-sale and kitchen display system efficiency by 45% by redesigning order workflows, minimizing input errors.</span></div></li>
+        <li><div class="exp-bullet-row"><span class="exp-bullet-label">Cross-functional Delivery:</span><span class="exp-bullet-desc">Reduced issue resolution time by 25% by supporting API partner integrations, release readiness, and defect triage.</span></div></li>
+        <li><div class="exp-bullet-row"><span class="exp-bullet-label">Owned End-to-End Delivery:</span><span class="exp-bullet-desc">Gathered business and technical requirements, defined task scopes, assigned work across the team, and tracked progress to ensure on-time, quality releases.</span></div></li>
         <li>Led the QA lifecycle including test case design, execution, defect triage, and release readiness validation for consistent, high-quality software delivery.</li>
         <li>Applied security testing best practices — authentication, authorization, and cryptography — strengthening system resilience and reducing vulnerabilities by 40%.</li>
         <li>Mentored junior QA team members on testing best practices, tools, and documentation.</li>
-      </ul>
+  </ul>
       <div class="exp-tags">
         <span class="tag">Azure DevOps</span><span class="tag">Azure Monitor</span>
         <span class="tag">Application Insights</span><span class="tag">API Testing</span><span class="tag">Security Testing</span>
@@ -527,7 +546,7 @@ footer{background:var(--navy);border-top:1px solid rgba(255,255,255,.07);padding
           <div class="project-top gold-bar"></div>
           <div class="project-body">
             <h3 class="project-title">Amazon Fulfillment Network Simulation</h3>
-            <div class="project-role">Supply Chain Case Study · UW Foster School of Business</div>
+            <div class="project-role">Amazon Site Engagement & Supply Chain Case Analysis · UW Foster School of Business</div>
             <p class="project-desc">Participated in a hands-on leadership case study at Amazon's Bellevue facilities, tasked with resolving fulfillment center carrier shortages while maintaining service level agreements. Applied Amazon's Working Backwards methodology to evaluate customer impact and built a mitigation strategy for carrier allocation, load balancing, and route optimization, drawing on the Leadership Principles Dive Deep and Deliver Results. The experience concluded with a supply chain alumni panel featuring Amazon professionals Priyanka Kumari and Abhilash Deori.</p>
             <p class="project-tech">Working Backwards Methodology · Network Constraint Modeling · Carrier Allocation · Amazon Leadership Principles</p>
             <span style="font-size:12.5px;color:var(--gray);font-style:italic;">August 2026</span>
@@ -541,6 +560,7 @@ footer{background:var(--navy);border-top:1px solid rgba(255,255,255,.07);padding
             <div class="project-role">Competitive Strategy Coursework</div>
             <p class="project-desc">Analyzed the collapse of Juicero's closed-ecosystem hardware model and led a team business-model pivot to an "Open-Hardware / Zero-Consumable" strategy, transforming the product into an open platform compatible with user-supplied ingredients. Authored competitive positioning recommendations and a go-to-market plan built on sustainable hardware sales rather than a fragile subscription model.</p>
             <p class="project-tech">Competitive Positioning · Business Model Design · Go-to-Market Strategy · Product Failure Analysis</p>
+            <span style="font-size:12.5px;color:var(--gray);font-style:italic;">September 2026</span>
           </div>
         </div>
         
@@ -551,6 +571,7 @@ footer{background:var(--navy);border-top:1px solid rgba(255,255,255,.07);padding
             <div class="project-role">Spreadsheet Modeling Coursework</div>
             <p class="project-desc">Modeled a Mexico market expansion from 30 to 70 stores ($15M to $35M in revenue) by building a landed-cost engine across 10 SKU categories and a continuous-review (Q, R) inventory policy driven by lead times ranging from 3 to 65 days. Translated inventory outputs into pallet occupancy to evaluate a leased warehouse against a 3PL provider. The integrated pivot — sourcing cables and connectors locally — reduced warehouse utilization from 49.1% to 43.6%, avoided a punitive cost penalty tier, and lowered total system cost to $19,024,807.69, outperforming the sequential sourcing-first baseline by more than $65,000.</p>
             <p class="project-tech">Economic Order Quantity (EOQ) · Safety Stock Modeling · Landed Cost Analysis · Warehouse vs. 3PL Decisioning</p>
+            <span style="font-size:12.5px;color:var(--gray);font-style:italic;">September 2026</span>
           </div>
         </div>
 
@@ -601,7 +622,7 @@ footer{background:var(--navy);border-top:1px solid rgba(255,255,255,.07);padding
       </div>
 
       
-      <div class="project-card">
+<!--      <div class="project-card">
         <div class="project-top"></div>
         <div class="project-body">
           <h3 class="project-title">Property Valuation Prediction Model</h3>
@@ -609,7 +630,7 @@ footer{background:var(--navy);border-top:1px solid rgba(255,255,255,.07);padding
           <p class="project-desc">Developed predictive models to forecast property valuations, improving prediction performance by 25%, with interactive Tableau dashboards for trend visualization.</p>
           <p class="project-tech">Python · scikit-learn · Tableau · D3.js</p>
         </div>
-      </div>
+      </div> -->
       <div class="project-card">
         <div class="project-top gold-bar"></div>
         <div class="project-body">
@@ -634,6 +655,25 @@ footer{background:var(--navy);border-top:1px solid rgba(255,255,255,.07);padding
     <h2 class="sec-title">Licenses & Certificates</h2>
     <div class="sec-line"></div>
     <div class="certs-grid">
+
+      <div class="cert-card">
+        <span class="cert-issuer-badge"><i class="fas fa-shield-alt"></i> University of Washington – Foster School of Business</span>
+        <a class="cert-name">Foster Microsoft Excel Credential</a>
+        <span class="cert-date">June 2026</span>
+        <p class="cert-desc">Completed online course to develop Microsoft Excel skills applicable for building spreadsheets for business. Enhanced Excel skills in areas such as: PivotTables and advanced chart types for functional use in spreadsheet manipulation.</p>
+      </div>
+      <div class="cert-card">
+        <span class="cert-issuer-badge"><i class="fas fa-shield-alt"></i> University of Washington – Foster School of Business</span>
+        <a class="cert-name">Foster R Certification</a>
+        <span class="cert-date">July 2026</span>
+        <p class="cert-desc">Completed comprehensive 4-module online course, confirming R and data analytics skills including: functions and calculations, data types and structures in R, and statistical analysis Passed course with a cumulative score of 89%.</p>
+      </div>
+      <div class="cert-card">
+        <span class="cert-issuer-badge"><i class="fas fa-code"></i> HackerRank</span>
+        <a href="https://github.com/tej-panchal/Website/raw/main/JavaScript.pdf" class="cert-name">JavaScript (Intermediate)</a>
+        <span class="cert-date">March 2023</span>
+        <p class="cert-desc">Advanced JavaScript for web application development and automation scripting.</p>
+      </div>
       <div class="cert-card">
         <span class="cert-issuer-badge"><i class="fab fa-google"></i> Google</span>
         <a href="https://github.com/tej-panchal/Website/raw/main/Foundations%20of%20Project%20Management.pdf" class="cert-name">Foundations of Project Management</a>
@@ -647,16 +687,16 @@ footer{background:var(--navy);border-top:1px solid rgba(255,255,255,.07);padding
         <p class="cert-desc">ML algorithms, predictive modeling, and data analysis using Python — foundational for demand forecasting.</p>
       </div>
       <div class="cert-card">
-        <span class="cert-issuer-badge"><i class="fas fa-shield-alt"></i> University of Colorado System</span>
-        <a href="Cloud Computing security.pdf" class="cert-name">Cloud Computing Security</a>
-        <span class="cert-date">January 2023</span>
-        <p class="cert-desc">Cloud security principles, risk management, and best practices for securing enterprise systems.</p>
-      </div>
-      <div class="cert-card">
         <span class="cert-issuer-badge"><i class="fas fa-university"></i> University of Alberta</span>
         <a href="https://github.com/tej-panchal/Website/raw/main/Inroduction%20to%20software%20product%20management.pdf" class="cert-name">Introduction to Software Product Management</a>
         <span class="cert-date">February 2023</span>
         <p class="cert-desc">Software product lifecycle, requirements management, and product strategy.</p>
+      </div>
+      <div class="cert-card">
+        <span class="cert-issuer-badge"><i class="fas fa-shield-alt"></i> University of Colorado System</span>
+        <a href="Cloud Computing security.pdf" class="cert-name">Cloud Computing Security</a>
+        <span class="cert-date">January 2023</span>
+        <p class="cert-desc">Cloud security principles, risk management, and best practices for securing enterprise systems.</p>
       </div>
       <div class="cert-card">
         <span class="cert-issuer-badge"><i class="fab fa-microsoft"></i> Microsoft / Coursera</span>
@@ -670,12 +710,7 @@ footer{background:var(--navy);border-top:1px solid rgba(255,255,255,.07);padding
         <span class="cert-date">January 2023</span>
         <p class="cert-desc">Python programming foundations for automation, data analysis, and systems scripting.</p>
       </div>
-      <div class="cert-card">
-        <span class="cert-issuer-badge"><i class="fas fa-code"></i> HackerRank</span>
-        <a href="https://github.com/tej-panchal/Website/raw/main/JavaScript.pdf" class="cert-name">JavaScript (Intermediate)</a>
-        <span class="cert-date">March 2023</span>
-        <p class="cert-desc">Advanced JavaScript for web application development and automation scripting.</p>
-      </div>
+      
     </div>
   </div>
 </section>
