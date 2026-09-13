@@ -7,122 +7,6 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-
-  /* ═══ MOTION & POLISH LAYER ═══ */
-
-/* Smoother global easing */
-*{ transition-timing-function: cubic-bezier(.22,1,.36,1); }
-
-/* Scroll progress bar */
-#scrollProgress{
-  position:fixed; top:0; left:0; height:3px; width:0%;
-  background:linear-gradient(90deg,var(--teal),var(--gold));
-  z-index:9999; transition:width .1s linear;
-}
-
-/* Scroll-reveal base state */
-.reveal{
-  opacity:0;
-  transform:translateY(28px);
-  transition:opacity .7s cubic-bezier(.16,1,.3,1), transform .7s cubic-bezier(.16,1,.3,1);
-}
-.reveal.in-view{ opacity:1; transform:translateY(0); }
-.reveal-delay-1{ transition-delay:.08s; }
-.reveal-delay-2{ transition-delay:.16s; }
-.reveal-delay-3{ transition-delay:.24s; }
-.reveal-delay-4{ transition-delay:.32s; }
-
-/* Section title underline draw-in */
-.sec-line{ transform-origin:left; transform:scaleX(0); transition:transform .6s cubic-bezier(.16,1,.3,1) .1s; }
-.sec-line.in-view{ transform:scaleX(1); }
-
-/* Tactile buttons */
-.hero-cta, .hero-cta-ghost, .contact-link, .exp-tab{
-  position:relative; overflow:hidden;
-  transition:transform .35s cubic-bezier(.34,1.56,.64,1), box-shadow .35s ease, background .3s ease;
-}
-.hero-cta:active, .contact-link:active, .exp-tab:active{ transform:scale(.94); }
-.hero-cta:hover{ box-shadow:0 8px 24px rgba(26,107,114,.45); transform:translateY(-3px) scale(1.02); }
-.hero-cta-ghost:hover{ transform:translateY(-3px); }
-.contact-link:hover{ box-shadow:0 8px 24px rgba(255,255,255,.12); transform:translateY(-4px) scale(1.03); }
-
-/* Ripple effect on click */
-.ripple{
-  position:absolute; border-radius:50%;
-  background:rgba(255,255,255,.5);
-  transform:scale(0); animation:rippleAnim .6s ease-out;
-  pointer-events:none;
-}
-@keyframes rippleAnim{ to{ transform:scale(3); opacity:0; } }
-
-/* Card entrance + tilt-hover upgrade */
-.skill-card, .project-card, .cert-card, .ach-card, .exp-card, .info-card{
-  transition:transform .45s cubic-bezier(.22,1,.36,1), box-shadow .45s ease;
-}
-.skill-card:hover{ transform:translateY(-6px) rotate(-0.3deg); }
-.cert-card:hover{ transform:translateY(-5px) rotate(0.3deg); }
-
-/* Nav link underline sweep */
-nav a{ position:relative; }
-nav a::after{
-  content:''; position:absolute; left:12px; right:12px; bottom:2px; height:2px;
-  background:var(--gold-lt); transform:scaleX(0); transform-origin:left;
-  transition:transform .35s cubic-bezier(.16,1,.3,1);
-}
-nav a:hover::after, nav a.active::after{ transform:scaleX(1); }
-
-/* Skill chip pop */
-.skill-chip{ transition:transform .25s cubic-bezier(.34,1.56,.64,1), background .25s ease, color .25s ease; }
-.skill-chip:hover{ transform:translateY(-2px) scale(1.06); }
-
-/* Tag pulse-in on card hover */
-.exp-tags .tag, .certs-grid .tag{ transition:transform .3s ease; }
-
-/* Hero name letter-fade-in */
-.hero-name{ animation:heroFadeUp 1s cubic-bezier(.16,1,.3,1) both; }
-.hero-kicker{ animation:heroFadeUp 1s cubic-bezier(.16,1,.3,1) .12s both; }
-.hero-title{ animation:heroFadeUp 1s cubic-bezier(.16,1,.3,1) .24s both; }
-.hero-pills{ animation:heroFadeUp 1s cubic-bezier(.16,1,.3,1) .36s both; }
-.hero-badge{ animation:heroFadeUp 1s cubic-bezier(.16,1,.3,1) 0s both; }
-.hero-grid > div:last-child{ animation:heroFadeUp 1s cubic-bezier(.16,1,.3,1) .3s both; }
-@keyframes heroFadeUp{
-  from{ opacity:0; transform:translateY(22px); }
-  to{ opacity:1; transform:translateY(0); }
-}
-
-/* Stat number count-up glow pulse */
-.stat-box{ transition:transform .35s cubic-bezier(.34,1.56,.64,1), border-color .35s ease; }
-.stat-box:hover{ transform:translateY(-4px); border-color:rgba(200,151,43,.4); }
-
-/* Cursor glow (desktop only) */
-#cursorGlow{
-  position:fixed; width:280px; height:280px; border-radius:50%;
-  background:radial-gradient(circle, rgba(26,107,114,.12) 0%, transparent 70%);
-  pointer-events:none; z-index:1; transform:translate(-50%,-50%);
-  opacity:0; transition:opacity .3s ease;
-}
-@media(hover:none){ #cursorGlow{ display:none; } }
-
-/* Story card entrance emphasis */
-.story-lede{ animation:none; }
-.story-card.in-view .story-lede{ animation:heroFadeUp .8s cubic-bezier(.16,1,.3,1) both; }
-
-/* Smooth image/icon float on mini3d wraps */
-.mini3d-wrap{ animation:floatSlow 5s ease-in-out infinite; }
-@keyframes floatSlow{ 0%,100%{transform:translateY(0);} 50%{transform:translateY(-8px);} }
-
-/* Back-to-top button */
-#backToTop{
-  position:fixed; bottom:28px; right:28px; z-index:900;
-  width:46px; height:46px; border-radius:50%;
-  background:var(--navy); color:var(--white); border:none; cursor:pointer;
-  display:flex; align-items:center; justify-content:center; font-size:16px;
-  box-shadow:0 6px 20px rgba(13,27,42,.3);
-  opacity:0; pointer-events:none; transform:translateY(10px) scale(.8);
-  transition:opacity .3s ease, transform .3s cubic-bezier(.34,1.56,.64,1), background .3s ease;
-}
-#backToTop.show{ opacity:1; pointer-events:auto; transform:translateY(0) scale(1); }
-#backToTop:hover{ background:var(--gold); transform:translateY(-4px) scale(1.08); }
 :root{
   --navy:#0d1b2a;--teal:#1a6b72;--teal-lt:#22909a;--gold:#c8972b;--gold-lt:#e8b84b;
   --cream:#f5f0e8;--white:#fff;--gray:#6b7280;--light:#f9fafb;--border:#e5e7eb;
@@ -130,6 +14,7 @@ nav a:hover::after, nav a.active::after{ transform:scaleX(1); }
 }
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
+*{ transition-timing-function: cubic-bezier(.22,1,.36,1); }
 body{font-family:'DM Sans',sans-serif;color:var(--navy);background:var(--white);line-height:1.7}
 ::-webkit-scrollbar{width:6px}::-webkit-scrollbar-track{background:var(--cream)}
 ::-webkit-scrollbar-thumb{background:var(--teal);border-radius:3px}
@@ -137,56 +22,116 @@ body{font-family:'DM Sans',sans-serif;color:var(--navy);background:var(--white);
 .tag{display:inline-block;padding:4px 14px;border-radius:99px;font-size:12px;font-weight:600;letter-spacing:.5px;background:rgba(26,107,114,.1);color:var(--teal)}
 .tag.gold{background:rgba(200,151,43,.12);color:var(--gold)}
 
-header{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(13,27,42,.95);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,.07)}
+/* ═══ GLOBAL SUPPLY-CHAIN BACKGROUND ═══ */
+#supplyBg{ position:fixed; inset:0; z-index:0; pointer-events:none; opacity:.55; }
+header, section, footer{ position:relative; z-index:2; }
+section:nth-child(even){ background:rgba(249,250,251,.94); }
+section:nth-child(odd):not(#hero):not(#contact){ background:rgba(255,255,255,.9); }
+#hero, #contact{ background:transparent; }
+
+/* ═══ SCROLL PROGRESS BAR ═══ */
+#scrollProgress{
+  position:fixed; top:0; left:0; height:3px; width:0%;
+  background:linear-gradient(90deg,var(--teal),var(--gold));
+  z-index:9999; transition:width .1s linear;
+}
+
+/* ═══ HEADER (cinematic scroll state) ═══ */
+header{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(13,27,42,.85);backdrop-filter:blur(10px);border-bottom:1px solid rgba(255,255,255,.06);transition:background .4s ease, box-shadow .4s ease, backdrop-filter .4s ease}
+header.scrolled{background:rgba(13,27,42,.97);backdrop-filter:blur(16px);box-shadow:0 8px 30px rgba(0,0,0,.35)}
 .nav-inner{display:flex;align-items:center;justify-content:space-between;height:66px}
 .logo{font-family:'DM Serif Display',serif;font-size:22px;color:var(--white);text-decoration:none}
 .logo span{color:var(--gold-lt)}
 nav ul{display:flex;list-style:none;gap:8px}
-nav a{color:rgba(255,255,255,.75);text-decoration:none;font-size:13px;font-weight:500;padding:6px 11px;border-radius:6px;transition:var(--tr)}
+nav a{color:rgba(255,255,255,.75);text-decoration:none;font-size:13px;font-weight:500;padding:6px 11px;border-radius:6px;transition:var(--tr);position:relative}
+nav a::after{content:'';position:absolute;left:12px;right:12px;bottom:2px;height:2px;background:var(--gold-lt);transform:scaleX(0);transform-origin:left;transition:transform .35s cubic-bezier(.16,1,.3,1)}
+nav a:hover::after,nav a.active::after{transform:scaleX(1)}
 nav a:hover,nav a.active{color:var(--white);background:rgba(255,255,255,.09)}
-.mobile-toggle{display:none;background:none;border:none;color:var(--white);font-size:22px;cursor:pointer}
+.mobile-toggle{display:none;background:none;border:none;color:var(--white);font-size:22px;cursor:pointer;z-index:2100;position:relative}
+
+/* ═══ FULLSCREEN OVERLAY NAV (mobile) ═══ */
+.nav-overlay{
+  position:fixed; inset:0; z-index:2000;
+  background:rgba(13,27,42,.97);
+  backdrop-filter:blur(18px);
+  display:flex; align-items:center; justify-content:center;
+  opacity:0; visibility:hidden; transition:opacity .4s ease, visibility .4s ease;
+}
+.nav-overlay.open{ opacity:1; visibility:visible; }
+.nav-overlay ul{ list-style:none; text-align:center; }
+.nav-overlay li{
+  opacity:0; transform:translateY(20px);
+  transition:opacity .45s cubic-bezier(.16,1,.3,1), transform .45s cubic-bezier(.16,1,.3,1);
+}
+.nav-overlay.open li{ opacity:1; transform:translateY(0); }
+.nav-overlay li a{
+  display:block; padding:16px 0; font-family:'DM Serif Display',serif;
+  font-size:30px; color:rgba(255,255,255,.85); text-decoration:none; transition:color .3s ease;
+}
+.nav-overlay li a:hover{ color:var(--gold-lt); }
+.nav-overlay-close{
+  position:absolute; top:26px; right:26px; background:none; border:none;
+  color:var(--white); font-size:26px; cursor:pointer;
+}
 
 #hero{min-height:100vh;position:relative;overflow:hidden;background:linear-gradient(145deg,var(--navy) 0%,#163349 55%,#0f2a38 100%);display:flex;align-items:center;padding:120px 0 80px}
+#hero::after{
+  content:''; position:absolute; inset:0; pointer-events:none;
+  background:radial-gradient(ellipse at 50% 0%, rgba(0,0,0,0) 0%, rgba(13,27,42,.55) 100%);
+}
 #hero-canvas{position:absolute;inset:0;width:100%;height:100%;z-index:0;opacity:.85}
 .hero-grid{position:relative;z-index:2;display:grid;grid-template-columns:1fr auto;gap:60px;align-items:center}
-.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(200,151,43,.15);border:1px solid rgba(200,151,43,.3);color:var(--gold-lt);padding:6px 16px;border-radius:99px;font-size:12.5px;font-weight:600;margin-bottom:20px}
-.hero-kicker{font-family:'DM Serif Display',serif;font-style:italic;font-size:clamp(17px,2vw,20px);color:var(--gold-lt);margin-bottom:14px;max-width:620px;line-height:1.55}
-.hero-name{font-family:'DM Serif Display',serif;font-size:clamp(42px,6vw,68px);color:var(--white);line-height:1.05;margin-bottom:18px}
-.hero-title{font-size:clamp(15.5px,2vw,17.5px);color:rgba(255,255,255,.68);margin-bottom:28px;max-width:600px;font-weight:400;line-height:1.85}
-.hero-pills{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:32px}
-.hero-pill{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);color:rgba(255,255,255,.8);padding:8px 15px;border-radius:8px;font-size:13px;font-weight:500}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(200,151,43,.15);border:1px solid rgba(200,151,43,.3);color:var(--gold-lt);padding:6px 16px;border-radius:99px;font-size:12.5px;font-weight:600;margin-bottom:20px;animation:heroFadeUp 1s cubic-bezier(.16,1,.3,1) 0s both}
+.hero-kicker{font-family:'DM Serif Display',serif;font-style:italic;font-size:clamp(17px,2vw,20px);color:var(--gold-lt);margin-bottom:14px;max-width:620px;line-height:1.55;animation:heroFadeUp 1s cubic-bezier(.16,1,.3,1) .12s both}
+.hero-name{font-family:'DM Serif Display',serif;font-size:clamp(42px,6vw,68px);color:var(--white);line-height:1.05;margin-bottom:18px;display:inline-block;border-right:3px solid var(--gold-lt);white-space:nowrap;overflow:hidden;width:0;animation:typeIn 1.4s steps(11,end) .3s forwards, blinkCursor .8s step-end infinite .3s}
+@keyframes typeIn{ from{width:0} to{width:100%} }
+@keyframes blinkCursor{ 50%{border-color:transparent} }
+.hero-title{font-size:clamp(15.5px,2vw,17.5px);color:rgba(255,255,255,.68);margin-bottom:28px;max-width:600px;font-weight:400;line-height:1.85;animation:heroFadeUp 1s cubic-bezier(.16,1,.3,1) .95s both}
+.hero-pills{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:32px;animation:heroFadeUp 1s cubic-bezier(.16,1,.3,1) 1.1s both}
+.hero-pill{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);color:rgba(255,255,255,.8);padding:8px 15px;border-radius:8px;font-size:13px;font-weight:500;transition:var(--tr)}
+.hero-pill:hover{background:rgba(255,255,255,.13);transform:translateY(-2px)}
 .hero-pill i{color:var(--teal-lt);font-size:13px}
-.hero-cta{display:inline-flex;align-items:center;gap:10px;background:var(--teal);color:var(--white);padding:13px 28px;border-radius:8px;text-decoration:none;font-weight:600;font-size:15px;transition:var(--tr)}
-.hero-cta:hover{background:var(--teal-lt);transform:translateY(-2px)}
+.hero-cta{display:inline-flex;align-items:center;gap:10px;background:var(--teal);color:var(--white);padding:13px 28px;border-radius:8px;text-decoration:none;font-weight:600;font-size:15px;position:relative;overflow:hidden;transition:transform .35s cubic-bezier(.34,1.56,.64,1), box-shadow .35s ease, background .3s ease}
+.hero-cta:hover{background:var(--teal-lt);box-shadow:0 8px 24px rgba(26,107,114,.45);transform:translateY(-3px) scale(1.02)}
+.hero-cta:active{transform:scale(.94)}
 .hero-cta-ghost{display:inline-flex;align-items:center;gap:10px;border:1.5px solid rgba(255,255,255,.2);color:rgba(255,255,255,.8);padding:12px 28px;border-radius:8px;text-decoration:none;font-weight:500;font-size:15px;transition:var(--tr);margin-left:12px}
-.hero-cta-ghost:hover{border-color:rgba(255,255,255,.5);color:var(--white)}
-.hero-stats{position:relative;z-index:2;display:flex;flex-direction:column;gap:16px;align-items:flex-end}
-.stat-box{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:18px 24px;text-align:center;min-width:150px;backdrop-filter:blur(6px)}
+.hero-cta-ghost:hover{border-color:rgba(255,255,255,.5);color:var(--white);transform:translateY(-3px)}
+.hero-stats{position:relative;z-index:2;display:flex;flex-direction:column;gap:16px;align-items:flex-end;animation:heroFadeUp 1s cubic-bezier(.16,1,.3,1) 1.2s both}
+.stat-box{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:18px 24px;text-align:center;min-width:150px;backdrop-filter:blur(6px);transition:transform .35s cubic-bezier(.34,1.56,.64,1), border-color .35s ease}
+.stat-box:hover{transform:translateY(-4px);border-color:rgba(200,151,43,.4)}
 .stat-num{font-family:'DM Serif Display',serif;font-size:32px;color:var(--gold-lt);line-height:1}
 .stat-label{font-size:11.5px;color:rgba(255,255,255,.55);margin-top:4px}
 .scroll-hint{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);color:rgba(255,255,255,.3);font-size:13px;z-index:2;animation:bounce 2s infinite}
 @keyframes bounce{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(6px)}}
+@keyframes heroFadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
 
 section{padding:90px 0;position:relative}
 .sec-label{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--teal);margin-bottom:10px}
-.sec-title{font-family:'DM Serif Display',serif;font-size:clamp(28px,4vw,42px);color:var(--navy);line-height:1.15;margin-bottom:14px}
-.sec-line{width:48px;height:3px;background:var(--gold);border-radius:2px;margin-bottom:48px}
+.sec-title{font-family:'DM Serif Display',serif;font-size:clamp(28px,4vw,42px);color:var(--navy);line-height:1.15;margin-bottom:14px;position:relative}
+.sec-title::before{
+  content:''; position:absolute; left:-30px; top:-24px; width:110px;height:110px;
+  background:radial-gradient(circle, rgba(200,151,43,.14) 0%, transparent 70%);
+  z-index:-1; pointer-events:none;
+}
+.sec-line{width:48px;height:3px;background:var(--gold);border-radius:2px;margin-bottom:48px;transform-origin:left;transform:scaleX(0);transition:transform .6s cubic-bezier(.16,1,.3,1) .1s}
+.sec-line.in-view{transform:scaleX(1)}
 section:nth-child(even){background:var(--light)}
 
-/* ── MINI 3D SECTION ICONS ── */
-.mini3d-wrap{
-  position:absolute; top:30px; right:24px;
-  width:76px; height:76px;
-  opacity:.9;
-  pointer-events:none;
-  z-index:1;
-}
-.mini3d-wrap canvas{ width:100%; height:100%; display:block; }
-#contact .mini3d-wrap{ opacity:.8; }
-@media(max-width:900px){ .mini3d-wrap{ width:56px; height:56px; top:20px; right:16px; } }
-@media(max-width:600px){ .mini3d-wrap{ display:none; } }
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .7s cubic-bezier(.16,1,.3,1), transform .7s cubic-bezier(.16,1,.3,1)}
+.reveal.in-view{opacity:1;transform:translateY(0)}
+.reveal-delay-1{transition-delay:.08s}
+.reveal-delay-2{transition-delay:.16s}
+.reveal-delay-3{transition-delay:.24s}
+.reveal-delay-4{transition-delay:.32s}
 
-.story-card{background:linear-gradient(135deg,rgba(26,107,114,.06),rgba(200,151,43,.05));border:1px solid rgba(26,107,114,.15);border-left:4px solid var(--teal);border-radius:0 14px 14px 0;padding:32px 36px;margin-bottom:56px}
+.mini3d-wrap{position:absolute;top:30px;right:24px;width:76px;height:76px;opacity:.9;pointer-events:none;z-index:1;animation:floatSlow 5s ease-in-out infinite;filter:drop-shadow(0 6px 14px rgba(13,27,42,.15))}
+.mini3d-wrap canvas{width:100%;height:100%;display:block}
+#contact .mini3d-wrap{opacity:.8}
+@keyframes floatSlow{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+@media(max-width:900px){.mini3d-wrap{width:56px;height:56px;top:20px;right:16px}}
+@media(max-width:600px){.mini3d-wrap{display:none}}
+
+.story-card{background:linear-gradient(135deg,rgba(26,107,114,.06),rgba(200,151,43,.05));border:1px solid rgba(26,107,114,.15);border-left:4px solid var(--teal);border-radius:0 14px 14px 0;padding:32px 36px;margin-bottom:56px;backdrop-filter:blur(6px)}
 .story-card p{font-size:16.5px;color:#374151;line-height:1.9;margin-bottom:14px}
 .story-card p:last-child{margin-bottom:0}
 .story-card p strong{color:var(--teal)}
@@ -205,8 +150,8 @@ section:nth-child(even){background:var(--light)}
 .comp-title{font-weight:600;color:var(--navy);font-size:14.5px}
 .comp-desc{font-size:13.5px;color:var(--gray);margin-top:2px}
 .about-aside{display:flex;flex-direction:column;gap:20px}
-.info-card{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:22px;box-shadow:var(--shadow)}
-section:nth-child(even) .info-card{background:var(--cream)}
+.info-card{background:rgba(255,255,255,.75);backdrop-filter:blur(10px);border:1px solid var(--border);border-radius:12px;padding:22px;box-shadow:var(--shadow)}
+section:nth-child(even) .info-card{background:rgba(245,240,232,.75)}
 .info-card h4{font-size:13px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--teal);margin-bottom:14px}
 .edu-item{display:flex;gap:12px;align-items:flex-start;padding:8px 0}
 .edu-dot{width:10px;height:10px;border-radius:50%;background:var(--teal);flex-shrink:0;margin-top:6px}
@@ -218,11 +163,13 @@ section:nth-child(even) .info-card{background:var(--cream)}
 .fact-row i{color:var(--teal);width:18px}
 
 .exp-tabs{display:flex;gap:6px;margin-bottom:40px;flex-wrap:wrap}
-.exp-tab{padding:8px 20px;border-radius:99px;border:1.5px solid var(--border);font-size:13px;font-weight:500;cursor:pointer;background:transparent;color:var(--gray);transition:var(--tr)}
+.exp-tab{padding:8px 20px;border-radius:99px;border:1.5px solid var(--border);font-size:13px;font-weight:500;cursor:pointer;background:transparent;color:var(--gray);position:relative;overflow:hidden;transition:transform .35s cubic-bezier(.34,1.56,.64,1), box-shadow .35s ease, background .3s ease, color .3s ease, border-color .3s ease}
 .exp-tab.active,.exp-tab:hover{background:var(--navy);border-color:var(--navy);color:var(--white)}
-.exp-card{display:none;background:var(--white);border:1px solid var(--border);border-radius:16px;padding:36px;box-shadow:var(--shadow)}
-section:nth-child(even) .exp-card{background:var(--cream)}
-.exp-card.active{display:block}
+.exp-tab:active{transform:scale(.94)}
+.exp-card{display:none;background:rgba(255,255,255,.8);backdrop-filter:blur(10px);border:1px solid var(--border);border-radius:16px;padding:36px;box-shadow:var(--shadow);transition:transform .45s cubic-bezier(.22,1,.36,1), box-shadow .45s ease}
+section:nth-child(even) .exp-card{background:rgba(245,240,232,.8)}
+.exp-card.active{display:block;animation:cardIn .5s cubic-bezier(.16,1,.3,1) both}
+@keyframes cardIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
 .exp-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:20px;flex-wrap:wrap;gap:12px}
 .exp-role{font-family:'DM Serif Display',serif;font-size:24px;color:var(--navy)}
 .exp-company{font-size:16px;color:var(--teal);font-weight:500;margin-top:4px}
@@ -231,41 +178,26 @@ section:nth-child(even) .exp-card{background:var(--cream)}
 .exp-bullets li{display:flex;gap:12px;align-items:flex-start;font-size:14.5px;color:#374151;line-height:1.65}
 .exp-bullets li::before{content:'\f00c';font-family:'Font Awesome 5 Free';font-weight:900;color:var(--teal);font-size:12px;flex-shrink:0;margin-top:4px}
 .exp-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px;padding-top:22px;border-top:1px solid var(--border)}
-
-.exp-bullet-row{
-  display:flex;
-  flex-wrap:wrap;
-  gap:4px 10px;
-  flex:1;
-}
-.exp-bullet-label{
-  flex:0 0 auto;
-  min-width:185px;
-  font-weight:600;
-  color:var(--navy);
-}
-.exp-bullet-desc{
-  flex:1 1 260px;
-}
-@media(max-width:600px){
-  .exp-bullet-label{ min-width:0; flex-basis:100%; }
-}
+.exp-bullet-row{display:flex;flex-wrap:wrap;gap:4px 10px;flex:1}
+.exp-bullet-label{flex:0 0 auto;min-width:185px;font-weight:600;color:var(--navy)}
+.exp-bullet-desc{flex:1 1 260px}
+@media(max-width:600px){.exp-bullet-label{min-width:0;flex-basis:100%}}
 
 .skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:24px}
-.skill-card{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:24px;box-shadow:var(--shadow);transition:var(--tr)}
-section:nth-child(even) .skill-card{background:var(--cream)}
-.skill-card:hover{transform:translateY(-4px);box-shadow:0 8px 32px rgba(13,27,42,.13)}
+.skill-card{background:rgba(255,255,255,.78);backdrop-filter:blur(10px);border:1px solid var(--border);border-radius:12px;padding:24px;box-shadow:var(--shadow);transition:transform .45s cubic-bezier(.22,1,.36,1), box-shadow .45s ease, border-color .35s ease}
+section:nth-child(even) .skill-card{background:rgba(245,240,232,.78)}
+.skill-card:hover{transform:translateY(-6px) rotate(-0.3deg);box-shadow:0 12px 36px rgba(13,27,42,.16);border-color:rgba(200,151,43,.35)}
 .skill-card-icon{width:44px;height:44px;border-radius:10px;background:rgba(26,107,114,.1);color:var(--teal);display:flex;align-items:center;justify-content:center;font-size:18px;margin-bottom:14px}
 .skill-card h3{font-size:15px;font-weight:700;color:var(--navy);margin-bottom:14px}
 .skill-list{display:flex;flex-wrap:wrap;gap:8px}
-.skill-chip{padding:5px 12px;border-radius:6px;font-size:13px;font-weight:500;background:rgba(13,27,42,.06);color:var(--navy);transition:var(--tr)}
-.skill-chip:hover{background:var(--teal);color:var(--white)}
+.skill-chip{padding:5px 12px;border-radius:6px;font-size:13px;font-weight:500;background:rgba(13,27,42,.06);color:var(--navy);transition:transform .25s cubic-bezier(.34,1.56,.64,1), background .25s ease, color .25s ease}
+.skill-chip:hover{background:var(--teal);color:var(--white);transform:translateY(-2px) scale(1.06)}
 .skill-chip.scm{background:rgba(200,151,43,.12);color:#92620c}
 
 .projects-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:28px}
-.project-card{background:var(--white);border:1px solid var(--border);border-radius:14px;overflow:hidden;box-shadow:var(--shadow);transition:var(--tr);display:flex;flex-direction:column}
-section:nth-child(even) .project-card{background:var(--cream)}
-.project-card:hover{transform:translateY(-5px) rotateX(2deg);box-shadow:0 12px 40px rgba(13,27,42,.14)}
+.project-card{background:rgba(255,255,255,.82);backdrop-filter:blur(10px);border:1px solid var(--border);border-radius:14px;overflow:hidden;box-shadow:var(--shadow);transition:transform .45s cubic-bezier(.22,1,.36,1), box-shadow .45s ease;display:flex;flex-direction:column;height:100%}
+section:nth-child(even) .project-card{background:rgba(245,240,232,.82)}
+.project-card:hover{transform:translateY(-6px) rotateX(2deg);box-shadow:0 16px 44px rgba(13,27,42,.18)}
 .project-top{height:8px;background:linear-gradient(90deg,var(--teal),var(--teal-lt))}
 .project-top.gold-bar{background:linear-gradient(90deg,var(--gold),var(--gold-lt))}
 .project-body{padding:26px;flex:1;display:flex;flex-direction:column}
@@ -276,54 +208,61 @@ section:nth-child(even) .project-card{background:var(--cream)}
 .project-link{display:inline-flex;align-items:center;gap:6px;color:var(--teal);font-size:13.5px;font-weight:600;text-decoration:none;transition:var(--tr)}
 .project-link:hover{color:var(--gold)}
 
+/* ═══ STACK-SPREAD PROJECT REVEAL ═══ */
+#projects{ position:relative; }
+.stack-pin{ height:230vh; position:relative; }
+.stack-sticky{ position:sticky; top:0; height:100vh; overflow:hidden; display:flex; align-items:center; justify-content:center; }
+.stack-sticky .container{ position:relative; width:100%; height:100%; }
+.stack-card-wrap{
+  position:absolute; left:50%; top:50%;
+  will-change:transform;
+}
+.stack-card-wrap .project-card{ width:300px; height:340px; }
+.stack-headline{
+  position:absolute; inset:0; z-index:5; pointer-events:none;
+  display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center;
+  opacity:0;
+}
+.stack-headline h2{ font-family:'DM Serif Display',serif; font-size:clamp(30px,4vw,46px); color:var(--navy); }
+.stack-headline p{ margin-top:10px; color:var(--gray); font-size:15px; max-width:440px; }
+.stack-hint{
+  position:absolute; bottom:26px; left:50%; transform:translateX(-50%); z-index:6;
+  display:flex; flex-direction:column; align-items:center; gap:6px;
+  font-size:11px; letter-spacing:2px; text-transform:uppercase; color:var(--gray);
+}
+.stack-hint i{ animation:bounce 1.6s infinite; }
+@media(max-width:800px){
+  .stack-pin{ height:auto; }
+  .stack-sticky{ position:relative; height:auto; overflow:visible; display:block; padding:60px 0 20px; }
+  .stack-headline{ position:relative; opacity:1 !important; margin-bottom:30px; }
+  .stack-hint{ display:none; }
+  #stackCardsRoot{ position:relative; height:auto; display:grid; grid-template-columns:1fr; gap:24px; }
+  .stack-card-wrap{ position:relative !important; left:auto; top:auto; transform:none !important; }
+  .stack-card-wrap .project-card{ width:100%; height:auto; }
+}
+
 .certs-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:22px}
-.cert-card{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:22px;box-shadow:var(--shadow);transition:var(--tr);display:flex;flex-direction:column;gap:8px}
-section:nth-child(even) .cert-card{background:var(--cream)}
-.cert-card:hover{transform:translateY(-3px)}
+.cert-card{background:rgba(255,255,255,.82);backdrop-filter:blur(10px);border:1px solid var(--border);border-radius:12px;padding:22px;box-shadow:var(--shadow);transition:transform .35s cubic-bezier(.22,1,.36,1), box-shadow .35s ease;display:flex;flex-direction:column;gap:8px}
+section:nth-child(even) .cert-card{background:rgba(245,240,232,.82)}
+.cert-card:hover{transform:translateY(-5px) rotate(0.3deg);box-shadow:0 12px 32px rgba(13,27,42,.15)}
 .cert-issuer-badge{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:var(--teal)}
 .cert-name{font-weight:600;font-size:15px;color:var(--navy);text-decoration:none;line-height:1.4;transition:var(--tr)}
 .cert-name:hover{color:var(--teal)}
 .cert-date{font-size:12px;color:var(--gray)}
 .cert-desc{font-size:13px;color:var(--gray);line-height:1.6}
 .cert-status{display:inline-block;padding:3px 10px;border-radius:99px;font-size:11px;font-weight:700;background:rgba(200,151,43,.12);color:var(--gold)}
-/* ── CERTIFICATE PDF MODAL ── */
-.cert-modal-overlay{
-  display:none;
-  position:fixed; inset:0; z-index:2000;
-  background:rgba(13,27,42,.75);
-  backdrop-filter:blur(4px);
-  align-items:center; justify-content:center;
-  padding:40px 20px;
-}
-.cert-modal-overlay.open{ display:flex; }
-.cert-modal-box{
-  background:var(--white);
-  width:100%; max-width:900px; height:85vh;
-  border-radius:14px;
-  position:relative;
-  box-shadow:0 20px 60px rgba(0,0,0,.4);
-  overflow:hidden;
-  animation:certModalIn .25s ease;
-}
-@keyframes certModalIn{
-  from{opacity:0; transform:translateY(20px) scale(.98);}
-  to{opacity:1; transform:translateY(0) scale(1);}
-}
-.cert-modal-close{
-  position:absolute; top:12px; right:12px; z-index:10;
-  width:36px; height:36px; border-radius:50%;
-  background:var(--navy); color:var(--white);
-  border:none; cursor:pointer;
-  display:flex; align-items:center; justify-content:center;
-  font-size:16px; transition:var(--tr);
-}
-.cert-modal-close:hover{ background:var(--gold); transform:rotate(90deg); }
-.cert-modal-box iframe{
-  width:100%; height:100%; border:none;
-}
+
+.cert-modal-overlay{display:none;position:fixed;inset:0;z-index:2500;background:rgba(13,27,42,.75);backdrop-filter:blur(4px);align-items:center;justify-content:center;padding:40px 20px}
+.cert-modal-overlay.open{display:flex}
+.cert-modal-box{background:var(--white);width:100%;max-width:900px;height:85vh;border-radius:14px;position:relative;box-shadow:0 20px 60px rgba(0,0,0,.4);overflow:hidden;animation:certModalIn .25s ease}
+@keyframes certModalIn{from{opacity:0;transform:translateY(20px) scale(.98)}to{opacity:1;transform:translateY(0) scale(1)}}
+.cert-modal-close{position:absolute;top:12px;right:12px;z-index:10;width:36px;height:36px;border-radius:50%;background:var(--navy);color:var(--white);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:16px;transition:var(--tr)}
+.cert-modal-close:hover{background:var(--gold);transform:rotate(90deg)}
+.cert-modal-box iframe{width:100%;height:100%;border:none}
+
 .ach-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px}
-.ach-card{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:24px;box-shadow:var(--shadow)}
-section:nth-child(even) .ach-card{background:var(--cream)}
+.ach-card{background:rgba(255,255,255,.8);backdrop-filter:blur(10px);border:1px solid var(--border);border-radius:12px;padding:24px;box-shadow:var(--shadow)}
+section:nth-child(even) .ach-card{background:rgba(245,240,232,.8)}
 .ach-card h3{font-size:17px;font-weight:700;color:var(--navy);margin-bottom:18px;padding-bottom:12px;border-bottom:2px solid var(--teal)}
 .ach-item{padding:12px 0;border-bottom:1px solid var(--border)}
 .ach-item:last-child{border-bottom:none}
@@ -337,8 +276,19 @@ section:nth-child(even) .ach-card{background:var(--cream)}
 .contact-inner .sec-title{color:var(--white)}
 .contact-inner p{color:rgba(255,255,255,.65);font-size:16px;margin-bottom:36px;line-height:1.7}
 .contact-links{display:flex;justify-content:center;flex-wrap:wrap;gap:14px}
-.contact-link{display:inline-flex;align-items:center;gap:10px;background:rgba(255,255,255,.08);border:1.5px solid rgba(255,255,255,.15);color:var(--white);padding:12px 22px;border-radius:10px;text-decoration:none;font-size:13.5px;font-weight:500;transition:var(--tr)}
-.contact-link:hover{background:var(--teal);border-color:var(--teal);transform:translateY(-2px)}
+.contact-link{display:inline-flex;align-items:center;gap:10px;background:rgba(255,255,255,.08);border:1.5px solid rgba(255,255,255,.15);color:var(--white);padding:12px 22px;border-radius:10px;text-decoration:none;font-size:13.5px;font-weight:500;position:relative;overflow:hidden;transition:transform .35s cubic-bezier(.34,1.56,.64,1), box-shadow .35s ease, background .3s ease}
+.contact-link:hover{background:var(--teal);border-color:var(--teal);box-shadow:0 8px 24px rgba(255,255,255,.12);transform:translateY(-4px) scale(1.03)}
+.contact-link:active{transform:scale(.94)}
+
+.ripple{position:absolute;border-radius:50%;background:rgba(255,255,255,.5);transform:scale(0);animation:rippleAnim .6s ease-out;pointer-events:none}
+@keyframes rippleAnim{to{transform:scale(3);opacity:0}}
+
+#cursorGlow{position:fixed;width:280px;height:280px;border-radius:50%;background:radial-gradient(circle, rgba(26,107,114,.12) 0%, transparent 70%);pointer-events:none;z-index:1;transform:translate(-50%,-50%);opacity:0;transition:opacity .3s ease}
+@media(hover:none){#cursorGlow{display:none}}
+
+#backToTop{position:fixed;bottom:28px;right:28px;z-index:900;width:46px;height:46px;border-radius:50%;background:var(--navy);color:var(--white);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:16px;box-shadow:0 6px 20px rgba(13,27,42,.3);opacity:0;pointer-events:none;transform:translateY(10px) scale(.8);transition:opacity .3s ease, transform .3s cubic-bezier(.34,1.56,.64,1), background .3s ease}
+#backToTop.show{opacity:1;pointer-events:auto;transform:translateY(0) scale(1)}
+#backToTop:hover{background:var(--gold);transform:translateY(-4px) scale(1.08)}
 
 footer{background:var(--navy);border-top:1px solid rgba(255,255,255,.07);padding:28px 0;text-align:center}
 .footer-inner{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}
@@ -348,13 +298,16 @@ footer{background:var(--navy);border-top:1px solid rgba(255,255,255,.07);padding
 .copyright{font-size:13px;color:rgba(255,255,255,.3)}
 
 @media(max-width:900px){.hero-grid{grid-template-columns:1fr}.hero-stats{flex-direction:row;justify-content:flex-start;flex-wrap:wrap;margin-top:20px}.about-grid{grid-template-columns:1fr}.ach-grid{grid-template-columns:1fr}}
-@media(max-width:720px){nav ul{display:none;position:absolute;top:100%;left:0;right:0;background:var(--navy);flex-direction:column;padding:16px;gap:2px}nav ul.open{display:flex}.mobile-toggle{display:block}.hero-cta-ghost{display:none}}
+@media(max-width:720px){nav ul{display:none}.mobile-toggle{display:block}.hero-cta-ghost{display:none}}
 </style>
 </head>
 <body>
+
 <div id="scrollProgress"></div>
+<canvas id="supplyBg"></canvas>
 <div id="cursorGlow"></div>
-<header>
+
+<header id="siteHeader">
   <div class="container nav-inner">
     <a href="#hero" class="logo">Tej <span>Panchal</span></a>
     <button class="mobile-toggle" id="mobileBtn"><i class="fas fa-bars"></i></button>
@@ -371,15 +324,29 @@ footer{background:var(--navy);border-top:1px solid rgba(255,255,255,.07);padding
   </div>
 </header>
 
+<div class="nav-overlay" id="navOverlay">
+  <button class="nav-overlay-close" id="navOverlayClose"><i class="fas fa-times"></i></button>
+  <ul id="navOverlayList">
+    <li><a href="#hero">Home</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#certificates">Certificates</a></li>
+    <li><a href="#achievements">Achievements</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</div>
+
 <section id="hero">
   <canvas id="hero-canvas"></canvas>
   <div class="container">
     <div class="hero-grid">
       <div>
         <div class="hero-badge"><i class="fas fa-graduation-cap"></i> MS Supply Chain Management · University of Washington</div>
-        <p class="hero-kicker">A trail rarely fails where you're standing when it goes wrong — it failed at the fork you didn't notice, three switchbacks back. Three years of debugging production systems taught me the same lesson.</p>
+        <p class="hero-kicker">A trail rarely fails where you're standing when it goes wrong. It failed at the fork you didn't notice, three switchbacks back. Three years of debugging production systems taught me the same lesson.</p>
         <h1 class="hero-name">Tej Panchal</h1>
-        <p class="hero-title">I trace things back to where they actually broke, not just where they became visible. That habit is what pulled me from software engineering into supply chain management — and it's what I bring to logistics, program management, and operations work now.</p>
+        <p class="hero-title">I trace things back to where they actually broke, not just where they became visible. That habit is what pulled me from software engineering into supply chain management and it's what I bring to logistics, program management, and operations work now.</p>
         <div class="hero-pills">
           <span class="hero-pill"><i class="fas fa-boxes"></i> Supply Chain Analytics</span>
           <span class="hero-pill"><i class="fas fa-vial"></i> QA & Automation</span>
@@ -408,35 +375,35 @@ footer{background:var(--navy);border-top:1px solid rgba(255,255,255,.07);padding
     <h2 class="sec-title">Switchbacks and Stack Traces</h2>
     <div class="sec-line"></div>
 
-    <div class="story-card">
+    <div class="story-card reveal">
       <p class="story-lede">I spend my weekends reading trails. I spent three years reading systems. Supply chains, it turns out, ask the same question as both.</p>
-      <p>On a hike, a wrong turn doesn't announce itself right away, you feel it a mile later, when the trail stops matching the map, and by then you're already off course. Debugging production software taught me the exact same lesson from the other direction: the crash a customer reports is almost never where the problem started. It's the visible symptom of a decision made several steps earlier that nobody flagged as risky at the time such as a delayed API response, a sync job that ran late, a queue nobody was watching until it backed up.</p>
-      <p>Three years as a software engineer trained me to stop reacting to the symptom and start tracing backward to the actual fork in the road. <strong>Supply chains have the same shape.</strong> A stockout on a shelf is rarely a shelf problem — it's a forecast, a lead time, or a handoff that broke several steps upstream. That's the instinct I'm bringing from engineering into supply chain: read the whole path, not just the point where it finally became visible.</p>
+      <p>On a hike, a wrong turn doesn't announce itself right away. You feel it a mile later, when the trail stops matching the map, and by then you're already off course. Debugging production software taught me the exact same lesson from the other direction: the crash a customer reports is almost never where the problem started. It's the visible symptom of a decision made several steps earlier that nobody flagged as risky at the time and a delayed API response, a sync job that ran late, a queue nobody was watching until it backed up.</p>
+      <p>Three years as a software engineer trained me to stop reacting to the symptom and start tracing backward to the actual fork in the road. <strong>Supply chains have the same shape.</strong> A stockout on a shelf is rarely a shelf problem and it's a forecast, a lead time, or a handoff that broke several steps upstream. That's the instinct I'm bringing from engineering into supply chain: read the whole path, not just the point where it finally became visible.</p>
     </div>
 
     <div class="about-grid">
       <div>
-        <p class="about-intro">
+        <p class="about-intro reveal">
           I'm currently pursuing a <strong>Master of Science in Supply Chain Management</strong> at the University of Washington's Foster School of Business, building on almost three years as a software engineer automating QA pipelines, building the monitoring dashboards that flagged problems before customers did, and working cross-functionally with operations teams whenever something needed fixing at the root.
         </p>
-        <p class="about-intro">
-          That combination<strong> engineering rigor plus a habit of tracing failures back to their source</strong> is what I bring to supply chain, program management, and operations roles. Outside of work, you'll usually find me actually testing that instinct on a trail somewhere in the Pacific Northwest, or on a badminton court.
+        <p class="about-intro reveal">
+          That combination of <strong>engineering rigor plus a habit of tracing failures back to their source</strong> is what I bring to supply chain, program management, and operations roles. Outside of work, you'll usually find me actually testing that instinct on a trail somewhere in the Pacific Northwest, or on a badminton court.
         </p>
 
-        <div class="uw-badge">
+        <div class="uw-badge reveal">
           <i class="fas fa-university"></i>
           <div class="uw-badge-text"><strong>MS Supply Chain Management</strong>University of Washington Foster School of Business · Seattle, WA</div>
         </div>
 
         <div class="competencies">
-          <div class="comp-item"><div class="comp-icon"><i class="fas fa-robot"></i></div><div><div class="comp-title">Automation & QA Engineering</div><div class="comp-desc">Selenium-based regression automation, Azure DevOps pipelines, and defect triage reducing manual QA effort by 40%.</div></div></div>
-          <div class="comp-item"><div class="comp-icon"><i class="fas fa-chart-line"></i></div><div><div class="comp-title">Data Analysis & Reporting</div><div class="comp-desc">SQL, Python, Power BI, and Tableau applied to monitoring dashboards, workflow analysis, and operational KPI tracking.</div></div></div>
-          <div class="comp-item"><div class="comp-icon"><i class="fas fa-tasks"></i></div><div><div class="comp-title">Cross-Functional Delivery</div><div class="comp-desc">Requirements gathering, stakeholder communication, and release coordination across API partner integrations.</div></div></div>
-          <div class="comp-item"><div class="comp-icon"><i class="fas fa-route"></i></div><div><div class="comp-title">Root-Cause Thinking</div><div class="comp-desc">Tracing a process end-to-end to find where it actually breaks, not just where the break becomes visible.</div></div></div>
+          <div class="comp-item reveal"><div class="comp-icon"><i class="fas fa-robot"></i></div><div><div class="comp-title">Automation & QA Engineering</div><div class="comp-desc">Selenium-based regression automation, Azure DevOps pipelines, and defect triage reducing manual QA effort by 40%.</div></div></div>
+          <div class="comp-item reveal"><div class="comp-icon"><i class="fas fa-chart-line"></i></div><div><div class="comp-title">Data Analysis & Reporting</div><div class="comp-desc">SQL, Python, Power BI, and Tableau applied to monitoring dashboards, workflow analysis, and operational KPI tracking.</div></div></div>
+          <div class="comp-item reveal"><div class="comp-icon"><i class="fas fa-tasks"></i></div><div><div class="comp-title">Cross-Functional Delivery</div><div class="comp-desc">Requirements gathering, stakeholder communication, and release coordination across API partner integrations.</div></div></div>
+          <div class="comp-item reveal"><div class="comp-icon"><i class="fas fa-route"></i></div><div><div class="comp-title">Root-Cause Thinking</div><div class="comp-desc">Tracing a process end-to-end to find where it actually breaks, not just where the break becomes visible.</div></div></div>
         </div>
       </div>
 
-      <div class="about-aside">
+      <div class="about-aside reveal reveal-delay-2">
         <div class="info-card">
           <h4>Education</h4>
           <div class="edu-item"><div class="edu-dot"></div><div><div class="edu-school">University of Washington – Foster School of Business</div><div class="edu-degree">Master of Science in Supply Chain Management</div><div class="edu-year">Expected 2027</div></div></div>
@@ -448,11 +415,9 @@ footer{background:var(--navy);border-top:1px solid rgba(255,255,255,.07);padding
           <div class="fact-row"><i class="fas fa-map-marker-alt"></i> Kirkland, Washington</div>
           <div class="fact-row"><i class="fas fa-phone"></i> (916) 890-8647</div>
           <div class="fact-row"><i class="fas fa-envelope"></i> panchaltej23@gmail.com</div>
-         
-           <div class="fact-row"><i class="fas fa-user-graduate"></i> MSCM Student Ambassador, UW Foster School of Business</div>
           <div class="fact-row"><i class="fas fa-mountain"></i> Hiking around the Pacific Northwest</div>
           <div class="fact-row"><i class="fas fa-table-tennis"></i> Playing badminton</div>
-         
+          <div class="fact-row"><i class="fas fa-user-graduate"></i> MSCM Student Ambassador, UW Foster School of Business</div>
           <div class="fact-row"><i class="fas fa-search"></i> Open to: Supply Chain, Program Management & Operations roles</div>
         </div>
 
@@ -489,30 +454,30 @@ footer{background:var(--navy);border-top:1px solid rgba(255,255,255,.07);padding
     </div>
 
     <div class="exp-card active" id="e0">
-  <div class="exp-header">
-    <div><div class="exp-role">Operations Assistant</div><div class="exp-company">University of Washington Intramural Activities (IMA) · Seattle, WA</div></div>
-    <span class="exp-date">July 2026 – Present</span>
-  </div>
-<ul class="exp-bullets">
-  <li><div class="exp-bullet-row"><span class="exp-bullet-label">Operational Execution:</span><span class="exp-bullet-desc">Direct daily facility operations and manage resource capacity to sustain 100% equipment and space availability during peak traffic hours.</span></div></li>
-  <li><div class="exp-bullet-row"><span class="exp-bullet-label">Data-Driven Optimization:</span><span class="exp-bullet-desc">Analyze continuous usage data from point-of-sale systems to identify high-friction service times and optimize equipment distribution workflows.</span></div></li>
-  <li><div class="exp-bullet-row"><span class="exp-bullet-label">Asset & Inventory Management:</span><span class="exp-bullet-desc">Conduct routine asset inspections and maintain strict inventory tracking, achieving and sustaining 99% inventory accuracy.</span></div></li>
-  <li><div class="exp-bullet-row"><span class="exp-bullet-label">Process Improvement:</span><span class="exp-bullet-desc">Implemented proactive management strategies that have successfully reduced overall equipment downtime by 15% and accelerated the resolution of service bottlenecks by 25%.</span></div></li>
-  <li>Manage daily cross-functional operations for a high-traffic university recreation facility, ensuring a seamless experience for students and staff across sales, equipment distribution, and the information desk.</li>
-</ul>
-  <div class="exp-tags">
-    <span class="tag">Capacity Management</span><span class="tag">Inventory Management</span>
-    <span class="tag">Workflow Optimization</span><span class="tag">Point-of-Sale Data Analysis</span>
-    <span class="tag">Process Improvement</span><span class="tag">Cross-functional Operations</span>
-  </div>
-</div>
-    
+      <div class="exp-header">
+        <div><div class="exp-role">Operations Assistant</div><div class="exp-company">University of Washington Intramural Activities (IMA) · Seattle, WA</div></div>
+        <span class="exp-date">July 2026 – Present</span>
+      </div>
+      <ul class="exp-bullets">
+        <li><div class="exp-bullet-row"><span class="exp-bullet-label">Operational Execution:</span><span class="exp-bullet-desc">Direct daily facility operations and manage resource capacity to sustain 100% equipment and space availability during peak traffic hours.</span></div></li>
+        <li><div class="exp-bullet-row"><span class="exp-bullet-label">Data-Driven Optimization:</span><span class="exp-bullet-desc">Analyze continuous usage data from point-of-sale systems to identify high-friction service times and optimize equipment distribution workflows.</span></div></li>
+        <li><div class="exp-bullet-row"><span class="exp-bullet-label">Asset & Inventory Management:</span><span class="exp-bullet-desc">Conduct routine asset inspections and maintain strict inventory tracking, achieving and sustaining 99% inventory accuracy.</span></div></li>
+        <li><div class="exp-bullet-row"><span class="exp-bullet-label">Process Improvement:</span><span class="exp-bullet-desc">Implemented proactive management strategies that have successfully reduced overall equipment downtime by 15% and accelerated the resolution of service bottlenecks by 25%.</span></div></li>
+        <li>Manage daily cross-functional operations for a high-traffic university recreation facility, ensuring a seamless experience for students and staff across sales, equipment distribution, and the information desk.</li>
+      </ul>
+      <div class="exp-tags">
+        <span class="tag">Capacity Management</span><span class="tag">Inventory Management</span>
+        <span class="tag">Workflow Optimization</span><span class="tag">Point-of-Sale Data Analysis</span>
+        <span class="tag">Process Improvement</span><span class="tag">Cross-functional Operations</span>
+      </div>
+    </div>
+
     <div class="exp-card" id="e1">
       <div class="exp-header">
         <div><div class="exp-role">Software Engineer</div><div class="exp-company">Drevol LLC · Redmond, WA</div></div>
         <span class="exp-date">March 2024 – May 2026</span>
       </div>
-   <ul class="exp-bullets">
+      <ul class="exp-bullets">
         <li><div class="exp-bullet-row"><span class="exp-bullet-label">Automation:</span><span class="exp-bullet-desc">Reduced manual quality assurance effort by 40% and accelerated deployment timelines by automating regression workflows with Selenium and Azure DevOps.</span></div></li>
         <li><div class="exp-bullet-row"><span class="exp-bullet-label">Reliability:</span><span class="exp-bullet-desc">Reduced system downtime by 20% by building observability dashboards in Azure Monitor and Application Insights.</span></div></li>
         <li><div class="exp-bullet-row"><span class="exp-bullet-label">Operational Efficiency:</span><span class="exp-bullet-desc">Increased point-of-sale and kitchen display system efficiency by 45% by redesigning order workflows, minimizing input errors.</span></div></li>
@@ -521,7 +486,7 @@ footer{background:var(--navy);border-top:1px solid rgba(255,255,255,.07);padding
         <li>Led the QA lifecycle including test case design, execution, defect triage, and release readiness validation for consistent, high-quality software delivery.</li>
         <li>Applied security testing best practices — authentication, authorization, and cryptography — strengthening system resilience and reducing vulnerabilities by 40%.</li>
         <li>Mentored junior QA team members on testing best practices, tools, and documentation.</li>
-  </ul>
+      </ul>
       <div class="exp-tags">
         <span class="tag">Azure DevOps</span><span class="tag">Azure Monitor</span>
         <span class="tag">Application Insights</span><span class="tag">API Testing</span><span class="tag">Security Testing</span>
@@ -535,8 +500,8 @@ footer{background:var(--navy);border-top:1px solid rgba(255,255,255,.07);padding
         <span class="exp-date">September 2023 – March 2024</span>
       </div>
       <ul class="exp-bullets">
-        <li><strong>Data Accuracy:</strong> Improved prediction performance by 25% by translating user requirements into real estate features and refining data accuracy.</li>
-        <li><strong>Digital Engagement:</strong> Increased client engagement by 30% by optimizing company website content and search engine performance.</li>
+        <li><div class="exp-bullet-row"><span class="exp-bullet-label">Data Accuracy:</span><span class="exp-bullet-desc">Improved prediction performance by 25% by translating user requirements into real estate features and refining data accuracy.</span></div></li>
+        <li><div class="exp-bullet-row"><span class="exp-bullet-label">Digital Engagement:</span><span class="exp-bullet-desc">Increased client engagement by 30% by optimizing company website content and search engine performance.</span></div></li>
         <li>Built predictive valuation models using Python and scikit-learn, applying data analytics to operational decisions — transferable to demand forecasting and supplier pricing analytics.</li>
         <li>Created interactive dashboards in Tableau and D3.js to visualize market trends, improving stakeholder decision-making speed.</li>
         <li>Produced documentation and training materials for new features, reducing onboarding time by 35%.</li>
@@ -550,8 +515,8 @@ footer{background:var(--navy);border-top:1px solid rgba(255,255,255,.07);padding
         <span class="exp-date">June 2022 – May 2023</span>
       </div>
       <ul class="exp-bullets">
-        <li><strong>Student Advocacy:</strong> Increased student participation in academic events by 20% by leading initiatives that improved program accessibility and engagement.</li>
-        <li><strong>Fundraising:</strong> Grew funding for student-led projects by 15% by strengthening relationships with alumni, funders, and campus partners.</li>
+        <li><div class="exp-bullet-row"><span class="exp-bullet-label">Student Advocacy:</span><span class="exp-bullet-desc">Increased student participation in academic events by 20% by leading initiatives that improved program accessibility and engagement.</span></div></li>
+        <li><div class="exp-bullet-row"><span class="exp-bullet-label">Fundraising:</span><span class="exp-bullet-desc">Grew funding for student-led projects by 15% by strengthening relationships with alumni, funders, and campus partners.</span></div></li>
         <li>Represented 1,700+ engineering and computer science students on the Board of Directors, advocating for academic program improvements and resource allocation.</li>
         <li>Mentored 8+ student organization leaders on project management and leadership development.</li>
       </ul>
@@ -598,7 +563,7 @@ footer{background:var(--navy);border-top:1px solid rgba(255,255,255,.07);padding
     <h2 class="sec-title">Skills & Expertise</h2>
     <div class="sec-line"></div>
     <div class="skills-grid">
-      <div class="skill-card">
+      <div class="skill-card reveal reveal-delay-1">
         <div class="skill-card-icon"><i class="fas fa-boxes"></i></div>
         <h3>Supply Chain & Operations</h3>
         <div class="skill-list">
@@ -607,7 +572,7 @@ footer{background:var(--navy);border-top:1px solid rgba(255,255,255,.07);padding
           <span class="skill-chip scm">Vendor Management</span><span class="skill-chip scm">Operations Analysis</span>
         </div>
       </div>
-      <div class="skill-card">
+      <div class="skill-card reveal reveal-delay-2">
         <div class="skill-card-icon"><i class="fas fa-chart-bar"></i></div>
         <h3>Data & Analytics</h3>
         <div class="skill-list">
@@ -615,7 +580,7 @@ footer{background:var(--navy);border-top:1px solid rgba(255,255,255,.07);padding
           <span class="skill-chip">Tableau</span><span class="skill-chip">Excel (Pivot Tables, VLOOKUP)</span><span class="skill-chip">Predictive Modeling</span>
         </div>
       </div>
-      <div class="skill-card">
+      <div class="skill-card reveal reveal-delay-3">
         <div class="skill-card-icon"><i class="fas fa-vial"></i></div>
         <h3>QA & Testing</h3>
         <div class="skill-list">
@@ -623,7 +588,7 @@ footer{background:var(--navy);border-top:1px solid rgba(255,255,255,.07);padding
           <span class="skill-chip">API Testing</span><span class="skill-chip">Postman</span><span class="skill-chip">Security Testing</span>
         </div>
       </div>
-      <div class="skill-card">
+      <div class="skill-card reveal reveal-delay-1">
         <div class="skill-card-icon"><i class="fas fa-project-diagram"></i></div>
         <h3>Project Management</h3>
         <div class="skill-list">
@@ -631,7 +596,7 @@ footer{background:var(--navy);border-top:1px solid rgba(255,255,255,.07);padding
           <span class="skill-chip">Requirements Gathering</span><span class="skill-chip">Stakeholder Management</span>
         </div>
       </div>
-      <div class="skill-card">
+      <div class="skill-card reveal reveal-delay-2">
         <div class="skill-card-icon"><i class="fas fa-code"></i></div>
         <h3>Programming & DevOps</h3>
         <div class="skill-list">
@@ -639,7 +604,7 @@ footer{background:var(--navy);border-top:1px solid rgba(255,255,255,.07);padding
           <span class="skill-chip">Azure Monitor</span><span class="skill-chip">Application Insights</span><span class="skill-chip">Docker</span>
         </div>
       </div>
-      <div class="skill-card">
+      <div class="skill-card reveal reveal-delay-3">
         <div class="skill-card-icon"><i class="fas fa-users"></i></div>
         <h3>Leadership & Soft Skills</h3>
         <div class="skill-list">
@@ -652,46 +617,51 @@ footer{background:var(--navy);border-top:1px solid rgba(255,255,255,.07);padding
 </section>
 
 <section id="projects">
-  <div class="mini3d-wrap"><canvas id="mini3d-projects-canvas"></canvas></div>
+  <div class="stack-pin" id="stackPin">
+    <div class="stack-sticky">
+      <div class="container">
+        <div class="mini3d-wrap"><canvas id="mini3d-projects-canvas"></canvas></div>
+        <div class="stack-headline" id="stackHeadline">
+          <p class="sec-label">Work & Projects</p>
+          <h2>Featured Projects</h2>
+          <p>Scroll to spread the work across supply chain, software, and analytics.</p>
+        </div>
+        <div id="stackCardsRoot"></div>
+        <div class="stack-hint" id="stackHint"><span>Scroll</span><i class="fas fa-chevron-down"></i></div>
+      </div>
+    </div>
+  </div>
   <div class="container">
-    <p class="sec-label">Work & Projects</p>
-    <h2 class="sec-title">Featured Projects</h2>
-    <div class="sec-line"></div>
-    <div class="projects-grid">
-
+    <div class="projects-grid" id="projectsGridSource" style="visibility:hidden;position:absolute;pointer-events:none;">
       <div class="project-card">
-          <div class="project-top gold-bar"></div>
-          <div class="project-body">
-            <h3 class="project-title">Amazon Fulfillment Network Simulation</h3>
-            <div class="project-role">Amazon Site Engagement & Supply Chain Case Analysis · UW Foster School of Business</div>
-            <p class="project-desc">Participated in a hands-on leadership case study at Amazon's Bellevue facilities, tasked with resolving fulfillment center carrier shortages while maintaining service level agreements. Applied Amazon's Working Backwards methodology to evaluate customer impact and built a mitigation strategy for carrier allocation, load balancing, and route optimization, drawing on the Leadership Principles Dive Deep and Deliver Results. The experience concluded with a supply chain alumni panel featuring Amazon professionals Priyanka Kumari and Abhilash Deori.</p>
-            <p class="project-tech">Working Backwards Methodology · Network Constraint Modeling · Carrier Allocation · Amazon Leadership Principles</p>
-            <span style="font-size:12.5px;color:var(--gray);font-style:italic;">August 2026</span>
-          </div>
+        <div class="project-top gold-bar"></div>
+        <div class="project-body">
+          <h3 class="project-title">Amazon Fulfillment Network Simulation</h3>
+          <div class="project-role">Supply Chain Case Study · UW Foster School of Business</div>
+          <p class="project-desc">Participated in a hands-on leadership case study at Amazon's Bellevue facilities, tasked with resolving fulfillment center carrier shortages while maintaining service level agreements. Applied Amazon's Working Backwards methodology to evaluate customer impact and built a mitigation strategy for carrier allocation, load balancing, and route optimization, drawing on the Leadership Principles Dive Deep and Deliver Results. The experience concluded with a supply chain alumni panel featuring Amazon professionals Priyanka Kumari and Abhilash Deori.</p>
+          <p class="project-tech">Working Backwards Methodology · Network Constraint Modeling · Carrier Allocation · Amazon Leadership Principles</p>
+          <span style="font-size:12.5px;color:var(--gray);font-style:italic;">August 2026</span>
         </div>
-        
-        <div class="project-card">
-          <div class="project-top gold-bar"></div>
-          <div class="project-body">
-            <h3 class="project-title">Hardware Product Strategy Redesign: The Juicero Revival</h3>
-            <div class="project-role">Competitive Strategy Coursework</div>
-            <p class="project-desc">Analyzed the collapse of Juicero's closed-ecosystem hardware model and led a team business-model pivot to an "Open-Hardware / Zero-Consumable" strategy, transforming the product into an open platform compatible with user-supplied ingredients. Authored competitive positioning recommendations and a go-to-market plan built on sustainable hardware sales rather than a fragile subscription model.</p>
-            <p class="project-tech">Competitive Positioning · Business Model Design · Go-to-Market Strategy · Product Failure Analysis</p>
-            <span style="font-size:12.5px;color:var(--gray);font-style:italic;">September 2026</span>
-          </div>
+      </div>
+      <div class="project-card">
+        <div class="project-top gold-bar"></div>
+        <div class="project-body">
+          <h3 class="project-title">Hardware Product Strategy Redesign: The Juicero Revival</h3>
+          <div class="project-role">Competitive Strategy Coursework</div>
+          <p class="project-desc">Analyzed the collapse of Juicero's closed-ecosystem hardware model and led a team business-model pivot to an "Open-Hardware / Zero-Consumable" strategy, transforming the product into an open platform compatible with user-supplied ingredients. Authored competitive positioning recommendations and a go-to-market plan built on sustainable hardware sales rather than a fragile subscription model.</p>
+          <p class="project-tech">Competitive Positioning · Business Model Design · Go-to-Market Strategy · Product Failure Analysis</p>
         </div>
-        
-        <div class="project-card">
-          <div class="project-top"></div>
-          <div class="project-body">
-            <h3 class="project-title">KEY Electronics: Integrated Sourcing & Warehouse Strategy</h3>
-            <div class="project-role">Spreadsheet Modeling Coursework</div>
-            <p class="project-desc">Modeled a Mexico market expansion from 30 to 70 stores ($15M to $35M in revenue) by building a landed-cost engine across 10 SKU categories and a continuous-review (Q, R) inventory policy driven by lead times ranging from 3 to 65 days. Translated inventory outputs into pallet occupancy to evaluate a leased warehouse against a 3PL provider. The integrated pivot — sourcing cables and connectors locally — reduced warehouse utilization from 49.1% to 43.6%, avoided a punitive cost penalty tier, and lowered total system cost to $19,024,807.69, outperforming the sequential sourcing-first baseline by more than $65,000.</p>
-            <p class="project-tech">Economic Order Quantity (EOQ) · Safety Stock Modeling · Landed Cost Analysis · Warehouse vs. 3PL Decisioning</p>
-            <span style="font-size:12.5px;color:var(--gray);font-style:italic;">September 2026</span>
-          </div>
+      </div>
+      <div class="project-card">
+        <div class="project-top"></div>
+        <div class="project-body">
+          <h3 class="project-title">KEY Electronics: Integrated Sourcing & Warehouse Strategy</h3>
+          <div class="project-role">Spreadsheet Modeling Coursework</div>
+          <p class="project-desc">Modeled a Mexico market expansion from 30 to 70 stores ($15M to $35M in revenue) by building a landed-cost engine across 10 SKU categories and a continuous-review (Q, R) inventory policy driven by lead times ranging from 3 to 65 days. Translated inventory outputs into pallet occupancy to evaluate a leased warehouse against a 3PL provider. The integrated pivot — sourcing cables and connectors locally — reduced warehouse utilization from 49.1% to 43.6%, avoided a punitive cost penalty tier, and lowered total system cost to $19,024,807.69, outperforming the sequential sourcing-first baseline by more than $65,000.</p>
+          <p class="project-tech">Economic Order Quantity (EOQ) · Safety Stock Modeling · Landed Cost Analysis · Warehouse vs. 3PL Decisioning</p>
         </div>
-
+      </div>
+      
       
       <div class="project-card">
         <div class="project-top"></div>
@@ -703,7 +673,6 @@ footer{background:var(--navy);border-top:1px solid rgba(255,255,255,.07);padding
           <span style="font-size:12.5px;color:var(--gray);font-style:italic;">Nov 2024 – Jul 2025</span>
         </div>
       </div>
-      
       <div class="project-card">
         <div class="project-top"></div>
         <div class="project-body">
@@ -725,8 +694,6 @@ footer{background:var(--navy);border-top:1px solid rgba(255,255,255,.07);padding
           <a href="https://github.com/Tej-Panchal/Ticketing-System" target="_blank" class="project-link"><i class="fab fa-github"></i> View on GitHub</a>
         </div>
       </div>
-
-      
       <div class="project-card">
         <div class="project-top gold-bar"></div>
         <div class="project-body">
@@ -737,9 +704,7 @@ footer{background:var(--navy);border-top:1px solid rgba(255,255,255,.07);padding
           <a href="https://github.com/Tej-Panchal/Classy" target="_blank" class="project-link"><i class="fab fa-github"></i> View on GitHub</a>
         </div>
       </div>
-
-      
-<!--      <div class="project-card">
+      <div class="project-card">
         <div class="project-top"></div>
         <div class="project-body">
           <h3 class="project-title">Property Valuation Prediction Model</h3>
@@ -747,7 +712,7 @@ footer{background:var(--navy);border-top:1px solid rgba(255,255,255,.07);padding
           <p class="project-desc">Developed predictive models to forecast property valuations, improving prediction performance by 25%, with interactive Tableau dashboards for trend visualization.</p>
           <p class="project-tech">Python · scikit-learn · Tableau · D3.js</p>
         </div>
-      </div> -->
+      </div>
       <div class="project-card">
         <div class="project-top gold-bar"></div>
         <div class="project-body">
@@ -772,58 +737,63 @@ footer{background:var(--navy);border-top:1px solid rgba(255,255,255,.07);padding
     <h2 class="sec-title">Licenses & Certificates</h2>
     <div class="sec-line"></div>
     <div class="certs-grid">
-
-      <div class="cert-card">
-        <span class="cert-issuer-badge"><i class="fas fa-shield-alt"></i> University of Washington – Foster School of Business</span>
+     
+      <div class="cert-card reveal reveal-delay-1">
+        <span class="cert-issuer-badge"><i class="fas fa-code"></i> UNIVERSITY OF WASHINGTON – FOSTER SCHOOL OF BUSINESS</span>
         <a class="cert-name">Foster Microsoft Excel Credential</a>
         <span class="cert-date">June 2026</span>
         <p class="cert-desc">Completed online course to develop Microsoft Excel skills applicable for building spreadsheets for business. Enhanced Excel skills in areas such as: PivotTables and advanced chart types for functional use in spreadsheet manipulation.</p>
       </div>
-      <div class="cert-card">
-        <span class="cert-issuer-badge"><i class="fas fa-shield-alt"></i> University of Washington – Foster School of Business</span>
+
+      <div class="cert-card reveal reveal-delay-1">
+        <span class="cert-issuer-badge"><i class="fas fa-code"></i> UNIVERSITY OF WASHINGTON – FOSTER SCHOOL OF BUSINESS</span>
         <a class="cert-name">Foster R Certification</a>
         <span class="cert-date">July 2026</span>
         <p class="cert-desc">Completed comprehensive 4-module online course, confirming R and data analytics skills including: functions and calculations, data types and structures in R, and statistical analysis Passed course with a cumulative score of 89%.</p>
       </div>
-      <div class="cert-card">
+      
+      <div class="cert-card reveal reveal-delay-1">
         <span class="cert-issuer-badge"><i class="fas fa-code"></i> HackerRank</span>
-        <a href="https://github.com/tej-panchal/Website/raw/main/JavaScript.pdf" class="cert-name">JavaScript (Intermediate)</a>
+        <a class="cert-name">JavaScript (Intermediate)</a>
         <span class="cert-date">March 2023</span>
         <p class="cert-desc">Advanced JavaScript for web application development and automation scripting.</p>
       </div>
-      <div class="cert-card">
+      
+      <div class="cert-card reveal reveal-delay-1">
         <span class="cert-issuer-badge"><i class="fab fa-google"></i> Google</span>
-        <a href="https://github.com/tej-panchal/Website/raw/main/Foundations%20of%20Project%20Management.pdf" class="cert-name">Foundations of Project Management</a>
+        <a  class="cert-name">Foundations of Project Management</a>
         <span class="cert-date">February 2023</span>
         <p class="cert-desc">Core PM principles including planning, execution, stakeholder management, and monitoring.</p>
       </div>
-      <div class="cert-card">
+      <div class="cert-card reveal reveal-delay-2">
         <span class="cert-issuer-badge"><i class="fas fa-building"></i> IBM</span>
-        <a href="https://github.com/tej-panchal/Website/raw/main/Machine%20learning%20with%20Python.pdf" class="cert-name">Machine Learning with Python</a>
+        <a  class="cert-name">Machine Learning with Python</a>
         <span class="cert-date">February 2023</span>
         <p class="cert-desc">ML algorithms, predictive modeling, and data analysis using Python — foundational for demand forecasting.</p>
       </div>
-      <div class="cert-card">
+      
+      <div class="cert-card reveal reveal-delay-1">
         <span class="cert-issuer-badge"><i class="fas fa-university"></i> University of Alberta</span>
-        <a href="https://github.com/tej-panchal/Website/raw/main/Inroduction%20to%20software%20product%20management.pdf" class="cert-name">Introduction to Software Product Management</a>
+        <a  class="cert-name">Introduction to Software Product Management</a>
         <span class="cert-date">February 2023</span>
         <p class="cert-desc">Software product lifecycle, requirements management, and product strategy.</p>
       </div>
-      <div class="cert-card">
+
+      <div class="cert-card reveal reveal-delay-3">
         <span class="cert-issuer-badge"><i class="fas fa-shield-alt"></i> University of Colorado System</span>
-        <a href="Cloud Computing security.pdf" class="cert-name">Cloud Computing Security</a>
+        <a class="cert-name">Cloud Computing Security</a>
         <span class="cert-date">January 2023</span>
         <p class="cert-desc">Cloud security principles, risk management, and best practices for securing enterprise systems.</p>
       </div>
-      <div class="cert-card">
+      <div class="cert-card reveal reveal-delay-2">
         <span class="cert-issuer-badge"><i class="fab fa-microsoft"></i> Microsoft / Coursera</span>
-        <a href="https://github.com/tej-panchal/Website/raw/main/MS%20for%20data.pdf" class="cert-name">Microsoft Azure for Data Engineering</a>
+        <a  class="cert-name">Microsoft Azure for Data Engineering</a>
         <span class="cert-date">January 2023</span>
         <p class="cert-desc">Azure data services, ETL processes, and cloud data pipeline development.</p>
       </div>
-      <div class="cert-card">
+      <div class="cert-card reveal reveal-delay-3">
         <span class="cert-issuer-badge"><i class="fab fa-google"></i> Google</span>
-        <a href="https://github.com/tej-panchal/Website/raw/main/Python.pdf" class="cert-name">Crash Course on Python</a>
+        <a  class="cert-name">Crash Course on Python</a>
         <span class="cert-date">January 2023</span>
         <p class="cert-desc">Python programming foundations for automation, data analysis, and systems scripting.</p>
       </div>
@@ -839,21 +809,15 @@ footer{background:var(--navy);border-top:1px solid rgba(255,255,255,.07);padding
     <h2 class="sec-title">Achievements & Leadership</h2>
     <div class="sec-line"></div>
     <div class="ach-grid">
-      <div class="ach-card">
+      <div class="ach-card reveal reveal-delay-1">
         <h3>Academic Achievements</h3>
         <div class="ach-item"><h4>Dean's Honor List — 7 Semesters</h4><div class="ach-meta">California State University, Sacramento · 2019–2023</div><div class="ach-desc">Maintained consistently high academic performance throughout the B.S. Computer Science program.</div></div>
         <div class="ach-item"><h4>ASI Scholarship Recipient — $11,000</h4><div class="ach-meta">Associated Students, Inc. · 2022–23</div><div class="ach-desc">Received scholarship recognition for academic performance and leadership, leading to appointment as Director of Engineering and Computer Science College.</div></div>
         <div class="ach-item"><h4>International Student Fee Waiver</h4><div class="ach-meta">IPGE Program · Fall 2021, 2022, 2023</div><div class="ach-desc">Awarded fee waivers based on academic merit and contributions to the international student community.</div></div>
       </div>
-      <div class="ach-card">
+      <div class="ach-card reveal reveal-delay-2">
         <h3>Leadership & Campus Impact</h3>
-
-        <div class="ach-item">
-          <h4>MSCM Student Ambassador</h4>
-          <div class="ach-meta">UW Foster School of Business · 2026–Present</div>
-          <div class="ach-desc">Serve as an official student ambassador for the Foster Master of Supply Chain Management program, acting as a key point of contact for global applicants. Connect with prospective students to share firsthand insights on admissions, curriculum requirements, and graduate student life, and support recruitment panels, admissions events, and community-building efforts for incoming cohorts. <a href="https://foster.uw.edu/academics/degree-programs/master-of-supply-chain-management/contact-us/" target="_blank" style="color:var(--teal);font-weight:600;text-decoration:none;">View Program Contact Page →</a></div>
-        </div>
-        
+        <div class="ach-item"><h4>MSCM Student Ambassador</h4><div class="ach-meta">UW Foster School of Business · 2026–Present</div><div class="ach-desc">Serve as an official student ambassador for the Foster Master of Supply Chain Management program, acting as a key point of contact for global applicants. Connect with prospective students to share firsthand insights on admissions, curriculum requirements, and graduate student life, and support recruitment panels, admissions events, and community-building efforts for incoming cohorts. <a href="https://foster.uw.edu/academics/degree-programs/master-of-supply-chain-management/contact-us/" target="_blank" style="color:var(--teal);font-weight:600;text-decoration:none;">View Program Contact Page →</a></div></div>
         <div class="ach-item"><h4>Director of Engineering and Computer Science College</h4><div class="ach-meta">Associated Students, Inc. · 2022–23</div><div class="ach-desc">Led initiatives increasing student event participation by 20% and student-project funding by 15%.</div></div>
         <div class="ach-item"><h4>Hornet Scholar — Leadership Program</h4><div class="ach-meta">Sacramento State · 2022</div><div class="ach-desc">Selected for a prestigious leadership program; led a health and wellness initiative reaching 1,000+ students across 5 campus locations.</div></div>
         <div class="ach-item"><h4>Student Representative — Executive Search Committees</h4><div class="ach-meta">VP of IRT & Facility Management AVP · 2022–23</div><div class="ach-desc">Represented student interests in high-level administrative hiring processes.</div></div>
@@ -890,7 +854,8 @@ footer{background:var(--navy);border-top:1px solid rgba(255,255,255,.07);padding
   </div>
 </footer>
 
-<!-- Certificate PDF Modal (moved above scripts so the JS below can find it) -->
+<button id="backToTop" aria-label="Back to top"><i class="fas fa-arrow-up"></i></button>
+
 <div class="cert-modal-overlay" id="certModalOverlay">
   <div class="cert-modal-box">
     <button class="cert-modal-close" id="certModalClose"><i class="fas fa-times"></i></button>
@@ -900,28 +865,51 @@ footer{background:var(--navy);border-top:1px solid rgba(255,255,255,.07);padding
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script>
+document.getElementById('yr').textContent = new Date().getFullYear();
 
-// ── Scroll progress bar ──
+// ── Certificate PDF Modal ──
+const certOverlay = document.getElementById('certModalOverlay');
+const certFrame = document.getElementById('certModalFrame');
+const certClose = document.getElementById('certModalClose');
+function openCertModal(pdfUrl){ certFrame.src = pdfUrl; certOverlay.classList.add('open'); document.body.style.overflow = 'hidden'; }
+function closeCertModal(){ certOverlay.classList.remove('open'); certFrame.src = ''; document.body.style.overflow = ''; }
+certClose.addEventListener('click', closeCertModal);
+certOverlay.addEventListener('click', (e)=>{ if(e.target === certOverlay) closeCertModal(); });
+document.addEventListener('keydown', (e)=>{ if(e.key === 'Escape'){ closeCertModal(); closeNavOverlay(); } });
+document.querySelectorAll('a.cert-name[href$=".pdf"]').forEach(link=>{
+  link.addEventListener('click', (e)=>{ e.preventDefault(); openCertModal(link.getAttribute('href')); });
+});
+
+// ── Fullscreen overlay nav (mobile) ──
+const navOverlay = document.getElementById('navOverlay');
+const mobileBtn = document.getElementById('mobileBtn');
+const navOverlayClose = document.getElementById('navOverlayClose');
+function openNavOverlay(){ navOverlay.classList.add('open'); document.body.style.overflow = 'hidden'; }
+function closeNavOverlay(){ navOverlay.classList.remove('open'); document.body.style.overflow = ''; }
+mobileBtn.addEventListener('click', openNavOverlay);
+navOverlayClose.addEventListener('click', closeNavOverlay);
+document.querySelectorAll('#navOverlayList a').forEach(a=> a.addEventListener('click', closeNavOverlay));
+
+// ── Header scrolled state + scroll progress ──
+const siteHeader = document.getElementById('siteHeader');
 const scrollBar = document.getElementById('scrollProgress');
 window.addEventListener('scroll', ()=>{
+  siteHeader.classList.toggle('scrolled', window.scrollY > 40);
   const h = document.documentElement;
   const scrolled = (h.scrollTop) / (h.scrollHeight - h.clientHeight) * 100;
   scrollBar.style.width = scrolled + '%';
 });
 
-// ── Scroll-reveal via IntersectionObserver ──
-const revealEls = document.querySelectorAll('.reveal, .sec-line, .story-card');
+// ── Scroll-reveal ──
+const revealEls = document.querySelectorAll('.reveal, .sec-line');
 const revealObserver = new IntersectionObserver((entries)=>{
   entries.forEach(entry=>{
-    if(entry.isIntersecting){
-      entry.target.classList.add('in-view');
-      revealObserver.unobserve(entry.target);
-    }
+    if(entry.isIntersecting){ entry.target.classList.add('in-view'); revealObserver.unobserve(entry.target); }
   });
 }, {threshold:0.15, rootMargin:'0px 0px -60px 0px'});
 revealEls.forEach(el=> revealObserver.observe(el));
 
-// ── Button ripple effect ──
+// ── Button ripple ──
 document.querySelectorAll('.hero-cta, .contact-link, .exp-tab').forEach(btn=>{
   btn.addEventListener('click', function(e){
     const rect = this.getBoundingClientRect();
@@ -936,7 +924,7 @@ document.querySelectorAll('.hero-cta, .contact-link, .exp-tab').forEach(btn=>{
   });
 });
 
-// ── Cursor glow follow ──
+// ── Cursor glow ──
 const cursorGlow = document.getElementById('cursorGlow');
 document.addEventListener('mousemove', (e)=>{
   cursorGlow.style.opacity = '1';
@@ -945,52 +933,20 @@ document.addEventListener('mousemove', (e)=>{
 });
 document.addEventListener('mouseleave', ()=> cursorGlow.style.opacity = '0');
 
-// ── Back to top button ──
+// ── Back to top ──
 const backToTop = document.getElementById('backToTop');
-window.addEventListener('scroll', ()=>{
-  backToTop.classList.toggle('show', window.scrollY > 600);
-});
+window.addEventListener('scroll', ()=> backToTop.classList.toggle('show', window.scrollY > 600));
 backToTop.addEventListener('click', ()=> window.scrollTo({top:0, behavior:'smooth'}));
-document.getElementById('yr').textContent = new Date().getFullYear();
 
-// ── Certificate PDF Modal logic ──
-const certOverlay = document.getElementById('certModalOverlay');
-const certFrame = document.getElementById('certModalFrame');
-const certClose = document.getElementById('certModalClose');
-
-function openCertModal(pdfUrl){
-  certFrame.src = pdfUrl;
-  certOverlay.classList.add('open');
-  document.body.style.overflow = 'hidden';
-}
-function closeCertModal(){
-  certOverlay.classList.remove('open');
-  certFrame.src = '';
-  document.body.style.overflow = '';
-}
-certClose.addEventListener('click', closeCertModal);
-certOverlay.addEventListener('click', (e)=>{
-  if(e.target === certOverlay) closeCertModal();
-});
-document.addEventListener('keydown', (e)=>{
-  if(e.key === 'Escape') closeCertModal();
-});
-
-document.querySelectorAll('a.cert-name[href$=".pdf"]').forEach(link=>{
-  link.addEventListener('click', (e)=>{
-    e.preventDefault();
-    openCertModal(link.getAttribute('href'));
-  });
-});
-
-document.getElementById('mobileBtn').addEventListener('click',()=>document.getElementById('navbar').classList.toggle('open'));
-document.querySelectorAll('#navbar a').forEach(a=>a.addEventListener('click',()=>document.getElementById('navbar').classList.remove('open')));
+// ── Experience tabs ──
 function showExp(id, btn){
   document.querySelectorAll('.exp-card').forEach(c=>c.classList.remove('active'));
   document.querySelectorAll('.exp-tab').forEach(b=>b.classList.remove('active'));
   document.getElementById(id).classList.add('active');
   btn.classList.add('active');
 }
+
+// ── Active nav highlight ──
 const sections = document.querySelectorAll('section[id]');
 const navLinks = document.querySelectorAll('nav a');
 window.addEventListener('scroll',()=>{
@@ -1028,13 +984,10 @@ window.addEventListener('scroll',()=>{
 
   const nodesGeo = new THREE.BufferGeometry();
   const nodePositions = [];
-  nodeIndices.forEach(idx=>{
-    nodePositions.push(posAttr.getX(idx), posAttr.getY(idx), posAttr.getZ(idx));
-  });
+  nodeIndices.forEach(idx=>{ nodePositions.push(posAttr.getX(idx), posAttr.getY(idx), posAttr.getZ(idx)); });
   nodesGeo.setAttribute('position', new THREE.Float32BufferAttribute(nodePositions, 3));
   const nodesMat = new THREE.PointsMaterial({color:0xe8b84b, size:0.12, transparent:true, opacity:0.9});
-  const nodePoints = new THREE.Points(nodesGeo, nodesMat);
-  group.add(nodePoints);
+  group.add(new THREE.Points(nodesGeo, nodesMat));
 
   function vecAt(idx){ return new THREE.Vector3(posAttr.getX(idx), posAttr.getY(idx), posAttr.getZ(idx)); }
   const routeGroup = new THREE.Group();
@@ -1069,9 +1022,7 @@ window.addEventListener('scroll',()=>{
   const starGeo = new THREE.BufferGeometry();
   const starCount = 250;
   const starPos = [];
-  for(let i=0;i<starCount;i++){
-    starPos.push((Math.random()-0.5)*40,(Math.random()-0.5)*40,(Math.random()-0.5)*40 - 5);
-  }
+  for(let i=0;i<starCount;i++){ starPos.push((Math.random()-0.5)*40,(Math.random()-0.5)*40,(Math.random()-0.5)*40 - 5); }
   starGeo.setAttribute('position', new THREE.Float32BufferAttribute(starPos,3));
   const starMat = new THREE.PointsMaterial({color:0xffffff, size:0.05, transparent:true, opacity:0.5});
   scene.add(new THREE.Points(starGeo, starMat));
@@ -1096,7 +1047,6 @@ window.addEventListener('scroll',()=>{
     const t = clock.getElapsedTime();
     group.rotation.y = t * 0.06 + mouseX * 0.3;
     group.rotation.x = mouseY * 0.15;
-
     containers.children.forEach(c=>{
       c.userData.angle += c.userData.speed * 0.01;
       c.position.set(
@@ -1107,30 +1057,25 @@ window.addEventListener('scroll',()=>{
       c.rotation.x += c.userData.spin;
       c.rotation.y += c.userData.spin;
     });
-
     camera.position.x += (mouseX*1.2 - camera.position.x) * 0.02;
     camera.position.y += (-mouseY*0.8 - camera.position.y) * 0.02;
     camera.lookAt(0,0,0);
-
     renderer.render(scene, camera);
   }
   animate();
 })();
 
-// ── SECTION ACCENTS: small rotating 3D wireframe icons throughout the site ──
+// ── SECTION ACCENTS: mini 3D wireframe icons ──
 function createMiniScene(canvasId, opts){
   const canvas = document.getElementById(canvasId);
   if(!canvas) return;
   const w = canvas.clientWidth || 76, h = canvas.clientHeight || 76;
-
   const scene = new THREE.Scene();
   const camera = new THREE.PerspectiveCamera(45, w/h, 0.1, 100);
   camera.position.z = 4;
-
   const renderer = new THREE.WebGLRenderer({canvas, antialias:true, alpha:true});
   renderer.setSize(w, h);
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-
   let geo;
   switch(opts.shape){
     case 'route': geo = new THREE.TorusKnotGeometry(0.85, 0.26, 90, 10); break;
@@ -1142,14 +1087,12 @@ function createMiniScene(canvasId, opts){
   const mat = new THREE.MeshBasicMaterial({color: opts.color, wireframe:true, transparent:true, opacity:0.85});
   const mesh = new THREE.Mesh(geo, mat);
   scene.add(mesh);
-
   function onResize(){
     const nw = canvas.clientWidth || w, nh = canvas.clientHeight || h;
     camera.aspect = nw/nh; camera.updateProjectionMatrix();
     renderer.setSize(nw, nh);
   }
   window.addEventListener('resize', onResize);
-
   function animate(){
     requestAnimationFrame(animate);
     mesh.rotation.x += opts.speedX || 0.006;
@@ -1158,7 +1101,6 @@ function createMiniScene(canvasId, opts){
   }
   animate();
 }
-
 createMiniScene('mini3d-about-canvas',        {shape:'route', color:0xc8972b});
 createMiniScene('mini3d-experience-canvas',   {shape:'box',   color:0x1a6b72});
 createMiniScene('mini3d-skills-canvas',       {shape:'icosa', color:0x22909a});
@@ -1166,7 +1108,134 @@ createMiniScene('mini3d-projects-canvas',     {shape:'box',   color:0xc8972b});
 createMiniScene('mini3d-certificates-canvas', {shape:'torus', color:0x1a6b72});
 createMiniScene('mini3d-achievements-canvas', {shape:'icosa', color:0xe8b84b});
 createMiniScene('mini3d-contact-canvas',      {shape:'route', color:0xe8b84b});
+
+// ── Persistent supply-chain network background (behind entire page) ──
+(function(){
+  const canvas = document.getElementById('supplyBg');
+  const ctx = canvas.getContext('2d');
+  let w, h, nodes, routes, shipments;
+
+  function resize(){ w = canvas.width = window.innerWidth; h = canvas.height = document.documentElement.scrollHeight; }
+  function makeNodes(){
+    nodes = [];
+    const cols = Math.max(5, Math.floor(w / 220));
+    const rows = Math.max(6, Math.floor(h / 260));
+    for(let i=0;i<cols;i++){
+      for(let j=0;j<rows;j++){
+        if(Math.random() > 0.45) continue;
+        nodes.push({ x:(i/(cols-1))*w + (Math.random()-0.5)*140, y:(j/(rows-1))*h + (Math.random()-0.5)*160, r:2+Math.random()*2 });
+      }
+    }
+  }
+  function nearestNeighbors(node, k){
+    return nodes.filter(n=>n!==node).map(n=>({n, d:Math.hypot(n.x-node.x, n.y-node.y)})).sort((a,b)=>a.d-b.d).slice(0,k).map(o=>o.n);
+  }
+  function makeRoutes(){
+    routes = [];
+    nodes.forEach(node=>{
+      nearestNeighbors(node, 2).forEach(n=>{
+        if(Math.hypot(n.x-node.x, n.y-node.y) < 420) routes.push({a:node, b:n});
+      });
+    });
+  }
+  function makeShipments(){
+    shipments = routes.slice(0, Math.min(routes.length, 55)).map(route=>({route, t:Math.random(), speed:0.0009+Math.random()*0.0016}));
+  }
+  function init(){ resize(); makeNodes(); makeRoutes(); makeShipments(); }
+
+  function draw(){
+    ctx.clearRect(0,0,w,h);
+    ctx.strokeStyle = 'rgba(26,107,114,0.10)';
+    ctx.lineWidth = 1;
+    routes.forEach(r=>{ ctx.beginPath(); ctx.moveTo(r.a.x, r.a.y); ctx.lineTo(r.b.x, r.b.y); ctx.stroke(); });
+    nodes.forEach(n=>{ ctx.beginPath(); ctx.arc(n.x, n.y, n.r, 0, Math.PI*2); ctx.fillStyle = 'rgba(200,151,43,0.28)'; ctx.fill(); });
+    shipments.forEach(s=>{
+      s.t += s.speed; if(s.t > 1){ s.t = 0; }
+      const x = s.route.a.x + (s.route.b.x - s.route.a.x) * s.t;
+      const y = s.route.a.y + (s.route.b.y - s.route.a.y) * s.t;
+      ctx.beginPath(); ctx.arc(x, y, 2.4, 0, Math.PI*2); ctx.fillStyle = 'rgba(34,144,154,0.55)'; ctx.fill();
+      ctx.beginPath(); ctx.arc(x, y, 5, 0, Math.PI*2); ctx.fillStyle = 'rgba(34,144,154,0.12)'; ctx.fill();
+    });
+    requestAnimationFrame(draw);
+  }
+  init(); draw();
+  let resizeTimeout;
+  window.addEventListener('resize', ()=>{ clearTimeout(resizeTimeout); resizeTimeout = setTimeout(init, 300); });
+})();
+
+// ── Stack-spread project cards (pinned scroll scatter effect) ──
+(function(){
+  const pin = document.getElementById('stackPin');
+  const source = document.getElementById('projectsGridSource');
+  const root = document.getElementById('stackCardsRoot');
+  const headline = document.getElementById('stackHeadline');
+  const hint = document.getElementById('stackHint');
+  if(!pin || !source || !root) return;
+
+  function isMobile(){ return window.innerWidth <= 800; }
+
+  const originals = Array.from(source.querySelectorAll('.project-card'));
+  const wraps = originals.map(card=>{
+    const wrap = document.createElement('div');
+    wrap.className = 'stack-card-wrap';
+    wrap.appendChild(card.cloneNode(true));
+    root.appendChild(wrap);
+    return wrap;
+  });
+
+  if(isMobile()){
+    source.style.visibility = 'hidden';
+    source.style.position = 'absolute';
+    headline.style.opacity = '1';
+    // observe reveal for mobile stacked cards
+    wraps.forEach((w,i)=>{ w.classList.add('reveal'); w.classList.add('reveal-delay-'+((i%4)+1)); });
+    const obs = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in-view'); obs.unobserve(e.target);} });
+    }, {threshold:0.1});
+    wraps.forEach(w=> obs.observe(w));
+    return;
+  }
+
+  const total = wraps.length;
+  const cols = window.innerWidth < 1300 ? 2 : 3;
+  const targets = wraps.map((_, i)=>{
+    const row = Math.floor(i / cols), col = i % cols;
+    const xPct = (col - (cols-1)/2) * 26;
+    const yPct = (row - 1) * 24;
+    return { x: xPct, y: yPct, rotate: (Math.random()*6-3) };
+  });
+  const stackOffsets = wraps.map(()=> ({ x:(Math.random()*6-3), y:(Math.random()*6-3), rotate:(Math.random()*16-8) }));
+
+  let mouseX = 0, mouseY = 0;
+  window.addEventListener('pointermove', (e)=>{
+    mouseX = (e.clientX / window.innerWidth) * 2 - 1;
+    mouseY = (e.clientY / window.innerHeight) * 2 - 1;
+  });
+
+  function update(){
+    const rect = pin.getBoundingClientRect();
+    const total_h = pin.offsetHeight - window.innerHeight;
+    let p = total_h > 0 ? -rect.top / total_h : 0;
+    p = Math.max(0, Math.min(1, p));
+    const eased = p < 0.12 ? 0 : p > 0.9 ? 1 : (p-0.12)/(0.9-0.12);
+
+    headline.style.opacity = Math.min(1, eased*2.5);
+    hint.style.opacity = 1 - Math.min(1, p/0.12);
+
+    wraps.forEach((wrap, i)=>{
+      const t = targets[i], s = stackOffsets[i];
+      const x = s.x + (t.x - s.x) * eased - mouseX*2*(i/total);
+      const y = s.y + (t.y - s.y) * eased - mouseY*2*(i/total);
+      const rot = s.rotate + (t.rotate - s.rotate) * eased;
+      const scale = 0.82 + 0.18*eased;
+      wrap.style.transform = `translate(calc(-50% + ${x}vw), calc(-50% + ${y}vh)) rotate(${rot}deg) scale(${scale})`;
+      wrap.style.zIndex = 10 + i;
+    });
+
+    requestAnimationFrame(update);
+  }
+  requestAnimationFrame(update);
+})();
 </script>
- <button id="backToTop" aria-label="Back to top"><i class="fas fa-arrow-up"></i></button> 
 </body>
 </html>
