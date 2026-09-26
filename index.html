@@ -299,6 +299,185 @@ footer{background:var(--navy);border-top:1px solid rgba(255,255,255,.07);padding
 
 @media(max-width:900px){.hero-grid{grid-template-columns:1fr}.hero-stats{flex-direction:row;justify-content:flex-start;flex-wrap:wrap;margin-top:20px}.about-grid{grid-template-columns:1fr}.ach-grid{grid-template-columns:1fr}}
 @media(max-width:720px){nav ul{display:none}.mobile-toggle{display:block}.hero-cta-ghost{display:none}}
+
+
+/* ═══ 3D STORY EDITION — readable content + cinematic supply-chain world ═══ */
+:root{--ink:#08131f;--panel:#ffffff;--cyan:#64e7ff;--violet:#9b8cff;--lime:#b8ff6a}
+body{background:#f7f9fc}
+#supplyBg{opacity:.18}
+section:nth-child(even),section:nth-child(odd):not(#hero):not(#contact){background:rgba(247,249,252,.96)}
+#hero{background:radial-gradient(circle at 78% 38%,rgba(100,231,255,.13),transparent 26%),radial-gradient(circle at 88% 66%,rgba(155,140,255,.12),transparent 30%),linear-gradient(145deg,#07111d 0%,#0b1e30 54%,#10182a 100%)}
+#hero-canvas{opacity:1}
+.hero-grid{grid-template-columns:minmax(0,1.08fr) minmax(250px,.42fr)}
+.hero-grid>div:first-child{max-width:720px}
+.hero-stats{z-index:5}
+.hero-story-label{position:absolute;right:clamp(20px,5vw,72px);bottom:48px;z-index:4;color:rgba(255,255,255,.72);font-size:11px;letter-spacing:2px;text-transform:uppercase;display:flex;align-items:center;gap:10px;pointer-events:none}
+.hero-story-label::before{content:'';width:34px;height:1px;background:var(--cyan);box-shadow:0 0 12px var(--cyan)}
+
+/* remove decorative mini WebGL objects — the hero is now the single coherent 3D story */
+.mini3d-wrap{display:none!important}
+
+/* Work experience: typography first, no transforms, full descriptions */
+#experience{background:linear-gradient(180deg,#f7f9fc,#eef4f7)}
+.exp-tabs{position:sticky;top:76px;z-index:20;padding:10px;background:rgba(247,249,252,.88);backdrop-filter:blur(18px);border:1px solid rgba(13,27,42,.08);border-radius:999px;width:max-content;max-width:100%;overflow-x:auto;flex-wrap:nowrap;scrollbar-width:none}
+.exp-tabs::-webkit-scrollbar{display:none}
+.exp-card,.exp-card:hover{transform:none!important;background:#fff!important;border:1px solid rgba(13,27,42,.10);box-shadow:0 18px 60px rgba(13,27,42,.08);padding:clamp(26px,4vw,46px);border-radius:24px}
+.exp-role{font-size:clamp(25px,3vw,34px)}
+.exp-company{font-size:16px}
+.exp-bullets{gap:16px}
+.exp-bullets li{font-size:15.5px;line-height:1.78;color:#2c3a48}
+.exp-bullet-label{min-width:205px}
+.exp-tags{margin-top:30px}
+
+/* Projects: readable editorial case studies; no cluster, pin, scatter, or fixed card heights */
+#projects{padding:100px 0;background:linear-gradient(180deg,#08131f 0,#0b1725 100%)!important;color:#fff}
+#projects .stack-pin{height:auto!important;position:relative!important}
+#projects .stack-sticky{position:relative!important;height:auto!important;overflow:visible!important;display:block!important;padding:0!important}
+#projects .stack-sticky>.container{height:auto!important}
+#projects #stackCardsRoot,#projects .stack-hint{display:none!important}
+#projects .stack-headline{position:relative!important;inset:auto!important;opacity:1!important;display:block!important;text-align:left!important;margin-bottom:44px}
+#projects .stack-headline .sec-label{color:var(--cyan)}
+#projects .stack-headline h2{color:#fff;font-size:clamp(34px,5vw,58px)}
+#projects .stack-headline p{color:rgba(255,255,255,.58);max-width:680px}
+#projects>.container{max-width:1160px}
+#projectsGridSource{visibility:visible!important;position:static!important;pointer-events:auto!important;display:grid!important;grid-template-columns:1fr!important;gap:22px!important}
+#projects .project-card{height:auto!important;min-height:0;background:linear-gradient(135deg,rgba(255,255,255,.075),rgba(255,255,255,.035))!important;border:1px solid rgba(255,255,255,.11);box-shadow:none;border-radius:22px;display:grid;grid-template-columns:10px 1fr;overflow:hidden;transform:none!important}
+#projects .project-card:hover{border-color:rgba(100,231,255,.34);box-shadow:0 22px 70px rgba(0,0,0,.22);transform:translateY(-2px)!important}
+#projects .project-top{height:100%;width:10px;background:linear-gradient(180deg,var(--cyan),var(--violet))}
+#projects .project-top.gold-bar{background:linear-gradient(180deg,#f2c66d,var(--violet))}
+#projects .project-body{padding:clamp(24px,4vw,42px)}
+#projects .project-title{color:#fff;font-size:clamp(22px,3vw,31px);margin-bottom:8px}
+#projects .project-role{color:var(--cyan);font-size:12px;letter-spacing:1.1px}
+#projects .project-desc{color:rgba(255,255,255,.75);font-size:15.5px;line-height:1.85;max-width:980px;margin:16px 0}
+#projects .project-tech{color:#c9d6df;font-size:12.5px;line-height:1.7}
+#projects .project-link{color:var(--cyan)}
+#projects .project-body span{color:rgba(255,255,255,.5)!important}
+
+/* Future-interface details that do not obscure content */
+.story-card,.info-card,.skill-card,.cert-card,.ach-card{border-radius:20px}
+.skill-card,.cert-card{transform:none!important}
+.skill-card:hover,.cert-card:hover{transform:translateY(-4px)!important}
+.section-orbit{position:absolute;width:220px;height:220px;border:1px solid rgba(26,107,114,.10);border-radius:50%;right:-100px;top:80px;pointer-events:none}
+@media(max-width:900px){.hero-grid{grid-template-columns:1fr}.hero-stats{max-width:500px}.hero-story-label{display:none}.exp-tabs{width:100%;border-radius:18px}.exp-bullet-label{min-width:0}.exp-bullet-row{display:block}.exp-bullet-label{display:block;margin-bottom:3px}}
+@media(max-width:600px){#projects{padding:72px 0}.exp-card{padding:24px 20px}.project-body{padding:24px!important}}
+@media(prefers-reduced-motion:reduce){#hero-canvas{opacity:.72}.project-card,.skill-card,.cert-card{transition:none!important}}
+
+
+/* ===== 3D STORY / SCM 2100 INTERACTION LAYER ===== */
+.scm-hud{position:absolute;right:4vw;top:105px;width:min(330px,28vw);z-index:3;color:#dffbff;font-family:'DM Sans',sans-serif;pointer-events:none;filter:drop-shadow(0 18px 45px rgba(0,0,0,.28))}
+.hud-top,.hud-metric,.hud-route{background:rgba(5,18,31,.58);border:1px solid rgba(100,231,255,.24);backdrop-filter:blur(12px);box-shadow:inset 0 0 28px rgba(100,231,255,.04)}
+.hud-top{display:flex;justify-content:space-between;padding:9px 12px;font-size:9px;letter-spacing:2px}.hud-live{color:#b8ff6a}.hud-live i{display:inline-block;width:6px;height:6px;border-radius:50%;background:#b8ff6a;margin-right:6px;box-shadow:0 0 12px #b8ff6a;animation:hudBlink 1.2s infinite}.hud-metric{margin-top:8px;padding:12px}.hud-metric small{display:block;font-size:9px;letter-spacing:1.7px;color:rgba(223,251,255,.55)}.hud-metric strong{font:500 25px 'DM Serif Display',serif}.hud-bar{display:block;height:2px;background:rgba(255,255,255,.08);margin-top:8px;overflow:hidden}.hud-bar b{display:block;width:94%;height:100%;background:#64e7ff;box-shadow:0 0 12px #64e7ff;animation:hudFlow 3s ease-in-out infinite}.hud-route{margin-top:8px;padding:10px;font-size:8px;letter-spacing:1px;display:flex;align-items:center;justify-content:space-between}.hud-route i{width:14px;height:1px;background:#64e7ff;position:relative;overflow:hidden}.hud-route i:after{content:'';position:absolute;width:6px;height:1px;background:#b8ff6a;animation:routeDot 1.4s linear infinite}@keyframes hudBlink{50%{opacity:.3}}@keyframes hudFlow{50%{width:78%}}@keyframes routeDot{from{left:-6px}to{left:14px}}
+.root-cause{margin:0 0 58px;padding:26px 28px 30px;border:1px solid rgba(26,107,114,.16);border-radius:18px;background:linear-gradient(135deg,rgba(7,20,32,.97),rgba(15,45,55,.94));color:white;overflow:hidden;box-shadow:0 24px 60px rgba(13,27,42,.14)}.root-copy{display:flex;gap:12px;align-items:baseline;flex-wrap:wrap}.root-copy strong{font-family:'DM Serif Display',serif;font-size:20px}.root-copy small{color:rgba(255,255,255,.5)}.root-eyebrow{font-size:9px;letter-spacing:2px;color:#64e7ff}.root-network{height:150px;display:grid;grid-template-columns:repeat(5,1fr);align-items:center;position:relative;margin-top:16px}.root-line{position:absolute;left:8%;right:8%;top:62px;height:2px;background:linear-gradient(90deg,rgba(100,231,255,.22),rgba(100,231,255,.5));transform-origin:right center}.root-node{position:relative;z-index:2;justify-self:center;text-align:center;color:rgba(255,255,255,.5);transition:.35s}.root-node i{display:grid;place-items:center;width:48px;height:48px;border-radius:14px;margin:auto;background:#112a3a;border:1px solid rgba(100,231,255,.2);font-size:16px}.root-node span{display:block;font-size:10px;margin-top:7px;letter-spacing:.7px}.root-node b{display:block;font-size:8px;color:#ff8d8d;margin-top:3px}.root-node.active{color:#fff;transform:translateY(-4px)}.root-node.active i{border-color:#64e7ff;box-shadow:0 0 24px rgba(100,231,255,.35);color:#64e7ff}.root-node.cause i{border-color:#e8b84b;color:#e8b84b;box-shadow:0 0 28px rgba(232,184,75,.35)}.trace-pulse{position:absolute;top:58px;right:8%;width:10px;height:10px;border-radius:50%;background:#64e7ff;box-shadow:0 0 20px #64e7ff;z-index:3}
+.control-room{margin-top:58px;display:grid;grid-template-columns:.72fr 1.28fr;gap:28px;background:#07131f;color:white;border-radius:22px;padding:34px;border:1px solid rgba(100,231,255,.15);box-shadow:0 30px 80px rgba(13,27,42,.2);overflow:hidden}.control-copy h3{font-family:'DM Serif Display',serif;font-size:30px;margin:5px 0 10px}.control-copy>p:not(.sec-label){font-size:13px;color:rgba(255,255,255,.55);line-height:1.7}.control-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}.control-btn{border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.04);color:rgba(255,255,255,.68);border-radius:99px;padding:9px 13px;cursor:pointer;font:500 11px 'DM Sans';transition:.3s}.control-btn:hover,.control-btn.active{color:#07131f;background:#64e7ff;border-color:#64e7ff;box-shadow:0 0 24px rgba(100,231,255,.22)}.control-visual{min-height:320px;position:relative;border-radius:16px;overflow:hidden;border:1px solid rgba(100,231,255,.13);background:radial-gradient(circle at 50% 45%,rgba(26,107,114,.18),transparent 45%),#091a29}.cr-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(100,231,255,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(100,231,255,.045) 1px,transparent 1px);background-size:28px 28px}.cr-lines{position:absolute;inset:0;width:100%;height:100%;overflow:visible}.cr-lines path{fill:none;stroke:#64e7ff;stroke-width:2;stroke-dasharray:7 10;opacity:.55;animation:dash 12s linear infinite}@keyframes dash{to{stroke-dashoffset:-180}}.cr-node{position:absolute;z-index:3;text-align:center;font-size:9px;color:rgba(255,255,255,.65)}.cr-node i{display:grid;place-items:center;width:42px;height:42px;border-radius:12px;background:#10293a;border:1px solid rgba(100,231,255,.25);color:#64e7ff;margin:auto}.cr-node span{display:block;margin-top:5px}.n1{left:5%;top:55%}.n2{left:28%;top:24%}.n3{left:47%;top:52%}.n4{left:68%;top:28%}.n5{right:5%;top:54%}.cr-pulse{position:absolute;width:11px;height:11px;border-radius:50%;background:#b8ff6a;box-shadow:0 0 18px #b8ff6a;z-index:4;left:8%;top:65%;animation:controlPulse 5s cubic-bezier(.4,0,.2,1) infinite}@keyframes controlPulse{0%{left:8%;top:65%}25%{left:31%;top:34%}50%{left:50%;top:62%}75%{left:71%;top:38%}100%{left:88%;top:63%}}.cr-readout{position:absolute;right:14px;bottom:12px;text-align:right}.cr-readout span{display:block;font-size:8px;letter-spacing:2px;color:#64e7ff}.cr-readout strong{font:500 24px 'DM Serif Display',serif}.cr-readout small{display:block;font-size:9px;color:rgba(255,255,255,.45)}
+.project-card,.skill-card,.exp-card,.cert-card{transform-style:preserve-3d;will-change:transform}.project-card::after,.skill-card::after,.exp-card::after{content:'';position:absolute;inset:0;border-radius:inherit;pointer-events:none;background:radial-gradient(circle at var(--mx,50%) var(--my,50%),rgba(100,231,255,.11),transparent 38%);opacity:0;transition:opacity .25s}.project-card:hover::after,.skill-card:hover::after,.exp-card:hover::after{opacity:1}.exp-card{position:relative}.hero-cta,.hero-cta-ghost,.contact-link{will-change:transform}
+@media(max-width:900px){.scm-hud{display:none}.control-room{grid-template-columns:1fr}.root-network{height:190px}.root-node i{width:40px;height:40px}.root-line{top:81px}.trace-pulse{top:77px}.control-visual{min-height:290px}}
+@media(max-width:600px){.root-cause{padding:22px 14px}.root-node span{font-size:8px}.root-node i{width:34px;height:34px}.control-room{padding:20px}.control-actions{gap:6px}.control-btn{padding:8px 10px}.control-visual{min-height:260px}.cr-node span{display:none}}
+@media(prefers-reduced-motion:reduce){.hud-live i,.hud-bar b,.hud-route i:after,.cr-lines path,.cr-pulse{animation:none!important}.trace-pulse{display:none}.project-card,.skill-card,.exp-card,.cert-card,.hero-cta,.hero-cta-ghost,.contact-link{transform:none!important}}
+
+\n/* ===== UNIFIED FUTURE-DARK THEME — V3 ===== */
+:root{
+  --page:#06111c; --page-2:#081725; --surface:#0c1d2c; --surface-2:#102536;
+  --text:#edf7fb; --muted:#9db0bd; --line:rgba(112,220,236,.14);
+}
+html,body{background:var(--page)!important;color:var(--text)!important}
+body{background-image:radial-gradient(circle at 18% 12%,rgba(34,144,154,.10),transparent 27%),radial-gradient(circle at 86% 42%,rgba(200,151,43,.055),transparent 24%)!important}
+#supplyBg{opacity:.72!important;mix-blend-mode:screen}
+header{background:rgba(6,17,28,.76)!important;border-bottom:1px solid rgba(100,231,255,.08)!important}
+header.scrolled{background:rgba(6,17,28,.93)!important}
+section,section:nth-child(even),section:nth-child(odd):not(#hero):not(#contact){background:transparent!important}
+section:not(#hero):not(#contact){border-top:1px solid rgba(100,231,255,.045)}
+#hero{background:radial-gradient(circle at 72% 38%,rgba(34,144,154,.18),transparent 28%),radial-gradient(circle at 88% 70%,rgba(200,151,43,.07),transparent 25%),linear-gradient(145deg,#06111c 0%,#091c2b 55%,#071522 100%)!important}
+#contact,footer{background:linear-gradient(145deg,#06111c,#091a28)!important}
+.sec-title,.about-copy h3,.exp-role,.skill-card h3,.project-title,.cert-name,.ach-card h3,.edu-school{color:var(--text)!important}
+.sec-label,.exp-company,.info-card h4,.project-role,.project-tech,.cert-issuer,.ach-icon{color:#6fe4f2!important}
+.sec-subtitle,.about-copy p,.exp-bullets li,.edu-degree,.edu-year,.project-desc,.cert-card p,.ach-card p,.fact-text,.skill-chip{color:var(--muted)!important}
+.info-card,.exp-card,.skill-card,.project-card,.cert-card,.ach-card,.trace-rail{
+  background:linear-gradient(145deg,rgba(14,33,49,.88),rgba(8,24,37,.88))!important;
+  border:1px solid var(--line)!important;box-shadow:0 20px 60px rgba(0,0,0,.18)!important;
+  backdrop-filter:blur(14px)!important;
+}
+.exp-card,.exp-card:hover{background:linear-gradient(145deg,rgba(14,33,49,.94),rgba(8,24,37,.94))!important}
+.exp-tabs{background:rgba(9,27,41,.82)!important;border-color:var(--line)!important}
+.exp-tab{color:#8fa5b4!important}.exp-tab.active{color:#06111c!important;background:#6fe4f2!important}.exp-tab:hover:not(.active){color:var(--text)!important;background:rgba(111,228,242,.08)!important}
+.skill-chip,.tag{background:rgba(111,228,242,.07)!important;border:1px solid rgba(111,228,242,.10)!important}
+.skill-card-icon{background:rgba(111,228,242,.08)!important;color:#6fe4f2!important}
+.project-card{overflow:hidden}.project-top{opacity:.75}
+.control-room,.root-cause{background:linear-gradient(145deg,rgba(8,25,39,.97),rgba(10,37,48,.95))!important;border-color:rgba(111,228,242,.15)!important;box-shadow:0 25px 70px rgba(0,0,0,.24)!important}
+.contact-title,.contact-sub{color:var(--text)!important}
+.contact-link{background:rgba(12,31,47,.72)!important;border-color:rgba(111,228,242,.16)!important}
+section::after{color:rgba(111,228,242,.022)!important}
+/* no floating data panel over hero; animation lives behind content */
+.scm-hud{display:none!important}
+.hero-grid{grid-template-columns:minmax(0,1.15fr) minmax(230px,.38fr)!important}
+.hero-grid>div:first-child{position:relative;z-index:5}
+.hero-stats{position:relative;z-index:5}
+#hero-canvas{z-index:0!important;opacity:.92!important;filter:saturate(.92)}
+#hero::after{background:linear-gradient(90deg,rgba(6,17,28,.36) 0%,rgba(6,17,28,.08) 52%,rgba(6,17,28,.28) 100%)!important}
+/* subtle animated route ribbon behind the hero, decorative only */
+#hero::before{content:''!important;position:absolute!important;left:-10%!important;right:-10%!important;bottom:9%!important;height:1px!important;z-index:1!important;background:linear-gradient(90deg,transparent,rgba(111,228,242,.08),rgba(111,228,242,.55),rgba(200,151,43,.28),transparent)!important;box-shadow:0 0 24px rgba(111,228,242,.16)!important;animation:heroRouteGlow 4.8s ease-in-out infinite!important}
+@keyframes heroRouteGlow{0%,100%{opacity:.28;transform:translateX(-2%)}50%{opacity:.8;transform:translateX(2%)}}
+@media(max-width:900px){.hero-grid{grid-template-columns:1fr!important}.hero-stats{margin-top:24px}.control-room{grid-template-columns:1fr!important}}
+@media(prefers-reduced-motion:reduce){#supplyBg{opacity:.34!important}#hero::before{animation:none!important}}
+
+
+/* ===== V4 READABILITY + HERO RELIABILITY =====
+   Content-first light surfaces, dark cinematic hero only. */
+:root{
+  --v4-bg:#f5f7f8; --v4-surface:#ffffff; --v4-surface-soft:#eef3f4;
+  --v4-ink:#10202b; --v4-body:#344955; --v4-muted:#667985;
+  --v4-teal:#176d76; --v4-gold:#a97818; --v4-border:#d9e3e6;
+}
+html,body{background:var(--v4-bg)!important;color:var(--v4-ink)!important}
+body{background-image:none!important}
+#supplyBg{opacity:.11!important;mix-blend-mode:multiply!important}
+header{background:rgba(255,255,255,.88)!important;border-bottom:1px solid rgba(16,32,43,.08)!important;color:var(--v4-ink)!important}
+header.scrolled{background:rgba(255,255,255,.96)!important}
+.logo,nav a{color:var(--v4-ink)!important}.logo span,nav a.active,nav a:hover{color:var(--v4-teal)!important}
+section,section:nth-child(even),section:nth-child(odd):not(#hero):not(#contact){background:var(--v4-bg)!important;color:var(--v4-ink)!important}
+section:nth-of-type(3n+2):not(#hero):not(#contact){background:#eef3f4!important}
+section:not(#hero):not(#contact){border-top:1px solid rgba(16,32,43,.055)}
+#hero{background:radial-gradient(circle at 73% 40%,rgba(47,173,187,.18),transparent 30%),linear-gradient(145deg,#071522 0%,#0c2634 56%,#102a37 100%)!important;color:#fff!important}
+#hero-canvas{opacity:1!important;filter:none!important;z-index:1!important}
+#hero::after{z-index:1!important;background:linear-gradient(90deg,rgba(7,21,34,.78) 0%,rgba(7,21,34,.46) 48%,rgba(7,21,34,.08) 75%,rgba(7,21,34,.18) 100%)!important;pointer-events:none}
+.hero-grid{position:relative;z-index:3!important}.hero-grid>div:first-child,.hero-stats{z-index:4!important}
+.hero-title{color:rgba(255,255,255,.82)!important}.hero-pill{color:rgba(255,255,255,.9)!important}.hero-stat-label{color:rgba(255,255,255,.62)!important}
+.sec-title,.about-copy h3,.exp-role,.skill-card h3,.project-title,.cert-name,.ach-card h3,.edu-school{color:var(--v4-ink)!important}
+.sec-label,.exp-company,.info-card h4,.project-role,.project-tech,.cert-issuer,.ach-icon{color:var(--v4-teal)!important}
+.sec-subtitle,.about-copy p,.exp-bullets li,.edu-degree,.edu-year,.project-desc,.cert-card p,.ach-card p,.fact-text,.skill-chip{color:var(--v4-body)!important}
+.info-card,.exp-card,.skill-card,.project-card,.cert-card,.ach-card,.trace-rail{
+  background:rgba(255,255,255,.94)!important;border:1px solid var(--v4-border)!important;
+  box-shadow:0 14px 42px rgba(16,32,43,.07)!important;backdrop-filter:blur(8px)!important;color:var(--v4-ink)!important;
+}
+.exp-card,.exp-card:hover{background:#fff!important}.exp-bullets li{color:#2d414d!important}.exp-bullet-label{color:#183946!important}
+.exp-tabs{background:rgba(255,255,255,.94)!important;border-color:var(--v4-border)!important;box-shadow:0 8px 28px rgba(16,32,43,.06)}
+.exp-tab{color:#526873!important}.exp-tab.active{color:#fff!important;background:var(--v4-teal)!important}.exp-tab:hover:not(.active){color:var(--v4-teal)!important;background:#e8f2f3!important}
+.skill-chip,.tag{background:#edf5f5!important;border:1px solid #d8e8e9!important;color:#36535b!important}.skill-card-icon{background:#e8f3f4!important;color:var(--v4-teal)!important}
+/* Projects stay content-first and fully readable */
+#projects{background:#eaf0f2!important;color:var(--v4-ink)!important}
+#projects .stack-headline h2{color:var(--v4-ink)!important}#projects .stack-headline p{color:var(--v4-muted)!important}#projects .stack-headline .sec-label{color:var(--v4-teal)!important}
+#projects .project-card{background:#fff!important;border:1px solid var(--v4-border)!important;box-shadow:0 14px 42px rgba(16,32,43,.07)!important}
+#projects .project-card:hover{border-color:#b8d6d9!important;box-shadow:0 20px 52px rgba(16,32,43,.11)!important}
+#projects .project-title{color:var(--v4-ink)!important}#projects .project-role{color:var(--v4-teal)!important}#projects .project-desc{color:var(--v4-body)!important}#projects .project-tech{color:#4d6973!important}#projects .project-body span{color:var(--v4-muted)!important}
+/* Keep the interactive SCM visualizations dark as intentional embedded instruments */
+.control-room,.root-cause{background:linear-gradient(145deg,#0a1b28,#0d2c38)!important;color:#fff!important;border-color:rgba(100,231,255,.18)!important}
+.control-room h3,.root-cause strong{color:#fff!important}.control-room p,.root-cause small{color:rgba(255,255,255,.68)!important}
+#contact,footer{background:linear-gradient(145deg,#071522,#0c2734)!important;color:#fff!important}.contact-title,.contact-sub{color:#fff!important}.contact-link{background:rgba(255,255,255,.06)!important;color:#fff!important;border-color:rgba(255,255,255,.14)!important}
+/* No fake operational dashboard in the hero */
+.scm-hud{display:none!important}
+@media(max-width:900px){#hero-canvas{opacity:.72!important}.hero-grid{grid-template-columns:1fr!important}}
+
+/* ===== V5 POLISH: STORY BRIDGE + CONTACT + HERO ===== */
+#skills{padding-bottom:52px!important}
+#projects{padding-top:72px!important}
+.story-bridge{margin:46px 0 0;display:grid;grid-template-columns:minmax(260px,.72fr) minmax(420px,1.28fr);gap:28px;align-items:stretch;background:linear-gradient(135deg,#071522,#0d2b39);border:1px solid rgba(100,231,255,.18);border-radius:26px;padding:30px;box-shadow:0 24px 65px rgba(16,32,43,.16);overflow:hidden;position:relative;isolation:isolate}
+.story-bridge:before{content:'';position:absolute;inset:-40%;background:radial-gradient(circle at 70% 45%,rgba(100,231,255,.11),transparent 27%),radial-gradient(circle at 15% 20%,rgba(200,151,43,.08),transparent 20%);z-index:-1}
+.story-copy{padding:18px 4px 18px 8px;align-self:center}.story-copy h3{font-family:'DM Serif Display',serif;color:#fff;font-size:clamp(27px,3vw,38px);line-height:1.08;margin:8px 0 14px}.story-copy>p:not(.sec-label){color:rgba(255,255,255,.7);font-size:13.5px;line-height:1.75;max-width:520px}.story-copy .sec-label{color:#6fe4f2!important}
+.story-steps{display:flex;align-items:center;gap:7px;flex-wrap:wrap;margin-top:22px}.story-steps span{display:inline-flex;align-items:center;gap:6px;color:#dceaf0;font-size:10px;border:1px solid rgba(255,255,255,.11);background:rgba(255,255,255,.045);padding:7px 9px;border-radius:999px}.story-steps span i{color:#6fe4f2}.story-steps b{color:rgba(255,255,255,.28);font-size:11px}
+.story-stage{min-height:360px;position:relative;border-radius:19px;overflow:hidden;border:1px solid rgba(100,231,255,.14);background:radial-gradient(circle at 50% 35%,#12384a 0,#091a28 52%,#06111c 100%)}#story-canvas{position:absolute;inset:0;width:100%;height:100%;display:block}.story-caption{position:absolute;left:16px;bottom:14px;display:flex;align-items:center;gap:7px;color:#e9f8fb;font-size:8px;letter-spacing:1.7px;background:rgba(5,16,25,.58);border:1px solid rgba(255,255,255,.1);backdrop-filter:blur(8px);padding:8px 10px;border-radius:999px;pointer-events:none}.story-caption small{letter-spacing:0;color:rgba(255,255,255,.48);margin-left:4px}.story-dot{width:6px;height:6px;border-radius:50%;background:#b8ff6a;box-shadow:0 0 12px #b8ff6a;animation:storyBlink 1.5s ease-in-out infinite}@keyframes storyBlink{50%{opacity:.25}}
+#contact .contact-title,#contact .sec-title{color:#ffffff!important;text-shadow:0 2px 22px rgba(100,231,255,.14)!important}#contact .sec-label{color:#75e8f4!important}#contact .contact-inner>p:not(.sec-label){color:rgba(255,255,255,.78)!important}
+@media(max-width:900px){.story-bridge{grid-template-columns:1fr}.story-stage{min-height:330px}}@media(max-width:600px){#skills{padding-bottom:34px!important}#projects{padding-top:58px!important}.story-bridge{margin-top:34px;padding:18px;border-radius:20px}.story-stage{min-height:285px}.story-caption small{display:none}}
+@media(prefers-reduced-motion:reduce){.story-dot{animation:none}}
+
 </style>
 </head>
 <body>
@@ -365,6 +544,7 @@ footer{background:var(--navy);border-top:1px solid rgba(255,255,255,.07);padding
       </div>
     </div>
   </div>
+  <div class="hero-story-label">Live supply-chain story · scroll to explore</div>
   <div class="scroll-hint"><i class="fas fa-chevron-down"></i></div>
 </section>
 
@@ -379,6 +559,19 @@ footer{background:var(--navy);border-top:1px solid rgba(255,255,255,.07);padding
       <p class="story-lede">I spend my weekends reading trails. I spent three years reading systems. Supply chains, it turns out, ask the same question as both.</p>
       <p>On a hike, a wrong turn doesn't announce itself right away. You feel it a mile later, when the trail stops matching the map, and by then you're already off course. Debugging production software taught me the exact same lesson from the other direction: the crash a customer reports is almost never where the problem started. It's the visible symptom of a decision made several steps earlier that nobody flagged as risky at the time and a delayed API response, a sync job that ran late, a queue nobody was watching until it backed up.</p>
       <p>Three years as a software engineer trained me to stop reacting to the symptom and start tracing backward to the actual fork in the road. <strong>Supply chains have the same shape.</strong> A stockout on a shelf is rarely a shelf problem and it's a forecast, a lead time, or a handoff that broke several steps upstream. That's the instinct I'm bringing from engineering into supply chain: read the whole path, not just the point where it finally became visible.</p>
+    </div>
+
+    <div class="root-cause reveal" id="rootCause">
+      <div class="root-copy"><span class="root-eyebrow">ROOT-CAUSE TRACE</span><strong>Where did the disruption actually begin?</strong><small>Scroll to trace the visible customer problem backward through the network.</small></div>
+      <div class="root-network">
+        <div class="root-line"></div>
+        <div class="root-node" data-step="4"><i class="fas fa-industry"></i><span>Supplier</span></div>
+        <div class="root-node" data-step="3"><i class="fas fa-gears"></i><span>Factory</span></div>
+        <div class="root-node" data-step="2"><i class="fas fa-ship"></i><span>Port</span></div>
+        <div class="root-node" data-step="1"><i class="fas fa-warehouse"></i><span>Warehouse</span></div>
+        <div class="root-node problem" data-step="0"><i class="fas fa-store"></i><span>Customer</span><b>STOCKOUT</b></div>
+        <div class="trace-pulse"></div>
+      </div>
     </div>
 
     <div class="about-grid">
@@ -613,6 +806,22 @@ footer{background:var(--navy);border-top:1px solid rgba(255,255,255,.07);padding
         </div>
       </div>
     </div>
+
+    <div class="story-bridge" id="storyBridge">
+      <div class="story-copy">
+        <p class="sec-label">3D Supply Chain Story</p>
+        <h3>From supplier signal to customer delivery.</h3>
+        <p>A living miniature supply chain connects the toolkit above with the projects below. Watch materials move from supplier to factory, through the warehouse, onto transportation, and toward the customer.</p>
+        <div class="story-steps" aria-label="Supply chain stages">
+          <span><i class="fas fa-industry"></i> Supplier</span><b>→</b><span><i class="fas fa-gears"></i> Factory</span><b>→</b><span><i class="fas fa-warehouse"></i> Warehouse</span><b>→</b><span><i class="fas fa-truck"></i> Transport</span><b>→</b><span><i class="fas fa-store"></i> Customer</span>
+        </div>
+      </div>
+      <div class="story-stage">
+        <canvas id="story-canvas" aria-label="Animated 3D cartoon supply chain"></canvas>
+        <div class="story-caption"><span class="story-dot"></span> LIVE 3D FLOW <small>Move your pointer to explore</small></div>
+      </div>
+    </div>
+
   </div>
 </section>
 
@@ -837,7 +1046,7 @@ footer{background:var(--navy);border-top:1px solid rgba(255,255,255,.07);padding
       <div class="contact-links">
         <a href="mailto:panchaltej23@gmail.com" class="contact-link"><i class="fas fa-envelope"></i> panchaltej23@gmail.com</a>
         <a href="tel:+19168908647" class="contact-link"><i class="fas fa-phone"></i> (916) 890-8647</a>
-        <a href="https://www.linkedin.com/in/tej-panchal-241618196/" target="_blank" class="contact-link"><i class="fab fa-linkedin-in"></i> LinkedIn</a>
+        <a href="https://www.linkedin.com/in/tej-p-241618196/" target="_blank" class="contact-link"><i class="fab fa-linkedin-in"></i> LinkedIn</a>
         
       </div>
     </div>
@@ -864,6 +1073,8 @@ footer{background:var(--navy);border-top:1px solid rgba(255,255,255,.07);padding
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script>
 document.getElementById('yr').textContent = new Date().getFullYear();
 
@@ -955,114 +1166,78 @@ window.addEventListener('scroll',()=>{
   navLinks.forEach(a=> a.classList.toggle('active', a.getAttribute('href')==='#'+cur));
 });
 
-// ── HERO: full 3D supply-chain network scene ──
+// ── HERO: animated cartoon supply-chain scene ──
 (function(){
-  const canvas = document.getElementById('hero-canvas');
-  const heroEl = document.getElementById('hero');
-  let w = heroEl.clientWidth, h = heroEl.clientHeight;
+  const canvas=document.getElementById('hero-canvas'), heroEl=document.getElementById('hero');
+  if(!canvas||!heroEl||!window.THREE) return;
+  const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let w=1,h=1,t=0,mx=0,my=0;
+  const scene=new THREE.Scene(); scene.fog=new THREE.FogExp2(0x071522,.045);
+  const camera=new THREE.PerspectiveCamera(39,1,.1,120); camera.position.set(8.8,5.4,14.6);
+  const renderer=new THREE.WebGLRenderer({canvas,antialias:true,alpha:true,powerPreference:'high-performance'});
+  renderer.setPixelRatio(Math.min(devicePixelRatio||1,1.5)); renderer.outputEncoding=THREE.sRGBEncoding;
+  scene.add(new THREE.HemisphereLight(0xcaf7ff,0x102033,1.75));
+  const sun=new THREE.DirectionalLight(0xffffff,1.6);sun.position.set(7,11,8);scene.add(sun);
+  const rim=new THREE.PointLight(0x64e7ff,2.3,22);rim.position.set(-4,4,5);scene.add(rim);
+  const world=new THREE.Group();world.position.set(3.8,-1.15,-2.2);scene.add(world);
+  const mat=(c,r=.68,m=.06)=>new THREE.MeshStandardMaterial({color:c,roughness:r,metalness:m});
+  const box=(g,s,p,c,r=.68)=>{const x=new THREE.Mesh(new THREE.BoxGeometry(...s),mat(c,r));x.position.set(...p);g.add(x);return x};
+  const cyl=(g,rt,rb,hh,p,c)=>{const x=new THREE.Mesh(new THREE.CylinderGeometry(rt,rb,hh,18),mat(c));x.position.set(...p);g.add(x);return x};
+  box(world,[13,.28,7.4],[0,-.12,0],0x12283a); const grid=new THREE.GridHelper(13,13,0x3d7180,0x183647);grid.position.y=.03;world.add(grid);
+  // warehouse and illuminated doors
+  const wh=new THREE.Group();wh.position.set(1.8,.18,-1.5);world.add(wh);box(wh,[4.7,2.45,2.7],[0,1.22,0],0x24445a);box(wh,[5,.15,3],[0,2.5,0],0x5fdff1);
+  for(let i=-1;i<=1;i++){const d=box(wh,[.92,1.5,.09],[i*1.25,.78,1.38],i===0?0x7d74e8:0x376879);d.material.emissive=new THREE.Color(i===0?0x17134a:0x071b21);d.material.emissiveIntensity=.65}
+  // racks and packages
+  for(let rr=0;rr<2;rr++)for(let cc=0;cc<3;cc++) box(wh,[.62,.43,.56],[-1.45+cc*1.42,.48+rr*.64,-1.42],(rr+cc)%2?0xe0aa4d:0x45aabd);
+  // conveyor with animated rollers and packages
+  const conv=new THREE.Group();conv.position.set(-1.55,.2,1.72);world.add(conv);box(conv,[5.8,.22,1.05],[0,.25,0],0x304b60);
+  const rollers=[];for(let i=-6;i<=6;i++){const r=cyl(conv,.09,.09,.86,[i*.45,.42,0],0x9db3bd);r.rotation.x=Math.PI/2;rollers.push(r)}
+  const parcels=[];for(let i=0;i<4;i++) parcels.push(box(conv,[.52,.5,.52],[-2.4+i*1.28,.78,0],i%2?0xe3aa4b:0x8b82ef));
+  // forklift adds story/motion
+  const fork=new THREE.Group();fork.position.set(.4,.12,2.55);world.add(fork);box(fork,[1.25,.58,.9],[0,.58,0],0xe3aa4b);box(fork,[.7,.8,.78],[-.25,1.05,0],0x24384b);box(fork,[.08,1.4,.08],[.72,1.15,.34],0x8fa6b0);box(fork,[.08,1.4,.08],[.72,1.15,-.34],0x8fa6b0);box(fork,[.9,.06,.08],[1.05,.42,.28],0x8fa6b0);box(fork,[.9,.06,.08],[1.05,.42,-.28],0x8fa6b0);
+  [-.4,.38].forEach(x=>[-.46,.46].forEach(z=>{const q=cyl(fork,.23,.23,.16,[x,.28,z],0x08111b);q.rotation.x=Math.PI/2}));
+  // truck
+  const truck=new THREE.Group();truck.position.set(4.15,.18,2.2);world.add(truck);box(truck,[2.3,1.2,1.3],[0,1,0],0xe4eef0);box(truck,[.95,1.03,1.03],[1.52,.86,0],0x55c8d8);[-.7,.7,1.55].forEach(x=>[-.6,.6].forEach(z=>{const q=cyl(truck,.28,.28,.18,[x,.38,z],0x07111d);q.rotation.x=Math.PI/2}));
+  // expressive cartoon operator: cap, vest, arms, hands, tablet
+  const person=new THREE.Group();person.position.set(-3.85,.18,-.05);world.add(person);
+  const torso=cyl(person,.46,.52,1.35,[0,1.35,0],0x5b76c8); const vest=box(person,[.82,.72,.08],[0,1.38,.43],0x57d9df);vest.material.emissive=new THREE.Color(0x0b3439);vest.material.emissiveIntensity=.45;
+  const head=new THREE.Mesh(new THREE.SphereGeometry(.45,24,20),mat(0xd8a27d));head.position.y=2.38;person.add(head);
+  const hair=new THREE.Mesh(new THREE.SphereGeometry(.46,22,14,0,Math.PI*2,0,Math.PI*.48),mat(0x17212d));hair.position.set(0,2.52,0);person.add(hair);
+  const cap=cyl(person,.47,.47,.1,[0,2.73,0],0x57d9df);box(person,[.38,.05,.28],[.23,2.69,.24],0x57d9df);
+  const eyeMat=new THREE.MeshBasicMaterial({color:0x07111d});const eyes=[];[-.15,.15].forEach(x=>{const e=new THREE.Mesh(new THREE.SphereGeometry(.037,8,8),eyeMat);e.position.set(x,2.4,.415);person.add(e);eyes.push(e)});
+  const armL=cyl(person,.115,.13,.92,[-.57,1.52,0],0xd8a27d);armL.rotation.z=.48;const armR=cyl(person,.115,.13,.92,[.57,1.52,0],0xd8a27d);armR.rotation.z=-.85;
+  [-.21,.21].forEach(x=>cyl(person,.14,.15,.9,[x,.4,0],0x263b51));
+  const tablet=box(person,[.55,.38,.06],[.82,1.55,.32],0x0c1c2b,.35);tablet.rotation.z=-.18;tablet.material.emissive=new THREE.Color(0x1a6b72);tablet.material.emissiveIntensity=.7;
+  // floating route and pulse
+  const pts=[new THREE.Vector3(-4.7,3.4,-1.7),new THREE.Vector3(-2,3.95,-2),new THREE.Vector3(.7,3.45,-2.2),new THREE.Vector3(3.45,3.85,-1.6),new THREE.Vector3(5.35,3.25,-.7)];
+  const curve=new THREE.CatmullRomCurve3(pts);world.add(new THREE.Mesh(new THREE.TubeGeometry(curve,90,.032,8,false),new THREE.MeshBasicMaterial({color:0x64e7ff,transparent:true,opacity:.68})));
+  pts.forEach((p,i)=>{const n=new THREE.Mesh(new THREE.SphereGeometry(.105,12,12),new THREE.MeshBasicMaterial({color:i===4?0xb8ff6a:0x64e7ff}));n.position.copy(p);world.add(n)});const pulse=new THREE.Mesh(new THREE.SphereGeometry(.14,14,14),new THREE.MeshBasicMaterial({color:0xb8ff6a}));world.add(pulse);
+  heroEl.addEventListener('pointermove',e=>{const r=heroEl.getBoundingClientRect();mx=(e.clientX-r.left)/r.width-.5;my=(e.clientY-r.top)/r.height-.5});
+  function resize(){w=Math.max(1,heroEl.clientWidth);h=Math.max(1,heroEl.clientHeight);camera.aspect=w/h;camera.updateProjectionMatrix();renderer.setSize(w,h,false)}resize();addEventListener('resize',resize);
+  function animate(){requestAnimationFrame(animate);if(!reduced)t+=.006; pulse.position.copy(curve.getPoint(t%1));parcels.forEach((p,i)=>p.position.x=-2.55+((t*12+i*1.5)%5.35));rollers.forEach(r=>r.rotation.y-=.045);fork.position.x=.4+Math.sin(t*.65)*1.15;truck.position.x=4.15+Math.sin(t*.32)*.42;person.position.y=.18+Math.sin(t*2.2)*.025;person.rotation.y=Math.sin(t*.75)*.08;armR.rotation.z=-.85+Math.sin(t*2.1)*.16;armL.rotation.z=.48+Math.sin(t*1.7)*.07;const blink=Math.sin(t*7)>0.985?.18:1;eyes.forEach(e=>e.scale.y=blink);world.rotation.y+=(mx*.105-world.rotation.y)*.025;world.rotation.x+=(-my*.045-world.rotation.x)*.025;camera.lookAt(2.3,.65,0);renderer.render(scene,camera)}animate();
+})();
 
-  const scene = new THREE.Scene();
-  const camera = new THREE.PerspectiveCamera(50, w/h, 0.1, 100);
-  camera.position.set(0, 0, 12);
-
-  const renderer = new THREE.WebGLRenderer({canvas, antialias:true, alpha:true});
-  renderer.setSize(w, h);
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-
-  const group = new THREE.Group();
-  scene.add(group);
-
-  const globeGeo = new THREE.IcosahedronGeometry(4.2, 2);
-  const globeMat = new THREE.MeshBasicMaterial({color:0x1a6b72, wireframe:true, transparent:true, opacity:0.35});
-  const globe = new THREE.Mesh(globeGeo, globeMat);
-  group.add(globe);
-
-  const posAttr = globeGeo.attributes.position;
-  const nodeCount = Math.min(40, posAttr.count);
-  const nodeIndices = [];
-  for(let i=0;i<nodeCount;i++){ nodeIndices.push(Math.floor(Math.random()*posAttr.count)); }
-
-  const nodesGeo = new THREE.BufferGeometry();
-  const nodePositions = [];
-  nodeIndices.forEach(idx=>{ nodePositions.push(posAttr.getX(idx), posAttr.getY(idx), posAttr.getZ(idx)); });
-  nodesGeo.setAttribute('position', new THREE.Float32BufferAttribute(nodePositions, 3));
-  const nodesMat = new THREE.PointsMaterial({color:0xe8b84b, size:0.12, transparent:true, opacity:0.9});
-  group.add(new THREE.Points(nodesGeo, nodesMat));
-
-  function vecAt(idx){ return new THREE.Vector3(posAttr.getX(idx), posAttr.getY(idx), posAttr.getZ(idx)); }
-  const routeGroup = new THREE.Group();
-  for(let i=0;i<16;i++){
-    const a = vecAt(nodeIndices[Math.floor(Math.random()*nodeIndices.length)]);
-    const b = vecAt(nodeIndices[Math.floor(Math.random()*nodeIndices.length)]);
-    if(a.distanceTo(b) < 0.5) continue;
-    const mid = a.clone().add(b).multiplyScalar(0.5).normalize().multiplyScalar(5.6);
-    const curve = new THREE.QuadraticBezierCurve3(a, mid, b);
-    const pts = curve.getPoints(24);
-    const lineGeo = new THREE.BufferGeometry().setFromPoints(pts);
-    const lineMat = new THREE.LineBasicMaterial({color:0x22909a, transparent:true, opacity:0.45});
-    routeGroup.add(new THREE.Line(lineGeo, lineMat));
-  }
-  group.add(routeGroup);
-
-  const containers = new THREE.Group();
-  const cubeColors = [0x1a6b72, 0xc8972b, 0x22909a];
-  for(let i=0;i<10;i++){
-    const size = 0.25 + Math.random()*0.25;
-    const geo = new THREE.BoxGeometry(size, size*0.6, size*0.6);
-    const mat = new THREE.MeshBasicMaterial({color:cubeColors[i%3], wireframe:true, transparent:true, opacity:0.6});
-    const cube = new THREE.Mesh(geo, mat);
-    const radius = 6 + Math.random()*2.5;
-    const angle = Math.random()*Math.PI*2;
-    const yOff = (Math.random()-0.5)*6;
-    cube.userData = {radius, angle, yOff, speed: 0.06 + Math.random()*0.08, spin: Math.random()*0.02};
-    containers.add(cube);
-  }
-  group.add(containers);
-
-  const starGeo = new THREE.BufferGeometry();
-  const starCount = 250;
-  const starPos = [];
-  for(let i=0;i<starCount;i++){ starPos.push((Math.random()-0.5)*40,(Math.random()-0.5)*40,(Math.random()-0.5)*40 - 5); }
-  starGeo.setAttribute('position', new THREE.Float32BufferAttribute(starPos,3));
-  const starMat = new THREE.PointsMaterial({color:0xffffff, size:0.05, transparent:true, opacity:0.5});
-  scene.add(new THREE.Points(starGeo, starMat));
-
-  let mouseX = 0, mouseY = 0;
-  heroEl.addEventListener('mousemove', (e)=>{
-    const rect = heroEl.getBoundingClientRect();
-    mouseX = ((e.clientX - rect.left) / w - 0.5) * 2;
-    mouseY = ((e.clientY - rect.top) / h - 0.5) * 2;
-  });
-
-  function onResize(){
-    w = heroEl.clientWidth; h = heroEl.clientHeight;
-    camera.aspect = w/h; camera.updateProjectionMatrix();
-    renderer.setSize(w,h);
-  }
-  window.addEventListener('resize', onResize);
-
-  let clock = new THREE.Clock();
-  function animate(){
-    requestAnimationFrame(animate);
-    const t = clock.getElapsedTime();
-    group.rotation.y = t * 0.06 + mouseX * 0.3;
-    group.rotation.x = mouseY * 0.15;
-    containers.children.forEach(c=>{
-      c.userData.angle += c.userData.speed * 0.01;
-      c.position.set(
-        Math.cos(c.userData.angle) * c.userData.radius,
-        c.userData.yOff + Math.sin(t*0.4 + c.userData.radius) * 0.4,
-        Math.sin(c.userData.angle) * c.userData.radius
-      );
-      c.rotation.x += c.userData.spin;
-      c.rotation.y += c.userData.spin;
-    });
-    camera.position.x += (mouseX*1.2 - camera.position.x) * 0.02;
-    camera.position.y += (-mouseY*0.8 - camera.position.y) * 0.02;
-    camera.lookAt(0,0,0);
-    renderer.render(scene, camera);
-  }
-  animate();
+// ── BETWEEN-SECTIONS: 3D cartoon supply-chain story ──
+(function(){
+  const canvas=document.getElementById('story-canvas'), host=document.querySelector('.story-stage');
+  if(!canvas||!host||!window.THREE) return;
+  const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;let t=0,mx=0,my=0,w=1,h=1;
+  const scene=new THREE.Scene();scene.fog=new THREE.FogExp2(0x081724,.055);const camera=new THREE.PerspectiveCamera(42,1,.1,80);camera.position.set(7,5.2,12);
+  const renderer=new THREE.WebGLRenderer({canvas,antialias:true,alpha:true,powerPreference:'high-performance'});renderer.setPixelRatio(Math.min(devicePixelRatio||1,1.4));renderer.outputEncoding=THREE.sRGBEncoding;
+  scene.add(new THREE.HemisphereLight(0xcff8ff,0x101827,1.7));const dl=new THREE.DirectionalLight(0xffffff,1.4);dl.position.set(5,9,7);scene.add(dl);
+  const g=new THREE.Group();g.position.y=-.7;scene.add(g);const M=(c,r=.7)=>new THREE.MeshStandardMaterial({color:c,roughness:r,metalness:.05});const B=(s,p,c)=>{const o=new THREE.Mesh(new THREE.BoxGeometry(...s),M(c));o.position.set(...p);g.add(o);return o};
+  B([10,.25,5.5],[0,0,0],0x142b3c);const grid=new THREE.GridHelper(10,10,0x356b78,0x183747);grid.position.y=.14;g.add(grid);
+  // supplier containers -> factory -> warehouse -> delivery van
+  [-4.1,-3.55].forEach((x,i)=>B([.45,.7,1.35],[x,.5,-1.45],i?0x5f74c8:0xd49c45));B([2.1,1.8,1.7],[-1.8,1.05,-1.2],0x2c5366);B([2.4,.12,1.9],[-1.8,2,-1.2],0x63e4f3);
+  B([2.2,1.55,1.8],[1.05,.92,-1.1],0x294759);for(let i=-1;i<=1;i++)B([.45,.65,.08],[1.05+i*.62,.55,-.16],i===0?0x8278e8:0x3b7180);
+  const belt=new THREE.Group();belt.position.set(-.4,.15,1.25);g.add(belt);const base=new THREE.Mesh(new THREE.BoxGeometry(5.6,.18,.8),M(0x314c5e));base.position.y=.35;belt.add(base);const packs=[];for(let i=0;i<4;i++){const p=new THREE.Mesh(new THREE.BoxGeometry(.42,.42,.42),M(i%2?0xe0a74a:0x8179e7));p.position.set(-2.3+i*1.3,.68,0);belt.add(p);packs.push(p)}
+  const van=new THREE.Group();van.position.set(3.65,.12,1.45);g.add(van);const vb=new THREE.Mesh(new THREE.BoxGeometry(1.8,.9,1),M(0xdde9ec));vb.position.y=.75;van.add(vb);const cab=new THREE.Mesh(new THREE.BoxGeometry(.72,.82,.82),M(0x55c8d8));cab.position.set(1.15,.68,0);van.add(cab);
+  [-.55,.55,1.25].forEach(x=>[-.45,.45].forEach(z=>{const q=new THREE.Mesh(new THREE.CylinderGeometry(.21,.21,.14,14),M(0x07111d));q.rotation.x=Math.PI/2;q.position.set(x,.25,z);van.add(q)}));
+  // small cartoon worker waving near warehouse
+  const worker=new THREE.Group();worker.position.set(1.95,.14,.65);g.add(worker);const body=new THREE.Mesh(new THREE.CylinderGeometry(.25,.29,.82,16),M(0x5e76ca));body.position.y=.78;worker.add(body);const head=new THREE.Mesh(new THREE.SphereGeometry(.27,18,16),M(0xd7a27d));head.position.y=1.42;worker.add(head);const arm=new THREE.Mesh(new THREE.CylinderGeometry(.07,.08,.58,10),M(0xd7a27d));arm.position.set(.34,1.02,0);arm.rotation.z=-.9;worker.add(arm);
+  const route=new THREE.CatmullRomCurve3([new THREE.Vector3(-4.2,2.55,-1.6),new THREE.Vector3(-1.8,2.8,-1.7),new THREE.Vector3(1,2.5,-1.45),new THREE.Vector3(3.9,2.65,-.4)]);g.add(new THREE.Mesh(new THREE.TubeGeometry(route,70,.025,7,false),new THREE.MeshBasicMaterial({color:0x64e7ff,transparent:true,opacity:.75})));const pulse=new THREE.Mesh(new THREE.SphereGeometry(.11,10,10),new THREE.MeshBasicMaterial({color:0xb8ff6a}));g.add(pulse);
+  host.addEventListener('pointermove',e=>{const r=host.getBoundingClientRect();mx=(e.clientX-r.left)/r.width-.5;my=(e.clientY-r.top)/r.height-.5});function resize(){w=Math.max(1,host.clientWidth);h=Math.max(1,host.clientHeight);camera.aspect=w/h;camera.updateProjectionMatrix();renderer.setSize(w,h,false)}resize();addEventListener('resize',resize);
+  function loop(){requestAnimationFrame(loop);if(!reduced)t+=.006;pulse.position.copy(route.getPoint(t%1));packs.forEach((p,i)=>p.position.x=-2.5+((t*11+i*1.45)%5.2));van.position.x=3.65+Math.sin(t*.45)*.45;worker.rotation.y=Math.sin(t*.9)*.08;arm.rotation.z=-.9+Math.sin(t*2.3)*.2;g.rotation.y+=(mx*.11-g.rotation.y)*.03;g.rotation.x+=(-my*.055-g.rotation.x)*.03;camera.lookAt(0,.8,0);renderer.render(scene,camera)}loop();
 })();
 
 // ── SECTION ACCENTS: mini 3D wireframe icons ──
@@ -1101,13 +1276,13 @@ function createMiniScene(canvasId, opts){
   }
   animate();
 }
-createMiniScene('mini3d-about-canvas',        {shape:'route', color:0xc8972b});
-createMiniScene('mini3d-experience-canvas',   {shape:'box',   color:0x1a6b72});
-createMiniScene('mini3d-skills-canvas',       {shape:'icosa', color:0x22909a});
-createMiniScene('mini3d-projects-canvas',     {shape:'box',   color:0xc8972b});
-createMiniScene('mini3d-certificates-canvas', {shape:'torus', color:0x1a6b72});
-createMiniScene('mini3d-achievements-canvas', {shape:'icosa', color:0xe8b84b});
-createMiniScene('mini3d-contact-canvas',      {shape:'route', color:0xe8b84b});
+
+
+
+
+
+
+
 
 // ── Persistent supply-chain network background (behind entire page) ──
 (function(){
@@ -1163,79 +1338,48 @@ createMiniScene('mini3d-contact-canvas',      {shape:'route', color:0xe8b84b});
   window.addEventListener('resize', ()=>{ clearTimeout(resizeTimeout); resizeTimeout = setTimeout(init, 300); });
 })();
 
-// ── Stack-spread project cards (pinned scroll scatter effect) ──
+// Project cards intentionally remain in a readable editorial list.
+
+// ===== SCM 2100 interaction system =====
 (function(){
-  const pin = document.getElementById('stackPin');
-  const source = document.getElementById('projectsGridSource');
-  const root = document.getElementById('stackCardsRoot');
-  const headline = document.getElementById('stackHeadline');
-  const hint = document.getElementById('stackHint');
-  if(!pin || !source || !root) return;
+  const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  function isMobile(){ return window.innerWidth <= 800; }
-
-  const originals = Array.from(source.querySelectorAll('.project-card'));
-  const wraps = originals.map(card=>{
-    const wrap = document.createElement('div');
-    wrap.className = 'stack-card-wrap';
-    wrap.appendChild(card.cloneNode(true));
-    root.appendChild(wrap);
-    return wrap;
-  });
-
-  if(isMobile()){
-    source.style.visibility = 'hidden';
-    source.style.position = 'absolute';
-    headline.style.opacity = '1';
-    // observe reveal for mobile stacked cards
-    wraps.forEach((w,i)=>{ w.classList.add('reveal'); w.classList.add('reveal-delay-'+((i%4)+1)); });
-    const obs = new IntersectionObserver((entries)=>{
-      entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in-view'); obs.unobserve(e.target);} });
-    }, {threshold:0.1});
-    wraps.forEach(w=> obs.observe(w));
-    return;
-  }
-
-  const total = wraps.length;
-  const cols = window.innerWidth < 1300 ? 2 : 3;
-  const targets = wraps.map((_, i)=>{
-    const row = Math.floor(i / cols), col = i % cols;
-    const xPct = (col - (cols-1)/2) * 26;
-    const yPct = (row - 1) * 24;
-    return { x: xPct, y: yPct, rotate: (Math.random()*6-3) };
-  });
-  const stackOffsets = wraps.map(()=> ({ x:(Math.random()*6-3), y:(Math.random()*6-3), rotate:(Math.random()*16-8) }));
-
-  let mouseX = 0, mouseY = 0;
-  window.addEventListener('pointermove', (e)=>{
-    mouseX = (e.clientX / window.innerWidth) * 2 - 1;
-    mouseY = (e.clientY / window.innerHeight) * 2 - 1;
-  });
-
-  function update(){
-    const rect = pin.getBoundingClientRect();
-    const total_h = pin.offsetHeight - window.innerHeight;
-    let p = total_h > 0 ? -rect.top / total_h : 0;
-    p = Math.max(0, Math.min(1, p));
-    const eased = p < 0.12 ? 0 : p > 0.9 ? 1 : (p-0.12)/(0.9-0.12);
-
-    headline.style.opacity = Math.min(1, eased*2.5);
-    hint.style.opacity = 1 - Math.min(1, p/0.12);
-
-    wraps.forEach((wrap, i)=>{
-      const t = targets[i], s = stackOffsets[i];
-      const x = s.x + (t.x - s.x) * eased - mouseX*2*(i/total);
-      const y = s.y + (t.y - s.y) * eased - mouseY*2*(i/total);
-      const rot = s.rotate + (t.rotate - s.rotate) * eased;
-      const scale = 0.82 + 0.18*eased;
-      wrap.style.transform = `translate(calc(-50% + ${x}vw), calc(-50% + ${y}vh)) rotate(${rot}deg) scale(${scale})`;
-      wrap.style.zIndex = 10 + i;
+  // Magnetic CTAs
+  if(!reduced && matchMedia('(pointer:fine)').matches){
+    document.querySelectorAll('.hero-cta,.hero-cta-ghost,.contact-link').forEach(el=>{
+      el.addEventListener('pointermove',e=>{const r=el.getBoundingClientRect(),x=e.clientX-r.left-r.width/2,y=e.clientY-r.top-r.height/2;el.style.transform=`translate(${x*.12}px,${y*.12}px) translateY(-2px)`});
+      el.addEventListener('pointerleave',()=>el.style.transform='');
     });
-
-    requestAnimationFrame(update);
+    // readable 3D tilt: only small angles, never hides text
+    document.querySelectorAll('.project-card,.skill-card,.exp-card').forEach(card=>{
+      card.addEventListener('pointermove',e=>{const r=card.getBoundingClientRect(),px=(e.clientX-r.left)/r.width,py=(e.clientY-r.top)/r.height;card.style.setProperty('--mx',(px*100)+'%');card.style.setProperty('--my',(py*100)+'%');card.style.transform=`perspective(1100px) rotateX(${(0.5-py)*2.2}deg) rotateY(${(px-0.5)*2.2}deg) translateY(-2px)`});
+      card.addEventListener('pointerleave',()=>card.style.transform='');
+    });
   }
-  requestAnimationFrame(update);
+
+  // Control Room modes
+  const modes={inventory:['INVENTORY','96.2%','Network balanced'],demand:['DEMAND SIGNAL','+12.4%','Forecast trending up'],logistics:['LOGISTICS','18.6h','Average transit time'],supplier:['SUPPLIER RISK','LOW','All critical lanes stable']};
+  document.querySelectorAll('.control-btn').forEach(btn=>btn.addEventListener('click',()=>{
+    document.querySelectorAll('.control-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');
+    const [a,b,c]=modes[btn.dataset.mode];document.getElementById('crLabel').textContent=a;document.getElementById('crValue').textContent=b;document.getElementById('crStatus').textContent=c;
+    if(window.gsap&&!reduced) gsap.fromTo('#crValue',{scale:.7,opacity:.2},{scale:1,opacity:1,duration:.45,ease:'back.out(1.8)'});
+  }));
+
+  // Animated stat counters
+  document.querySelectorAll('.stat-num').forEach(el=>{const raw=el.textContent.trim(),val=parseFloat(raw);if(Number.isNaN(val))return;el.dataset.final=raw;if(!reduced)el.textContent='0';});
+
+  if(window.gsap && window.ScrollTrigger && !reduced){
+    gsap.registerPlugin(ScrollTrigger);
+    gsap.utils.toArray('.stat-num').forEach(el=>{const raw=el.dataset.final||el.textContent,val=parseFloat(raw),suffix=raw.includes('%')?'%':'';ScrollTrigger.create({trigger:el,start:'top 90%',once:true,onEnter:()=>gsap.to({v:0},{v:val,duration:1.25,ease:'power2.out',onUpdate:function(){el.textContent=(val%1?this.targets()[0].v.toFixed(1):Math.round(this.targets()[0].v))+suffix}})})});
+    // Root cause traces backward as section crosses viewport
+    const root=document.getElementById('rootCause');
+    if(root){const nodes=[...root.querySelectorAll('.root-node')].reverse();const pulse=root.querySelector('.trace-pulse');const tl=gsap.timeline({scrollTrigger:{trigger:root,start:'top 72%',end:'bottom 35%',scrub:1}});tl.to(pulse,{right:'84%',duration:4,ease:'none'},0);nodes.forEach((n,i)=>tl.to(n,{className:'root-node active'+(i===nodes.length-1?' cause':''),duration:.35},i*.72));}
+    // stronger but restrained section choreography
+    gsap.utils.toArray('section .container').forEach((c,i)=>{if(i===0)return;gsap.from(c,{y:36,opacity:.88,duration:.8,ease:'power2.out',scrollTrigger:{trigger:c,start:'top 90%',toggleActions:'play none none none'}})});
+    gsap.from('.control-room',{scale:.965,y:45,opacity:0,duration:1,scrollTrigger:{trigger:'.control-room',start:'top 82%'}});
+  }
 })();
+
 </script>
 </body>
 </html>
